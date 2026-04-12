@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Halal Investment ROI Calculator 2025 — Sukuk, Murabaha & Islamic Investing | CalcWise</title>
+  <meta name="description" content="Calculate returns on Shariah-compliant investments including Sukuk bonds, Murabaha financing, and Islamic equity funds. No interest (riba). Free calculator.">
+  <link rel="canonical" href="https://yourcalcwisedomain.com/calculators/halal-roi.html">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav><div class="nav-inner"><a class="nav-logo" href="../index.html">Calc<span>Wise</span></a><ul class="nav-links"><li><a href="../index.html#islamic">Islamic</a></li></ul></div></nav>
+<main class="calc-page">
+  <div class="calc-breadcrumb"><a href="../index.html">Home</a> › Islamic Finance › Halal Investment ROI</div>
+  <h1 class="calc-page-title">Halal Investment ROI Calculator</h1>
+  <p class="calc-page-desc">Calculate expected returns on Shariah-compliant investments — Sukuk, Murabaha, and Islamic equity funds — without riba (interest).</p>
+  <div class="ad-slot">Advertisement</div>
+  <div class="calc-widget">
+    <div class="calc-widget-header"><span class="calc-widget-icon">📈</span><h2>Halal Investment Return Calculator</h2></div>
+    <div class="calc-widget-body">
+      <div class="field-group">
+        <div class="field"><label>Investment Type</label><select id="type"><option value="sukuk">Sukuk (Islamic Bond)</option><option value="murabaha">Murabaha (Cost-plus financing)</option><option value="equity">Islamic Equity Fund</option><option value="realestate">Real Estate (Rental Income)</option></select></div>
+        <div class="field"><label>Investment Amount ($)</label><input type="number" id="amount" value="10000" min="100"></div>
+      </div>
+      <div class="field-group">
+        <div class="field"><label>Expected Annual Return (%)</label><input type="number" id="return-rate" value="6" step="0.1" min="0"><span class="field-hint">Sukuk: 4–8% · Islamic equity: 8–14% · Rental: 5–10%</span></div>
+        <div class="field"><label>Investment Period (years)</label><input type="number" id="years" value="10" min="1" max="40"></div>
+      </div>
+      <div class="field-group">
+        <div class="field"><label>Monthly Contribution ($)</label><input type="number" id="monthly" value="0" min="0"><span class="field-hint">Optional regular additions</span></div>
+      </div>
+      <button class="btn-calc" onclick="calcHalal()">Calculate Returns</button>
+      <div class="result-box islamic-result" id="result">
+        <div class="result-label">Projected Value (Halal Return)</div>
+        <div class="result-main" id="final-val">$0</div>
+        <div class="result-breakdown">
+          <div class="result-row"><span>Initial investment</span><span id="init">$0</span></div>
+          <div class="result-row"><span>Additional contributions</span><span id="contrib">$0</span></div>
+          <div class="result-row"><span>Total profit (halal return)</span><span id="profit">$0</span></div>
+          <div class="result-row"><span>Effective annual return</span><span id="eff-rate">0%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ad-slot">Advertisement</div>
+  <div class="content-section"><h3>What makes an investment Shariah-compliant?</h3><p>Shariah-compliant investments avoid riba (interest), gharar (excessive uncertainty), maysir (gambling), and investment in prohibited industries (alcohol, weapons, pork, conventional financial services). Returns come from legitimate profit-sharing, asset ownership, or trade — not lending money at interest.</p><ul><li><strong>Sukuk</strong> — Islamic bonds backed by real assets, paying profit from asset returns rather than interest</li><li><strong>Murabaha</strong> — Cost-plus financing where a bank buys an asset and resells at a markup — the markup is profit, not interest</li><li><strong>Musharakah / Mudarabah</strong> — Partnership arrangements where profits and losses are shared proportionally</li><li><strong>Islamic equity funds</strong> — Funds that screen out haram sectors and meet purification criteria</li></ul></div>
+</main>
+<footer><div class="footer-inner"><div class="footer-brand"><a class="nav-logo" href="../index.html">Calc<span>Wise</span></a><p>Free calculators for modern life.</p></div><div class="footer-col"><h4>Islamic Finance</h4><a href="zakat.html">Zakat Calculator</a><a href="sadaqah.html">Sadaqah Guide</a></div><div class="footer-col"><h4>General Finance</h4><a href="compound-interest.html">Compound Interest</a><a href="sip.html">SIP Calculator</a></div></div><div class="footer-bottom"><span>© 2025 CalcWise. Consult a Shariah scholar for investment guidance.</span></div></footer>
+<script>
+function f(n){return '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function calcHalal(){
+  const P=parseFloat(document.getElementById('amount').value)||0;
+  const r=parseFloat(document.getElementById('return-rate').value)/100||0;
+  const t=parseFloat(document.getElementById('years').value)||0;
+  const mo=parseFloat(document.getElementById('monthly').value)||0;
+  const FV=P*Math.pow(1+r,t)+mo*12*((Math.pow(1+r,t)-1)/r);
+  const totalContrib=mo*12*t;
+  const profit=FV-P-totalContrib;
+  document.getElementById('final-val').textContent=f(FV);
+  document.getElementById('init').textContent=f(P);
+  document.getElementById('contrib').textContent=f(totalContrib);
+  document.getElementById('profit').textContent=f(profit);
+  document.getElementById('eff-rate').textContent=(r*100).toFixed(2)+'%';
+  const box=document.getElementById('result');box.classList.remove('visible');void box.offsetWidth;box.classList.add('visible');
+}
+</script>
+</body>
+</html>

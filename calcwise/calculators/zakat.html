@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zakat Calculator 2025 — Calculate Your Zakat on Cash, Gold & Investments | CalcWise</title>
+  <meta name="description" content="Free Zakat calculator for 2025. Calculate Zakat on cash, gold, silver, stocks, and business assets based on current nisab threshold. Instant, accurate, no signup.">
+  <meta name="keywords" content="zakat calculator, zakat on gold, zakat on savings, nisab 2025, how to calculate zakat">
+  <link rel="canonical" href="https://yourcalcwisedomain.com/calculators/zakat.html">
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Zakat Calculator 2025",
+    "description": "Calculate your annual Zakat obligation on cash, gold, silver, investments and business assets",
+    "url": "https://yourcalcwisedomain.com/calculators/zakat.html",
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem","position": 1,"name": "Home","item": "https://yourcalcwisedomain.com"},
+        {"@type": "ListItem","position": 2,"name": "Zakat Calculator"}
+      ]
+    }
+  }
+  </script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="../index.html">Calc<span>Wise</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#islamic">Islamic</a></li>
+      <li><a href="../index.html#finance">Finance</a></li>
+      <li><a href="../index.html#ai">AI & Tech</a></li>
+      <li><a href="../index.html#health">Health</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="calc-page">
+  <div class="calc-breadcrumb">
+    <a href="../index.html">Home</a> › <a href="../index.html#islamic">Islamic Finance</a> › Zakat Calculator
+  </div>
+
+  <h1 class="calc-page-title">Zakat Calculator 2025</h1>
+  <p class="calc-page-desc">Calculate your annual Zakat obligation across all asset types based on the current nisab threshold. Shariah-compliant formula.</p>
+
+  <!-- Ad slot top -->
+  <div class="ad-slot">Advertisement</div>
+
+  <div class="calc-widget">
+    <div class="calc-widget-header">
+      <span class="calc-widget-icon">🌙</span>
+      <h2>Zakat Calculator</h2>
+    </div>
+    <div class="calc-widget-body">
+
+      <div style="background:var(--gold-light);border:1px solid rgba(180,83,9,0.2);border-radius:8px;padding:1rem;margin-bottom:1.5rem;font-size:0.85rem;color:var(--gold);">
+        <strong>2025 Nisab Threshold:</strong> Gold nisab ≈ 85g of gold (~$7,650 USD at current gold prices). Silver nisab ≈ 595g of silver (~$570 USD). You must own above this threshold for one lunar year (hawl) to be liable for Zakat.
+      </div>
+
+      <div class="field-group">
+        <div class="field">
+          <label>Cash & Bank Savings ($)</label>
+          <input type="number" id="cash" placeholder="0" min="0">
+          <span class="field-hint">Checking, savings, cash on hand</span>
+        </div>
+        <div class="field">
+          <label>Gold Value ($)</label>
+          <input type="number" id="gold" placeholder="0" min="0">
+          <span class="field-hint">Current market value of gold owned</span>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field">
+          <label>Silver Value ($)</label>
+          <input type="number" id="silver" placeholder="0" min="0">
+          <span class="field-hint">Current market value of silver owned</span>
+        </div>
+        <div class="field">
+          <label>Stocks & Investments ($)</label>
+          <input type="number" id="stocks" placeholder="0" min="0">
+          <span class="field-hint">Market value of stocks, funds, crypto</span>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field">
+          <label>Business Assets ($)</label>
+          <input type="number" id="business" placeholder="0" min="0">
+          <span class="field-hint">Inventory, receivables, business cash</span>
+        </div>
+        <div class="field">
+          <label>Money Owed to You ($)</label>
+          <input type="number" id="receivables" placeholder="0" min="0">
+          <span class="field-hint">Loans you expect to be repaid</span>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field">
+          <label>Debts & Liabilities ($)</label>
+          <input type="number" id="debts" placeholder="0" min="0">
+          <span class="field-hint">Outstanding debts due this year</span>
+        </div>
+        <div class="field">
+          <label>Currency</label>
+          <select id="currency">
+            <option value="USD">USD — US Dollar</option>
+            <option value="GBP">GBP — British Pound</option>
+            <option value="EUR">EUR — Euro</option>
+            <option value="CAD">CAD — Canadian Dollar</option>
+            <option value="AED">AED — UAE Dirham</option>
+            <option value="PKR">PKR — Pakistani Rupee</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="btn-calc" onclick="calculateZakat()">Calculate My Zakat</button>
+
+      <div class="result-box islamic-result" id="result">
+        <div class="result-label">Your Zakat Obligation</div>
+        <div class="result-main" id="zakat-amount">$0.00</div>
+        <div class="result-breakdown">
+          <div class="result-row"><span>Total Zakatable Assets</span><span id="total-assets">$0</span></div>
+          <div class="result-row"><span>Less: Liabilities</span><span id="total-debts">$0</span></div>
+          <div class="result-row"><span>Net Zakatable Wealth</span><span id="net-wealth">$0</span></div>
+          <div class="result-row"><span>Nisab Threshold (gold)</span><span>~$7,650</span></div>
+          <div class="result-row"><span>Zakat Rate</span><span>2.5%</span></div>
+          <div id="nisab-warning" style="display:none;padding-top:0.75rem;font-size:0.8rem;color:var(--green);font-weight:500;"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Ad slot mid -->
+  <div class="ad-slot">Advertisement</div>
+
+  <div class="content-section">
+    <h3>What is Zakat?</h3>
+    <p>Zakat is one of the Five Pillars of Islam — an obligatory annual almsgiving paid by every Muslim who meets the nisab (minimum wealth threshold) and has held that wealth for one full lunar year (hawl). The standard Zakat rate is 2.5% of total zakatable net wealth.</p>
+    <p>Zakat is not a charity — it is a right of the poor upon the wealthy. It purifies wealth and fulfills a social obligation embedded in Islamic economic principles. There are eight categories of eligible Zakat recipients defined in the Quran (Surah At-Tawbah, 9:60).</p>
+  </div>
+
+  <div class="content-section">
+    <h3>What assets are subject to Zakat?</h3>
+    <ul>
+      <li><strong>Cash and bank deposits</strong> — all liquid savings including checking and savings accounts</li>
+      <li><strong>Gold and silver</strong> — jewelry held as investment (scholars differ on personal-use jewelry)</li>
+      <li><strong>Stocks and shares</strong> — the zakatable portion depends on whether held for trading or long-term</li>
+      <li><strong>Business inventory</strong> — goods held for trade at their current market value</li>
+      <li><strong>Receivables</strong> — money owed to you that you expect to recover</li>
+      <li><strong>Rental income</strong> — profit from rental property (not the property itself)</li>
+      <li><strong>Cryptocurrency</strong> — most contemporary scholars treat it like cash or traded assets</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h3>What assets are NOT subject to Zakat?</h3>
+    <ul>
+      <li>Your primary home (house you live in)</li>
+      <li>Personal vehicle and household items</li>
+      <li>Tools and equipment used for livelihood</li>
+      <li>Pension funds not yet accessible (scholars differ)</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h3>Frequently Asked Questions</h3>
+    <div class="faq-item">
+      <div class="faq-q">What is the nisab for 2025?</div>
+      <div class="faq-a">The gold nisab is approximately 85 grams of gold. At April 2025 gold prices (~$90/gram), this is approximately $7,650 USD. The silver nisab is 595g of silver — a much lower threshold (~$570). Most scholars recommend using the gold nisab for contemporary calculations.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Do I pay Zakat on my whole salary or just savings?</div>
+      <div class="faq-a">Zakat is calculated on wealth that has been in your possession for a full lunar year above the nisab — not on income as it comes in. At your Zakat date, calculate everything you own, subtract what you owe, and pay 2.5% if above nisab.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is Zakat due on a house I'm renting out?</div>
+      <div class="faq-a">Zakat is not due on the rental property itself, but it is due on the rental income you have accumulated and not spent by your annual Zakat date.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">When should I pay Zakat?</div>
+      <div class="faq-a">Zakat is due once per lunar year (hawl) from the date your wealth first reached the nisab. Many Muslims choose to pay during Ramadan for extra reward, but any date is valid as long as it is annual.</div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a class="nav-logo" href="../index.html">Calc<span>Wise</span></a>
+      <p>Free, accurate calculators for modern life. No signup required.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Islamic Finance</h4>
+      <a href="zakat.html">Zakat Calculator</a>
+      <a href="sadaqah.html">Sadaqah Guide</a>
+      <a href="halal-roi.html">Halal Investment ROI</a>
+    </div>
+    <div class="footer-col">
+      <h4>Other Calculators</h4>
+      <a href="mortgage.html">Mortgage Calculator</a>
+      <a href="llm-token.html">LLM Token Cost</a>
+      <a href="tdee.html">TDEE Calculator</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 CalcWise. All rights reserved.</span>
+    <span>This calculator is for guidance only. Consult a scholar for complex situations.</span>
+  </div>
+</footer>
+
+<script>
+function fmt(n, currency) {
+  const syms = {USD:'$',GBP:'£',EUR:'€',CAD:'CA$',AED:'AED ',PKR:'Rs '};
+  const sym = syms[currency] || '$';
+  return sym + n.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+}
+function val(id) { return parseFloat(document.getElementById(id).value) || 0; }
+
+function calculateZakat() {
+  const currency = document.getElementById('currency').value;
+  const assets = val('cash') + val('gold') + val('silver') + val('stocks') + val('business') + val('receivables');
+  const debts  = val('debts');
+  const net    = Math.max(0, assets - debts);
+  const NISAB  = 7650;
+  const zakat  = net >= NISAB ? net * 0.025 : 0;
+
+  document.getElementById('total-assets').textContent = fmt(assets, currency);
+  document.getElementById('total-debts').textContent  = fmt(debts, currency);
+  document.getElementById('net-wealth').textContent   = fmt(net, currency);
+  document.getElementById('zakat-amount').textContent = fmt(zakat, currency);
+
+  const warn = document.getElementById('nisab-warning');
+  if (net < NISAB) {
+    warn.textContent = 'Your net wealth is below the nisab threshold. No Zakat is due at this time.';
+    warn.style.display = 'block';
+  } else {
+    warn.style.display = 'none';
+  }
+
+  const box = document.getElementById('result');
+  box.classList.remove('visible');
+  void box.offsetWidth;
+  box.classList.add('visible');
+}
+</script>
+</body>
+</html>

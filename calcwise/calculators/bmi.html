@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMI Calculator 2025 — Body Mass Index for Adults | CalcWise</title>
+  <meta name="description" content="Calculate your Body Mass Index (BMI) instantly. Supports imperial and metric units. Includes healthy weight range and BMI category. Free, no signup.">
+  <link rel="canonical" href="https://yourcalcwisedomain.com/calculators/bmi.html">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav><div class="nav-inner"><a class="nav-logo" href="../index.html">Calc<span>Wise</span></a><ul class="nav-links"><li><a href="../index.html#health">Health</a></li></ul></div></nav>
+<main class="calc-page">
+  <div class="calc-breadcrumb"><a href="../index.html">Home</a> › Health › BMI Calculator</div>
+  <h1 class="calc-page-title">BMI Calculator</h1>
+  <p class="calc-page-desc">Calculate your Body Mass Index and see your healthy weight range. Supports both imperial and metric measurements.</p>
+  <div class="ad-slot">Advertisement</div>
+  <div class="calc-widget">
+    <div class="calc-widget-header"><span class="calc-widget-icon">⚖️</span><h2>BMI Calculator</h2></div>
+    <div class="calc-widget-body">
+      <div class="field-group">
+        <div class="field"><label>Unit System</label><select id="units" onchange="toggleUnits()"><option value="imperial">Imperial (lbs, ft/in)</option><option value="metric">Metric (kg, cm)</option></select></div>
+      </div>
+      <div class="field-group" id="imp">
+        <div class="field"><label>Weight (lbs)</label><input type="number" id="weight-lbs" value="175" min="50"></div>
+        <div class="field"><label>Height (ft / in)</label><div style="display:flex;gap:8px;"><input type="number" id="ft" value="5" min="3" max="8" style="width:50%"><input type="number" id="inch" value="10" min="0" max="11" style="width:50%"></div></div>
+      </div>
+      <div class="field-group" id="met" style="display:none">
+        <div class="field"><label>Weight (kg)</label><input type="number" id="weight-kg" value="80" min="20"></div>
+        <div class="field"><label>Height (cm)</label><input type="number" id="height-cm" value="178" min="100"></div>
+      </div>
+      <button class="btn-calc" onclick="calcBMI()">Calculate BMI</button>
+      <div class="result-box" id="result">
+        <div class="result-label">Your BMI</div>
+        <div class="result-main" id="bmi-val">0</div>
+        <div class="result-breakdown">
+          <div class="result-row"><span>Category</span><span id="category">—</span></div>
+          <div class="result-row"><span>Healthy BMI range</span><span>18.5 – 24.9</span></div>
+          <div class="result-row"><span>Healthy weight range</span><span id="healthy-range">—</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ad-slot">Advertisement</div>
+  <div class="content-section"><h3>BMI categories</h3><ul><li><strong>Below 18.5</strong> — Underweight</li><li><strong>18.5 – 24.9</strong> — Normal weight</li><li><strong>25.0 – 29.9</strong> — Overweight</li><li><strong>30.0 and above</strong> — Obese</li></ul><p>BMI is a screening tool, not a diagnostic measure. It does not account for muscle mass, bone density, or fat distribution. Consult a healthcare professional for a complete health assessment.</p></div>
+</main>
+<footer><div class="footer-inner"><div class="footer-brand"><a class="nav-logo" href="../index.html">Calc<span>Wise</span></a><p>Free calculators for modern life.</p></div><div class="footer-col"><h4>Health</h4><a href="tdee.html">TDEE Calculator</a><a href="bmi.html">BMI Calculator</a></div><div class="footer-col"><h4>Finance</h4><a href="zakat.html">Zakat</a><a href="mortgage.html">Mortgage</a></div></div><div class="footer-bottom"><span>© 2025 CalcWise. BMI is a screening tool only. Consult a healthcare professional.</span></div></footer>
+<script>
+function toggleUnits(){const u=document.getElementById('units').value;document.getElementById('imp').style.display=u==='imperial'?'grid':'none';document.getElementById('met').style.display=u==='metric'?'grid':'none';}
+function calcBMI(){
+  const u=document.getElementById('units').value;
+  let weightKg,heightM;
+  if(u==='imperial'){weightKg=(parseFloat(document.getElementById('weight-lbs').value)||0)*0.453592;const ht=(parseFloat(document.getElementById('ft').value)||0)*12+(parseFloat(document.getElementById('inch').value)||0);heightM=ht*0.0254;}
+  else{weightKg=parseFloat(document.getElementById('weight-kg').value)||0;heightM=(parseFloat(document.getElementById('height-cm').value)||0)/100;}
+  const bmi=weightKg/(heightM*heightM);
+  const cats=['Underweight','Normal weight','Overweight','Obese'];
+  const cat=bmi<18.5?cats[0]:bmi<25?cats[1]:bmi<30?cats[2]:cats[3];
+  const loKg=18.5*heightM*heightM, hiKg=24.9*heightM*heightM;
+  const loLbs=(loKg/0.453592).toFixed(0), hiLbs=(hiKg/0.453592).toFixed(0);
+  document.getElementById('bmi-val').textContent=bmi.toFixed(1);
+  document.getElementById('category').textContent=cat;
+  document.getElementById('healthy-range').textContent=u==='imperial'?loLbs+'–'+hiLbs+' lbs':(loKg.toFixed(0)+'–'+hiKg.toFixed(0)+' kg');
+  const box=document.getElementById('result');box.classList.remove('visible');void box.offsetWidth;box.classList.add('visible');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mortgage Calculator 2025 — Monthly Payment & Amortization Schedule | CalcWise</title>
+  <meta name="description" content="Free mortgage calculator. Calculate monthly payment, total interest paid, and full amortization schedule. Supports extra payments and shows how much you save.">
+  <meta name="keywords" content="mortgage calculator, monthly payment calculator, home loan calculator, amortization schedule, mortgage payment 2025">
+  <link rel="canonical" href="https://yourcalcwisedomain.com/calculators/mortgage.html">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="../index.html">Calc<span>Wise</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#islamic">Islamic</a></li>
+      <li><a href="../index.html#finance">Finance</a></li>
+      <li><a href="../index.html#ai">AI & Tech</a></li>
+      <li><a href="../index.html#health">Health</a></li>
+    </ul>
+  </div>
+</nav>
+<main class="calc-page">
+  <div class="calc-breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#finance">Finance</a> › Mortgage Calculator</div>
+  <h1 class="calc-page-title">Mortgage Calculator</h1>
+  <p class="calc-page-desc">Calculate your monthly mortgage payment, total interest, and see a full amortization breakdown. Supports extra monthly payments.</p>
+  <div class="ad-slot">Advertisement</div>
+  <div class="calc-widget">
+    <div class="calc-widget-header"><span class="calc-widget-icon">🏠</span><h2>Mortgage Payment Calculator</h2></div>
+    <div class="calc-widget-body">
+      <div class="field-group">
+        <div class="field"><label>Home Price ($)</label><input type="number" id="home-price" value="400000" min="0" oninput="calculate()"></div>
+        <div class="field"><label>Down Payment ($)</label><input type="number" id="down-payment" value="80000" min="0" oninput="calculate()"></div>
+      </div>
+      <div class="field-group">
+        <div class="field"><label>Annual Interest Rate (%)</label><input type="number" id="rate" value="6.75" step="0.01" min="0" oninput="calculate()"></div>
+        <div class="field"><label>Loan Term (years)</label><select id="term" onchange="calculate()"><option value="30">30 years</option><option value="20">20 years</option><option value="15">15 years</option><option value="10">10 years</option></select></div>
+      </div>
+      <div class="field-group">
+        <div class="field"><label>Extra Monthly Payment ($)</label><input type="number" id="extra" value="0" min="0" oninput="calculate()"><span class="field-hint">Optional — reduces loan term significantly</span></div>
+        <div class="field"><label>Property Tax (annual $)</label><input type="number" id="tax" value="4800" min="0" oninput="calculate()"></div>
+      </div>
+      <button class="btn-calc" onclick="calculate()">Calculate Payment</button>
+      <div class="result-box" id="result">
+        <div class="result-label">Monthly Payment (Principal + Interest)</div>
+        <div class="result-main" id="monthly-payment">$0</div>
+        <div class="result-breakdown">
+          <div class="result-row"><span>Loan Amount</span><span id="loan-amt">$0</span></div>
+          <div class="result-row"><span>Monthly P&amp;I</span><span id="pi">$0</span></div>
+          <div class="result-row"><span>Monthly Tax</span><span id="tax-mo">$0</span></div>
+          <div class="result-row"><span>Total Monthly (P&amp;I + Tax)</span><span id="total-mo">$0</span></div>
+          <div class="result-row"><span>Total Interest Paid</span><span id="total-int">$0</span></div>
+          <div class="result-row"><span>Total Cost of Loan</span><span id="total-cost">$0</span></div>
+          <div id="extra-savings" style="padding-top:0.75rem;font-size:0.82rem;color:var(--accent);font-weight:500;display:none;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ad-slot">Advertisement</div>
+  <div class="content-section">
+    <h3>How mortgage payments are calculated</h3>
+    <p>Your monthly payment is determined by the loan amount, interest rate, and term using this formula: M = P[r(1+r)^n]/[(1+r)^n-1], where P is principal, r is monthly rate, and n is number of payments. The payment stays fixed, but the split between interest and principal shifts each month — early payments are mostly interest, later payments mostly principal.</p>
+  </div>
+  <div class="content-section">
+    <h3>Frequently Asked Questions</h3>
+    <div class="faq-item"><div class="faq-q">What is a good mortgage interest rate in 2025?</div><div class="faq-a">As of early 2025, 30-year fixed rates are in the 6.5–7.5% range. Your actual rate depends on credit score, down payment, loan type, and lender. Rates above 740 credit score typically receive the best pricing.</div></div>
+    <div class="faq-item"><div class="faq-q">How much does an extra $100/month save on a 30-year mortgage?</div><div class="faq-a">On a $320,000 loan at 6.75%, paying an extra $100/month saves approximately $28,000 in interest and cuts the loan by about 3.5 years.</div></div>
+    <div class="faq-item"><div class="faq-q">What is the 28% rule for mortgages?</div><div class="faq-a">Lenders typically recommend your total housing payment (P&I + taxes + insurance) not exceed 28% of your gross monthly income. Your total debt payments should stay below 36% (the 28/36 rule).</div></div>
+  </div>
+</main>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><a class="nav-logo" href="../index.html">Calc<span>Wise</span></a><p>Free, accurate calculators for modern life.</p></div>
+    <div class="footer-col"><h4>Finance</h4><a href="mortgage.html">Mortgage Calculator</a><a href="compound-interest.html">Compound Interest</a><a href="sip.html">SIP Calculator</a></div>
+    <div class="footer-col"><h4>Other Tools</h4><a href="zakat.html">Zakat Calculator</a><a href="llm-token.html">LLM Token Cost</a><a href="tdee.html">TDEE Calculator</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 CalcWise.</span><span>For educational purposes. Consult a mortgage professional for advice.</span></div>
+</footer>
+<script>
+function f(n){ return '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function v(id){ return parseFloat(document.getElementById(id).value)||0; }
+function calculate(){
+  const price=v('home-price'), dp=v('down-payment'), annualRate=v('rate'), years=parseInt(document.getElementById('term').value), extra=v('extra'), tax=v('tax');
+  const loan=Math.max(0,price-dp);
+  const r=annualRate/100/12, n=years*12;
+  if(loan<=0||r<=0){ return; }
+  const pi=loan*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+  const taxMo=tax/12;
+  let bal=loan, totalInt=0, months=0;
+  while(bal>0.01 && months<n*2){
+    const intPay=bal*r;
+    const prinPay=Math.min(bal, pi-intPay+extra);
+    bal-=prinPay; totalInt+=intPay; months++;
+    if(bal<0) bal=0;
+  }
+  document.getElementById('loan-amt').textContent=f(loan);
+  document.getElementById('pi').textContent=f(pi);
+  document.getElementById('tax-mo').textContent=f(taxMo);
+  document.getElementById('total-mo').textContent=f(pi+taxMo);
+  document.getElementById('monthly-payment').textContent=f(pi+taxMo);
+  document.getElementById('total-int').textContent=f(totalInt);
+  document.getElementById('total-cost').textContent=f(loan+totalInt);
+  const savings=document.getElementById('extra-savings');
+  if(extra>0){
+    const moSaved=n-months;
+    const intSaved=(loan+loan*(annualRate/100/12)*n/(1)-loan-totalInt);
+    savings.textContent=`Extra payments save ~${moSaved} months off your loan.`;
+    savings.style.display='block';
+  } else { savings.style.display='none'; }
+  const box=document.getElementById('result');
+  box.classList.remove('visible'); void box.offsetWidth; box.classList.add('visible');
+}
+calculate();
+</script>
+</body>
+</html>

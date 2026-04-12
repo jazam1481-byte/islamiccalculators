@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automation ROI Calculator 2025 — GoHighLevel, Make.com & n8n | CalcWise</title>
+  <meta name="description" content="Calculate the return on investment for automating your business with GoHighLevel, Make.com, or n8n. See how much time and money automation saves monthly. Free.">
+  <link rel="canonical" href="https://yourcalcwisedomain.com/calculators/automation-roi.html">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav><div class="nav-inner"><a class="nav-logo" href="../index.html">Calc<span>Wise</span></a><ul class="nav-links"><li><a href="../index.html#ai">AI & Tech</a></li></ul></div></nav>
+<main class="calc-page">
+  <div class="calc-breadcrumb"><a href="../index.html">Home</a> › AI & Tech › Automation ROI</div>
+  <h1 class="calc-page-title">Business Automation ROI Calculator</h1>
+  <p class="calc-page-desc">Calculate the real return on investing in business automation with tools like GoHighLevel, Make.com, or n8n. See your break-even point and monthly savings.</p>
+  <div class="ad-slot">Advertisement</div>
+  <div class="calc-widget">
+    <div class="calc-widget-header"><span class="calc-widget-icon">⚙️</span><h2>Automation ROI Calculator</h2></div>
+    <div class="calc-widget-body">
+      <div style="background:var(--accent-light);border-radius:8px;padding:1rem;margin-bottom:1.5rem;font-size:0.85rem;color:var(--accent)">Fill in your current manual process costs — automation typically reduces these by 60–90%.</div>
+      <div class="field-group">
+        <div class="field"><label>Hours saved per week</label><input type="number" id="hours" value="10" min="0"><span class="field-hint">Hours of manual work automation replaces</span></div>
+        <div class="field"><label>Your hourly rate ($)</label><input type="number" id="rate" value="50" min="1"><span class="field-hint">Your time value or employee cost</span></div>
+      </div>
+      <div class="field-group">
+        <div class="field"><label>Automation tool cost ($/month)</label><input type="number" id="tool-cost" value="97" min="0"><span class="field-hint">GHL $97 · Make.com $16 · n8n $20</span></div>
+        <div class="field"><label>Setup cost (one-time $)</label><input type="number" id="setup" value="500" min="0"><span class="field-hint">Freelancer or DIY time to build it</span></div>
+      </div>
+      <div class="field-group">
+        <div class="field"><label>Additional revenue from automation ($)</label><input type="number" id="extra-rev" value="500" min="0"><span class="field-hint">New leads captured, faster follow-up, etc.</span></div>
+      </div>
+      <button class="btn-calc" onclick="calcROI()">Calculate Automation ROI</button>
+      <div class="result-box" id="result">
+        <div class="result-label">Monthly Net Savings</div>
+        <div class="result-main" id="monthly-save">$0</div>
+        <div class="result-breakdown">
+          <div class="result-row"><span>Time saved monthly</span><span id="time-val">$0</span></div>
+          <div class="result-row"><span>Additional revenue</span><span id="extra-rev-out">$0</span></div>
+          <div class="result-row"><span>Tool cost</span><span id="tool-out">$0</span></div>
+          <div class="result-row"><span>Net monthly benefit</span><span id="net-mo">$0</span></div>
+          <div class="result-row"><span>Break-even point</span><span id="breakeven">0 months</span></div>
+          <div class="result-row"><span>12-month net ROI</span><span id="roi-pct">0%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ad-slot">Advertisement</div>
+  <div class="content-section"><h3>What can business automation do for you?</h3><p>Modern no-code automation tools like GoHighLevel, Make.com, and n8n can eliminate repetitive manual tasks including lead follow-up, appointment booking, invoice generation, client onboarding, social media posting, and CRM data entry.</p><p>For a typical small business spending 10+ hours per week on manual tasks, automation delivers a 300–1000% ROI within the first year — often breaking even within 2–3 months.</p></div>
+</main>
+<footer><div class="footer-inner"><div class="footer-brand"><a class="nav-logo" href="../index.html">Calc<span>Wise</span></a><p>Free calculators for modern life.</p></div><div class="footer-col"><h4>AI & Tech</h4><a href="llm-token.html">LLM Token Cost</a><a href="automation-roi.html">Automation ROI</a></div><div class="footer-col"><h4>Finance</h4><a href="mortgage.html">Mortgage</a><a href="zakat.html">Zakat</a></div></div><div class="footer-bottom"><span>© 2025 CalcWise.</span></div></footer>
+<script>
+function f(n){return '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function calcROI(){
+  const hours=parseFloat(document.getElementById('hours').value)||0;
+  const rate=parseFloat(document.getElementById('rate').value)||0;
+  const toolCost=parseFloat(document.getElementById('tool-cost').value)||0;
+  const setup=parseFloat(document.getElementById('setup').value)||0;
+  const extraRev=parseFloat(document.getElementById('extra-rev').value)||0;
+  const timeValMo=hours*rate*4.33;
+  const netMo=timeValMo+extraRev-toolCost;
+  const totalInvest=setup+toolCost;
+  const breakeven=totalInvest>0?Math.ceil(totalInvest/netMo):0;
+  const roi12=(netMo*12-setup-toolCost*12)/(setup+toolCost*12)*100;
+  document.getElementById('monthly-save').textContent=f(netMo);
+  document.getElementById('time-val').textContent=f(timeValMo)+'/mo';
+  document.getElementById('extra-rev-out').textContent=f(extraRev)+'/mo';
+  document.getElementById('tool-out').textContent=f(toolCost)+'/mo';
+  document.getElementById('net-mo').textContent=f(netMo);
+  document.getElementById('breakeven').textContent=breakeven>0?breakeven+' months':'Immediate';
+  document.getElementById('roi-pct').textContent=roi12.toFixed(0)+'%';
+  const box=document.getElementById('result');box.classList.remove('visible');void box.offsetWidth;box.classList.add('visible');
+}
+</script>
+</body>
+</html>

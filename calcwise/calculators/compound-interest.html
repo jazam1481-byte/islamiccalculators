@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compound Interest Calculator 2025 — Savings Growth Calculator | CalcWise</title>
+  <meta name="description" content="Calculate how your savings grow with compound interest. Supports daily, monthly, and annual compounding with regular contributions. Free, instant results.">
+  <link rel="canonical" href="https://yourcalcwisedomain.com/calculators/compound-interest.html">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav><div class="nav-inner"><a class="nav-logo" href="../index.html">Calc<span>Wise</span></a><ul class="nav-links"><li><a href="../index.html#finance">Finance</a></li></ul></div></nav>
+<main class="calc-page">
+  <div class="calc-breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#finance">Finance</a> › Compound Interest</div>
+  <h1 class="calc-page-title">Compound Interest Calculator</h1>
+  <p class="calc-page-desc">See exactly how your money grows over time with compounding — the most powerful force in personal finance.</p>
+  <div class="ad-slot">Advertisement</div>
+  <div class="calc-widget">
+    <div class="calc-widget-header"><span class="calc-widget-icon">💰</span><h2>Compound Interest Calculator</h2></div>
+    <div class="calc-widget-body">
+      <div class="field-group">
+        <div class="field"><label>Initial Principal ($)</label><input type="number" id="principal" value="10000" min="0"></div>
+        <div class="field"><label>Annual Interest Rate (%)</label><input type="number" id="rate" value="7" step="0.1" min="0"></div>
+      </div>
+      <div class="field-group">
+        <div class="field"><label>Time (years)</label><input type="number" id="years" value="20" min="1" max="50"></div>
+        <div class="field"><label>Compounding Frequency</label><select id="freq"><option value="365">Daily</option><option value="12" selected>Monthly</option><option value="4">Quarterly</option><option value="1">Annually</option></select></div>
+      </div>
+      <div class="field-group">
+        <div class="field"><label>Monthly Contribution ($)</label><input type="number" id="contribution" value="200" min="0"><span class="field-hint">Added each month on top of principal</span></div>
+      </div>
+      <button class="btn-calc" onclick="calcCI()">Calculate Growth</button>
+      <div class="result-box" id="result">
+        <div class="result-label">Future Value</div>
+        <div class="result-main" id="future-val">$0</div>
+        <div class="result-breakdown">
+          <div class="result-row"><span>Principal invested</span><span id="total-principal">$0</span></div>
+          <div class="result-row"><span>Total contributions</span><span id="total-contrib">$0</span></div>
+          <div class="result-row"><span>Interest earned</span><span id="interest-earned">$0</span></div>
+          <div class="result-row"><span>Total return</span><span id="total-return">0%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ad-slot">Advertisement</div>
+  <div class="content-section">
+    <h3>Why compound interest is called the eighth wonder of the world</h3>
+    <p>Compound interest means you earn interest on your interest — not just your principal. A $10,000 investment growing at 7% annually doubles to $20,000 in about 10 years, and reaches $40,000 in 20 years. The key insight: time matters more than the amount you invest.</p>
+    <p>Adding regular monthly contributions dramatically accelerates growth. Contributing $200/month to that $10,000 over 20 years at 7% yields over $150,000 — roughly 4x what the same money would be without compounding.</p>
+  </div>
+  <div class="content-section">
+    <h3>Frequently Asked Questions</h3>
+    <div class="faq-item"><div class="faq-q">What is the Rule of 72?</div><div class="faq-a">The Rule of 72 lets you estimate how long to double your money: divide 72 by the annual interest rate. At 7% return, your money doubles in ~10.3 years. At 6%, it takes ~12 years.</div></div>
+    <div class="faq-item"><div class="faq-q">What is a realistic long-term stock market return?</div><div class="faq-a">The S&P 500 has historically returned approximately 10% annually before inflation, or about 7% inflation-adjusted. Individual results vary significantly year to year.</div></div>
+  </div>
+</main>
+<footer><div class="footer-inner"><div class="footer-brand"><a class="nav-logo" href="../index.html">Calc<span>Wise</span></a><p>Free calculators for modern life.</p></div><div class="footer-col"><h4>Finance</h4><a href="mortgage.html">Mortgage</a><a href="sip.html">SIP Calculator</a></div><div class="footer-col"><h4>Islamic</h4><a href="zakat.html">Zakat Calculator</a></div></div><div class="footer-bottom"><span>© 2025 CalcWise.</span></div></footer>
+<script>
+function f(n){return '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function calcCI(){
+  const P=parseFloat(document.getElementById('principal').value)||0;
+  const r=parseFloat(document.getElementById('rate').value)/100||0;
+  const t=parseFloat(document.getElementById('years').value)||0;
+  const n=parseFloat(document.getElementById('freq').value)||12;
+  const monthly=parseFloat(document.getElementById('contribution').value)||0;
+  const totalContrib=monthly*12*t;
+  const FV=P*Math.pow(1+r/n,n*t)+monthly*(Math.pow(1+r/n,n*t)-1)/(r/n);
+  const interest=FV-P-totalContrib;
+  const ret=((FV-P-totalContrib)/(P+totalContrib)*100);
+  document.getElementById('future-val').textContent=f(FV);
+  document.getElementById('total-principal').textContent=f(P);
+  document.getElementById('total-contrib').textContent=f(totalContrib);
+  document.getElementById('interest-earned').textContent=f(interest);
+  document.getElementById('total-return').textContent=ret.toFixed(1)+'%';
+  const box=document.getElementById('result');
+  box.classList.remove('visible');void box.offsetWidth;box.classList.add('visible');
+}
+</script>
+</body>
+</html>

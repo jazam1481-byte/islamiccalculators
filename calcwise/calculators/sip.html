@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIP Calculator 2025 — Systematic Investment Plan Returns | CalcWise</title>
+  <meta name="description" content="Calculate your SIP (Systematic Investment Plan) returns. See how monthly investments grow over time with mutual funds or index investing. Free, instant.">
+  <link rel="canonical" href="https://yourcalcwisedomain.com/calculators/sip.html">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav><div class="nav-inner"><a class="nav-logo" href="../index.html">Calc<span>Wise</span></a><ul class="nav-links"><li><a href="../index.html#finance">Finance</a></li></ul></div></nav>
+<main class="calc-page">
+  <div class="calc-breadcrumb"><a href="../index.html">Home</a> › Finance › SIP Calculator</div>
+  <h1 class="calc-page-title">SIP / Investment Return Calculator</h1>
+  <p class="calc-page-desc">Calculate the future value of a systematic investment plan (SIP) — regular monthly investments into mutual funds, index funds, or any investment vehicle.</p>
+  <div class="ad-slot">Advertisement</div>
+  <div class="calc-widget">
+    <div class="calc-widget-header"><span class="calc-widget-icon">📊</span><h2>SIP Return Calculator</h2></div>
+    <div class="calc-widget-body">
+      <div class="field-group">
+        <div class="field"><label>Monthly Investment ($)</label><input type="number" id="sip" value="500" min="1"></div>
+        <div class="field"><label>Expected Annual Return (%)</label><input type="number" id="rate" value="12" step="0.1" min="0"></div>
+      </div>
+      <div class="field-group">
+        <div class="field"><label>Investment Period (years)</label><input type="number" id="years" value="15" min="1" max="50"></div>
+      </div>
+      <button class="btn-calc" onclick="calcSIP()">Calculate Returns</button>
+      <div class="result-box" id="result">
+        <div class="result-label">Estimated Future Value</div>
+        <div class="result-main" id="future-val">$0</div>
+        <div class="result-breakdown">
+          <div class="result-row"><span>Total invested</span><span id="invested">$0</span></div>
+          <div class="result-row"><span>Estimated returns</span><span id="returns">$0</span></div>
+          <div class="result-row"><span>Wealth gained</span><span id="gain-pct">0%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ad-slot">Advertisement</div>
+  <div class="content-section"><h3>What is a SIP?</h3><p>A Systematic Investment Plan (SIP) is a method of investing a fixed amount at regular intervals — typically monthly — into mutual funds or other investments. SIPs use dollar-cost averaging to reduce the impact of market volatility and build wealth gradually over time.</p><p>SIPs are extremely popular in India and among diaspora communities worldwide as a disciplined way to build long-term wealth in equity mutual funds.</p></div>
+  <div class="content-section"><h3>FAQ</h3><div class="faq-item"><div class="faq-q">What is a realistic return expectation for a SIP?</div><div class="faq-a">Equity mutual fund SIPs in developed markets have historically returned 7–12% annually over long periods. Index fund SIPs tracking the S&P 500 have averaged ~10% before inflation. Always remember past returns do not guarantee future performance.</div></div></div>
+</main>
+<footer><div class="footer-inner"><div class="footer-brand"><a class="nav-logo" href="../index.html">Calc<span>Wise</span></a><p>Free calculators for modern life.</p></div><div class="footer-col"><h4>Finance</h4><a href="compound-interest.html">Compound Interest</a><a href="mortgage.html">Mortgage</a></div><div class="footer-col"><h4>Islamic</h4><a href="zakat.html">Zakat</a><a href="halal-roi.html">Halal ROI</a></div></div><div class="footer-bottom"><span>© 2025 CalcWise.</span></div></footer>
+<script>
+function f(n){return '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function calcSIP(){
+  const P=parseFloat(document.getElementById('sip').value)||0;
+  const r=parseFloat(document.getElementById('rate').value)/100/12||0;
+  const n=parseFloat(document.getElementById('years').value)*12||0;
+  const FV=P*((Math.pow(1+r,n)-1)/r)*(1+r);
+  const invested=P*n;
+  const returns=FV-invested;
+  document.getElementById('future-val').textContent=f(FV);
+  document.getElementById('invested').textContent=f(invested);
+  document.getElementById('returns').textContent=f(returns);
+  document.getElementById('gain-pct').textContent=(returns/invested*100).toFixed(1)+'%';
+  const box=document.getElementById('result');box.classList.remove('visible');void box.offsetWidth;box.classList.add('visible');
+}
+</script>
+</body>
+</html>
