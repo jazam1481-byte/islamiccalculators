@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qibla Direction Finder — Find Makkah Compass Bearing | IslamicCalc</title>
+<meta name="description" content="Find the exact Qibla direction from any city worldwide. Get the compass bearing toward the Kaaba in Makkah for accurate prayer direction. Free and instant.">
+<link rel="canonical" href="https://islamiccalculators.com/calculators/qibla.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav><div class="nav-inner">
+  <a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a>
+  <ul class="nav-links"><li><a href="../index.html#daily">Daily Worship</a></li><li><a href="../index.html#giving">Giving</a></li><li><a href="../index.html#heritage">Heritage</a></li></ul>
+</div></nav>
+
+<main class="calc-page">
+  <div class="calc-breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#daily">Daily Worship</a> › Qibla Finder</div>
+  <h1 class="calc-page-title">Qibla Direction Finder</h1>
+  <p class="calc-page-desc">Find the exact compass bearing toward the Kaaba in Makkah from any location on Earth. Essential for prayer wherever you are.</p>
+
+  <div class="calc-widget">
+    <div class="calc-widget-header"><span class="calc-widget-icon">🧭</span><h2>Qibla Finder</h2></div>
+    <div class="calc-widget-body">
+      <div class="field-group">
+        <div class="field">
+          <label>Your City or Location</label>
+          <input type="text" id="qCity" placeholder="e.g. Dallas, TX or London, UK">
+          <span class="field-hint">Enter your city and country for best accuracy</span>
+        </div>
+      </div>
+      <button class="btn-calc" onclick="showGate(findQibla)">Find My Qibla Direction</button>
+      <div class="result-box islamic-result" id="result" style="display:none;">
+        <div class="result-label">Qibla Direction from <span id="res-city"></span></div>
+        <div class="result-main" id="res-bearing"></div>
+        <div class="result-breakdown">
+          <div class="result-row"><span>Compass Bearing</span><span id="res-deg"></span></div>
+          <div class="result-row"><span>Cardinal Direction</span><span id="res-cardinal"></span></div>
+          <div class="result-row"><span>Distance to Kaaba</span><span id="res-dist"></span></div>
+        </div>
+        <div style="margin-top:1.5rem;text-align:center;">
+          <div id="qibla-compass" style="width:140px;height:140px;margin:0 auto;position:relative;border-radius:50%;border:3px solid var(--green);background:white;display:flex;align-items:center;justify-content:center;">
+            <div id="qibla-needle" style="position:absolute;width:4px;height:60px;background:linear-gradient(var(--green) 50%,#ccc 50%);border-radius:2px;transform-origin:bottom center;bottom:50%;left:calc(50% - 2px);transition:transform 0.5s ease;"></div>
+            <div style="position:absolute;bottom:8px;font-size:0.6rem;color:var(--ink-muted);">S</div>
+            <div style="position:absolute;top:8px;font-size:0.6rem;color:var(--green);font-weight:700;">N</div>
+            <div style="position:absolute;right:8px;font-size:0.6rem;color:var(--ink-muted);">E</div>
+            <div style="position:absolute;left:8px;font-size:0.6rem;color:var(--ink-muted);">W</div>
+            <div style="font-size:1.2rem;z-index:1;">🕋</div>
+          </div>
+          <p style="font-size:0.75rem;color:var(--ink-muted);margin-top:0.5rem;">Green arrow points toward Qibla</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <h3>What is the Qibla?</h3>
+    <p>The Qibla (قِبْلَة) is the direction Muslims face during Salah (prayer). It points toward the Masjid al-Haram in Makkah, Saudi Arabia, and specifically the Kaaba — the sacred cube-shaped structure at its center. All Muslims worldwide face this same direction in their prayers, creating a symbolic unity of the Ummah.</p>
+  </div>
+  <div class="content-section">
+    <h3>How is Qibla direction calculated?</h3>
+    <p>The Qibla bearing is calculated using the Great Circle method — the shortest path along the Earth's curved surface between your location and the Kaaba (21.4225°N, 39.8262°E). This gives the most accurate compass bearing for prayer.</p>
+    <p>Note: For locations directly opposite Makkah on the globe, both directions are equidistant — in such cases, consult a local imam.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a><p>Free Islamic calculators.</p></div>
+    <div class="footer-col"><h4>Daily Worship</h4><a href="prayer-times.html">Prayer Times</a><a href="qibla.html">Qibla Finder</a><a href="hijri.html">Hijri Converter</a></div>
+    <div class="footer-col"><h4>Giving</h4><a href="zakat.html">Zakat</a><a href="sadaqah.html">Sadaqah</a></div>
+    <div class="footer-col"><h4>Heritage</h4><a href="mirath.html">Mirath</a><a href="abjad.html">Abjad</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 IslamicCalc.</span><span>Use a physical compass for highest precision.</span></div>
+</footer>
+
+<div class="email-gate-overlay hidden" id="emailGate">
+  <div class="email-gate-box">
+    <div class="email-gate-icon">🧭</div>
+    <h2>Find Your Qibla Direction</h2>
+    <p>Enter your email to unlock your Qibla bearing. We share Islamic reminders — no spam, ever.</p>
+    <div class="email-gate-fields">
+      <input type="text" id="gateName" placeholder="Your name"><input type="email" id="gateEmail" placeholder="Your email address">
+    </div>
+    <button class="btn-gate" onclick="submitGate()">Show My Qibla →</button>
+    <p class="email-gate-privacy">🔒 Privacy protected. Unsubscribe anytime.</p>
+  </div>
+</div>
+
+<script>
+var _pendingCalc=null;
+function showGate(fn){var s=localStorage.getItem('ic_email');if(s){fn();return;}_pendingCalc=fn;document.getElementById('emailGate').classList.remove('hidden');}
+function submitGate(){var n=document.getElementById('gateName').value.trim(),e=document.getElementById('gateEmail').value.trim();if(!e||!e.includes('@')){alert('Please enter a valid email.');return;}localStorage.setItem('ic_email',e);localStorage.setItem('ic_name',n);document.getElementById('emailGate').classList.add('hidden');if(_pendingCalc){_pendingCalc();_pendingCalc=null;}}
+
+const KAABA_LAT=21.4225, KAABA_LNG=39.8262;
+function toRad(d){return d*Math.PI/180;}
+function toDeg(r){return r*180/Math.PI;}
+function getCardinal(deg){var dirs=['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];return dirs[Math.round(deg/22.5)%16];}
+function haversine(lat1,lon1,lat2,lon2){var R=6371,dLat=toRad(lat2-lat1),dLon=toRad(lon2-lon1);var a=Math.sin(dLat/2)**2+Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLon/2)**2;return R*2*Math.asin(Math.sqrt(a));}
+
+function findQibla(){
+  var city=document.getElementById('qCity').value.trim();
+  if(!city){alert('Please enter a city name.');return;}
+  fetch('https://nominatim.openstreetmap.org/search?q='+encodeURIComponent(city)+'&format=json&limit=1')
+  .then(r=>r.json()).then(data=>{
+    if(!data.length){alert('City not found. Try adding country, e.g. "Dallas, US"');return;}
+    var lat=parseFloat(data[0].lat),lng=parseFloat(data[0].lon);
+    var dLng=toRad(KAABA_LNG-lng);
+    var bearing=toDeg(Math.atan2(Math.sin(dLng)*Math.cos(toRad(KAABA_LAT)),Math.cos(toRad(lat))*Math.sin(toRad(KAABA_LAT))-Math.sin(toRad(lat))*Math.cos(toRad(KAABA_LAT))*Math.cos(dLng)));
+    bearing=(bearing+360)%360;
+    var dist=haversine(lat,lng,KAABA_LAT,KAABA_LNG);
+    document.getElementById('res-city').textContent=data[0].display_name.split(',')[0];
+    document.getElementById('res-bearing').textContent=bearing.toFixed(1)+'°';
+    document.getElementById('res-deg').textContent=bearing.toFixed(2)+'° from North';
+    document.getElementById('res-cardinal').textContent=getCardinal(bearing);
+    document.getElementById('res-dist').textContent=Math.round(dist).toLocaleString()+' km ('+(Math.round(dist*0.621371)).toLocaleString()+' miles)';
+    document.getElementById('qibla-needle').style.transform='rotate('+(bearing-180)+'deg)';
+    var b=document.getElementById('result');b.style.display='block';b.classList.remove('visible');void b.offsetWidth;b.classList.add('visible');
+  }).catch(()=>alert('Error finding location. Please try again.'));
+}
+</script>
+</body>
+</html>

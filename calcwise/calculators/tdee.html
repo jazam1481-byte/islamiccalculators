@@ -1,157 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TDEE & Calorie Calculator 2025 — Total Daily Energy Expenditure | CalcWise</title>
-  <meta name="description" content="Calculate your TDEE and daily calorie needs based on age, weight, height, and activity level. Includes macro breakdown for protein, carbs, and fat. Free, no signup.">
-  <meta name="keywords" content="TDEE calculator, calorie calculator, daily calorie needs, BMR calculator, macros calculator 2025">
-  <link rel="canonical" href="https://yourcalcwisedomain.com/calculators/tdee.html">
-  <link rel="stylesheet" href="../css/style.css">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ramadan Fasting Calorie Calculator — TDEE & Islamic Diet | IslamicCalc</title>
+<meta name="description" content="Calculate your daily calorie needs during Ramadan fasting, regular days, or Islamic intermittent fasting. Includes Suhoor and Iftar meal planning. Free calculator.">
+<link rel="canonical" href="https://islamiccalculators.com/calculators/tdee.html">
+<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-<nav>
-  <div class="nav-inner">
-    <a class="nav-logo" href="../index.html">Calc<span>Wise</span></a>
-    <ul class="nav-links">
-      <li><a href="../index.html#health">Health</a></li>
-      <li><a href="../index.html#finance">Finance</a></li>
-      <li><a href="../index.html#islamic">Islamic</a></li>
-    </ul>
-  </div>
-</nav>
+<nav><div class="nav-inner"><a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a><ul class="nav-links"><li><a href="../index.html#health">Health & Fasting</a></li><li><a href="../index.html#giving">Giving</a></li></ul></div></nav>
 <main class="calc-page">
-  <div class="calc-breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#health">Health</a> › TDEE Calculator</div>
-  <h1 class="calc-page-title">TDEE & Calorie Calculator</h1>
-  <p class="calc-page-desc">Calculate your Total Daily Energy Expenditure and daily calorie target for weight loss, maintenance, or muscle gain.</p>
-  <div class="ad-slot">Advertisement</div>
+  <div class="calc-breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#health">Health & Fasting</a> › Ramadan Calorie Calculator</div>
+  <h1 class="calc-page-title">Ramadan & Fasting Calorie Calculator</h1>
+  <p class="calc-page-desc">Calculate your Total Daily Energy Expenditure (TDEE) for Ramadan, regular fasting days, or daily life. Plan your Suhoor and Iftar meals wisely.</p>
   <div class="calc-widget">
-    <div class="calc-widget-header"><span class="calc-widget-icon">🔥</span><h2>TDEE Calculator</h2></div>
+    <div class="calc-widget-header"><span class="calc-widget-icon">🔥</span><h2>Ramadan Calorie Calculator</h2></div>
     <div class="calc-widget-body">
+      <div style="background:var(--green-light);border:1px solid rgba(6,95,70,0.2);border-radius:8px;padding:1rem;margin-bottom:1.5rem;font-size:0.85rem;color:var(--green);">
+        <strong>Ramadan tip:</strong> During Ramadan, your body needs slightly fewer calories due to reduced activity. Focus on nutrient-dense foods at Suhoor (pre-dawn) and avoid overeating at Iftar. The Prophet ﷺ broke his fast with dates and water before Maghrib prayer.
+      </div>
       <div class="field-group">
-        <div class="field">
-          <label>Unit System</label>
-          <select id="units" onchange="toggleUnits()">
-            <option value="imperial">Imperial (lbs, ft/in)</option>
-            <option value="metric">Metric (kg, cm)</option>
+        <div class="field"><label>Age</label><input type="number" id="age" placeholder="e.g. 30" min="1"></div>
+        <div class="field"><label>Gender</label><select id="gender"><option value="male">Male</option><option value="female">Female</option></select></div>
+      </div>
+      <div class="field-group">
+        <div class="field"><label>Weight (kg)</label><input type="number" id="weight" placeholder="e.g. 75" min="1"></div>
+        <div class="field"><label>Height (cm)</label><input type="number" id="height" placeholder="e.g. 175" min="1"></div>
+      </div>
+      <div class="field-group">
+        <div class="field"><label>Activity Level</label>
+          <select id="activity">
+            <option value="1.2">Sedentary (desk job, little exercise)</option>
+            <option value="1.375">Lightly active (1–3 days/week)</option>
+            <option value="1.55" selected>Moderately active (3–5 days/week)</option>
+            <option value="1.725">Very active (6–7 days/week)</option>
+            <option value="1.9">Extremely active (physical job + exercise)</option>
           </select>
         </div>
-        <div class="field">
-          <label>Sex</label>
-          <select id="sex"><option value="male">Male</option><option value="female">Female</option></select>
+        <div class="field"><label>Mode</label>
+          <select id="mode">
+            <option value="normal">Regular day</option>
+            <option value="ramadan" selected>Ramadan fasting</option>
+            <option value="voluntary">Voluntary fasting (Mon/Thu Sunnah)</option>
+          </select>
         </div>
       </div>
       <div class="field-group">
-        <div class="field"><label>Age (years)</label><input type="number" id="age" value="30" min="15" max="90"></div>
-        <div class="field" id="weight-field"><label>Weight (lbs)</label><input type="number" id="weight" value="175" min="50"></div>
-      </div>
-      <div class="field-group" id="imperial-height">
-        <div class="field"><label>Height — Feet</label><input type="number" id="height-ft" value="5" min="3" max="8"></div>
-        <div class="field"><label>Height — Inches</label><input type="number" id="height-in" value="10" min="0" max="11"></div>
-      </div>
-      <div class="field" id="metric-height" style="display:none;margin-bottom:1.25rem;">
-        <label>Height (cm)</label><input type="number" id="height-cm" value="178" min="100">
-      </div>
-      <div class="field" style="margin-bottom:1.25rem;">
-        <label>Activity Level</label>
-        <select id="activity">
-          <option value="1.2">Sedentary (desk job, little/no exercise)</option>
-          <option value="1.375">Lightly Active (light exercise 1–3 days/week)</option>
-          <option value="1.55" selected>Moderately Active (moderate exercise 3–5 days/week)</option>
-          <option value="1.725">Very Active (hard exercise 6–7 days/week)</option>
-          <option value="1.9">Extra Active (physical job + hard training)</option>
-        </select>
-      </div>
-      <div class="field" style="margin-bottom:1.5rem;">
-        <label>Goal</label>
-        <select id="goal">
-          <option value="cut">Lose Weight (cut — 500 cal deficit)</option>
-          <option value="maintain" selected>Maintain Weight</option>
-          <option value="lean-bulk">Lean Bulk (+250 cal surplus)</option>
-          <option value="bulk">Bulk (+500 cal surplus)</option>
-        </select>
-      </div>
-      <button class="btn-calc" onclick="calculateTDEE()">Calculate TDEE</button>
-      <div class="result-box" id="result">
-        <div class="result-label">Your Daily Calorie Target</div>
-        <div class="result-main" id="target-cal">0 kcal</div>
-        <div class="result-breakdown">
-          <div class="result-row"><span>BMR (Basal Metabolic Rate)</span><span id="bmr">0</span></div>
-          <div class="result-row"><span>TDEE (maintenance calories)</span><span id="tdee">0</span></div>
-          <div class="result-row"><span>Goal adjustment</span><span id="goal-adj">0</span></div>
-          <div style="padding-top:0.75rem;border-top:1px solid rgba(37,99,235,0.15);margin-top:0.5rem;">
-            <div style="font-size:0.78rem;color:var(--ink-muted);margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.05em;">Macro Targets</div>
-            <div class="result-row"><span>Protein (30%)</span><span id="protein">0g</span></div>
-            <div class="result-row"><span>Carbohydrates (40%)</span><span id="carbs">0g</span></div>
-            <div class="result-row"><span>Fat (30%)</span><span id="fat">0g</span></div>
-          </div>
+        <div class="field"><label>Goal</label>
+          <select id="goal">
+            <option value="maintain">Maintain weight</option>
+            <option value="lose">Lose weight (moderate deficit)</option>
+            <option value="gain">Gain weight</option>
+          </select>
         </div>
+      </div>
+      <button class="btn-calc" onclick="showGate(calcTDEE)">Calculate My Calorie Needs</button>
+      <div class="result-box islamic-result" id="result" style="display:none;">
+        <div class="result-label" id="res-mode-label">Daily Calorie Target</div>
+        <div class="result-main" id="res-calories"></div>
+        <div style="font-size:0.85rem;color:var(--green);margin-bottom:1rem;">calories per day</div>
+        <div class="result-breakdown">
+          <div class="result-row"><span>Base Metabolic Rate (BMR)</span><span id="res-bmr"></span></div>
+          <div class="result-row"><span>TDEE (with activity)</span><span id="res-tdee"></span></div>
+          <div class="result-row"><span>Protein (g/day)</span><span id="res-protein"></span></div>
+          <div class="result-row"><span>Carbs (g/day)</span><span id="res-carbs"></span></div>
+          <div class="result-row"><span>Fats (g/day)</span><span id="res-fats"></span></div>
+          <div class="result-row" id="suhoor-row" style="display:none;"><span>Suhoor Target</span><span id="res-suhoor"></span></div>
+          <div class="result-row" id="iftar-row" style="display:none;"><span>Iftar Target</span><span id="res-iftar"></span></div>
+        </div>
+        <div style="margin-top:1rem;padding:0.75rem;background:rgba(6,95,70,0.08);border-radius:6px;font-size:0.82rem;color:var(--green);" id="res-tip"></div>
       </div>
     </div>
   </div>
-  <div class="ad-slot">Advertisement</div>
-  <div class="content-section">
-    <h3>What is TDEE?</h3>
-    <p>TDEE (Total Daily Energy Expenditure) is the total number of calories your body burns in a day, accounting for your basal metabolic rate (BMR) and physical activity. It represents the number of calories you need to consume to maintain your current weight.</p>
-    <p>This calculator uses the Mifflin-St Jeor equation — the most validated formula for estimating BMR in modern research — then multiplies by an activity factor.</p>
-  </div>
-  <div class="content-section">
-    <h3>Frequently Asked Questions</h3>
-    <div class="faq-item"><div class="faq-q">How accurate is a TDEE calculator?</div><div class="faq-a">TDEE calculators provide a solid estimate but individual variation exists. Use your result as a starting point, track your weight for 2–3 weeks, and adjust by ±100–200 calories based on actual progress.</div></div>
-    <div class="faq-item"><div class="faq-q">How fast should I lose weight?</div><div class="faq-a">A 500 calorie daily deficit produces roughly 1 lb/week of fat loss — the widely recommended safe rate. Losing faster than 1.5 lbs/week increases muscle loss risk.</div></div>
-  </div>
+  <div class="content-section"><h3>Sunnah Fasting Days</h3><ul><li><strong>Monday & Thursday</strong> — The Prophet ﷺ fasted regularly on these days</li><li><strong>Three White Days</strong> — 13th, 14th, 15th of each Islamic month</li><li><strong>Day of Arafah (9 Dhul Hijjah)</strong> — Expiates sins of two years</li><li><strong>Ashura (10 Muharram)</strong> — Expiates sins of the previous year</li><li><strong>Six days of Shawwal</strong> — Combined with Ramadan equals a full year of fasting</li></ul></div>
 </main>
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand"><a class="nav-logo" href="../index.html">Calc<span>Wise</span></a><p>Free, accurate calculators for modern life.</p></div>
-    <div class="footer-col"><h4>Health</h4><a href="tdee.html">TDEE Calculator</a><a href="bmi.html">BMI Calculator</a></div>
-    <div class="footer-col"><h4>Finance</h4><a href="zakat.html">Zakat Calculator</a><a href="mortgage.html">Mortgage</a></div>
-  </div>
-  <div class="footer-bottom"><span>© 2025 CalcWise.</span></div>
-</footer>
+<footer><div class="footer-inner"><div class="footer-brand"><a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a><p>Free Islamic calculators.</p></div><div class="footer-col"><h4>Health & Fasting</h4><a href="bmi.html">BMI Calculator</a><a href="tdee.html">Ramadan Calories</a></div><div class="footer-col"><h4>Giving</h4><a href="zakat.html">Zakat</a><a href="sadaqah.html">Sadaqah</a></div><div class="footer-col"><h4>Daily</h4><a href="prayer-times.html">Prayer Times</a><a href="hijri.html">Hijri</a></div></div><div class="footer-bottom"><span>© 2025 IslamicCalc.</span><span>Consult a doctor before making significant dietary changes.</span></div></footer>
+<div class="email-gate-overlay hidden" id="emailGate"><div class="email-gate-box"><div class="email-gate-icon">🔥</div><h2>Get Your Ramadan Calorie Plan</h2><p>Enter your email to unlock your personalised calorie targets and meal guidance.</p><div class="email-gate-fields"><input type="text" id="gateName" placeholder="Your name"><input type="email" id="gateEmail" placeholder="Your email address"></div><button class="btn-gate" onclick="submitGate()">Show My Calorie Plan →</button><p class="email-gate-privacy">🔒 Privacy protected.</p></div></div>
 <script>
-function toggleUnits(){
-  const u=document.getElementById('units').value;
-  document.getElementById('imperial-height').style.display=u==='imperial'?'grid':'none';
-  document.getElementById('metric-height').style.display=u==='metric'?'block':'none';
-  document.getElementById('weight-field').querySelector('label').textContent=u==='imperial'?'Weight (lbs)':'Weight (kg)';
-}
-function calculateTDEE(){
-  const u=document.getElementById('units').value;
-  const sex=document.getElementById('sex').value;
-  const age=parseFloat(document.getElementById('age').value)||0;
-  const act=parseFloat(document.getElementById('activity').value)||1.55;
-  const goal=document.getElementById('goal').value;
-  let weightKg, heightCm;
-  if(u==='imperial'){
-    weightKg=(parseFloat(document.getElementById('weight').value)||0)*0.453592;
-    const ft=parseFloat(document.getElementById('height-ft').value)||0;
-    const inch=parseFloat(document.getElementById('height-in').value)||0;
-    heightCm=(ft*12+inch)*2.54;
+var _pendingCalc=null;
+function showGate(fn){var s=localStorage.getItem('ic_email');if(s){fn();return;}_pendingCalc=fn;document.getElementById('emailGate').classList.remove('hidden');}
+function submitGate(){var n=document.getElementById('gateName').value.trim(),e=document.getElementById('gateEmail').value.trim();if(!e||!e.includes('@')){alert('Please enter a valid email.');return;}localStorage.setItem('ic_email',e);localStorage.setItem('ic_name',n);document.getElementById('emailGate').classList.add('hidden');if(_pendingCalc){_pendingCalc();_pendingCalc=null;}}
+function calcTDEE(){
+  var age=parseInt(document.getElementById('age').value)||0;
+  var g=document.getElementById('gender').value;
+  var w=parseFloat(document.getElementById('weight').value)||0;
+  var h=parseFloat(document.getElementById('height').value)||0;
+  var act=parseFloat(document.getElementById('activity').value);
+  var mode=document.getElementById('mode').value;
+  var goal=document.getElementById('goal').value;
+  if(!age||!w||!h){alert('Please fill in all fields.');return;}
+  var bmr=g==='male'?(10*w)+(6.25*h)-(5*age)+5:(10*w)+(6.25*h)-(5*age)-161;
+  var tdee=bmr*act;
+  var target=tdee;
+  if(goal==='lose')target=tdee-500;
+  else if(goal==='gain')target=tdee+300;
+  if(mode==='ramadan')target=target*0.9;
+  else if(mode==='voluntary')target=target*0.95;
+  var protein=Math.round(w*1.6);
+  var fats=Math.round(target*0.25/9);
+  var carbs=Math.round((target-protein*4-fats*9)/4);
+  var modeLabels={normal:'Daily Calorie Target',ramadan:'Ramadan Daily Target',voluntary:'Fasting Day Target'};
+  document.getElementById('res-mode-label').textContent=modeLabels[mode];
+  document.getElementById('res-calories').textContent=Math.round(target).toLocaleString();
+  document.getElementById('res-bmr').textContent=Math.round(bmr)+' kcal';
+  document.getElementById('res-tdee').textContent=Math.round(tdee)+' kcal';
+  document.getElementById('res-protein').textContent=protein+'g';
+  document.getElementById('res-carbs').textContent=Math.max(0,carbs)+'g';
+  document.getElementById('res-fats').textContent=fats+'g';
+  if(mode==='ramadan'){
+    var suhoor=Math.round(target*0.4),iftar=Math.round(target*0.6);
+    document.getElementById('res-suhoor').textContent=suhoor+' kcal (40%)';
+    document.getElementById('res-iftar').textContent=iftar+' kcal (60%)';
+    document.getElementById('suhoor-row').style.display='flex';
+    document.getElementById('iftar-row').style.display='flex';
+    document.getElementById('res-tip').innerHTML='<strong>Ramadan guidance:</strong> Have a nutritious Suhoor before Fajr (focus on slow-digesting carbs, protein, and water). Break fast gently with dates and water at Maghrib before your main Iftar meal.';
   } else {
-    weightKg=parseFloat(document.getElementById('weight').value)||0;
-    heightCm=parseFloat(document.getElementById('height-cm').value)||0;
+    document.getElementById('suhoor-row').style.display='none';
+    document.getElementById('iftar-row').style.display='none';
+    document.getElementById('res-tip').innerHTML='<strong>Islamic principle:</strong> "No human ever filled a vessel worse than the stomach." — Prophet Muhammad ﷺ. Eat one-third food, one-third water, one-third air.';
   }
-  let bmr;
-  if(sex==='male') bmr=10*weightKg+6.25*heightCm-5*age+5;
-  else             bmr=10*weightKg+6.25*heightCm-5*age-161;
-  const tdee=Math.round(bmr*act);
-  const goalAdj={cut:-500,maintain:0,'lean-bulk':250,bulk:500}[goal];
-  const target=tdee+goalAdj;
-  const protein=Math.round(target*0.30/4);
-  const carbs=Math.round(target*0.40/4);
-  const fat=Math.round(target*0.30/9);
-  const goalLabel={cut:'-500 (deficit)',maintain:'0 (maintain)','lean-bulk':'+250 (surplus)',bulk:'+500 (surplus)'}[goal];
-  document.getElementById('bmr').textContent=Math.round(bmr)+' kcal';
-  document.getElementById('tdee').textContent=tdee+' kcal';
-  document.getElementById('goal-adj').textContent=goalLabel;
-  document.getElementById('target-cal').textContent=target+' kcal';
-  document.getElementById('protein').textContent=protein+'g';
-  document.getElementById('carbs').textContent=carbs+'g';
-  document.getElementById('fat').textContent=fat+'g';
-  const box=document.getElementById('result');
-  box.classList.remove('visible'); void box.offsetWidth; box.classList.add('visible');
+  var b=document.getElementById('result');b.style.display='block';b.classList.remove('visible');void b.offsetWidth;b.classList.add('visible');
 }
 </script>
-</body>
-</html>
+</body></html>

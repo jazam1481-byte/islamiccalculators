@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Halal Savings Calculator — Islamic Profit-Sharing Growth | IslamicCalc</title>
+<meta name="description" content="Calculate your savings growth using Islamic Mudarabah profit-sharing rates. Shariah-compliant alternative to compound interest. Free halal savings calculator.">
+<link rel="canonical" href="https://islamiccalculators.com/calculators/halal-savings.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav><div class="nav-inner">
+  <a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a>
+  <ul class="nav-links"><li><a href="../index.html#giving">Giving & Finance</a></li><li><a href="../index.html#daily">Daily</a></li></ul>
+</div></nav>
+<main class="calc-page">
+  <div class="calc-breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#giving">Islamic Finance</a> › Halal Savings</div>
+  <h1 class="calc-page-title">Halal Savings Calculator</h1>
+  <p class="calc-page-desc">Project your wealth growth using Islamic profit-sharing (Mudarabah) rates — the halal alternative to compound interest savings accounts. No riba.</p>
+  <div class="calc-widget">
+    <div class="calc-widget-header"><span class="calc-widget-icon">💰</span><h2>Halal Savings Growth</h2></div>
+    <div class="calc-widget-body">
+      <div style="background:var(--green-light);border:1px solid rgba(6,95,70,0.2);border-radius:8px;padding:1rem;margin-bottom:1.5rem;font-size:0.85rem;color:var(--green);">
+        <strong>Islamic savings accounts</strong> operate on Mudarabah (profit-sharing) contracts — the bank invests your funds in halal assets and shares the profit with you. No guaranteed interest is paid. This calculator models expected growth based on the profit rate.
+      </div>
+      <div class="field-group">
+        <div class="field">
+          <label>Initial Savings ($)</label>
+          <input type="number" id="principal" placeholder="e.g. 10000" min="0">
+        </div>
+        <div class="field">
+          <label>Monthly Contribution ($)</label>
+          <input type="number" id="monthly" placeholder="e.g. 500" min="0">
+          <span class="field-hint">Regular monthly savings added</span>
+        </div>
+      </div>
+      <div class="field-group">
+        <div class="field">
+          <label>Expected Profit Rate (% per year)</label>
+          <input type="number" id="rate" placeholder="e.g. 4.5" min="0" step="0.01">
+          <span class="field-hint">Islamic banks typically offer 3–6% profit rates</span>
+        </div>
+        <div class="field">
+          <label>Savings Period (years)</label>
+          <select id="years">
+            <option value="1">1 year</option><option value="3">3 years</option><option value="5">5 years</option>
+            <option value="10" selected>10 years</option><option value="15">15 years</option>
+            <option value="20">20 years</option><option value="25">25 years</option><option value="30">30 years</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-group">
+        <div class="field">
+          <label>Profit Distribution</label>
+          <select id="distribution">
+            <option value="12">Monthly</option>
+            <option value="4">Quarterly</option>
+            <option value="1">Annually</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Currency</label>
+          <select id="currency"><option>USD</option><option>GBP</option><option>EUR</option><option>CAD</option><option>AED</option><option>PKR</option></select>
+        </div>
+      </div>
+      <button class="btn-calc" onclick="showGate(calcSavings)">Calculate Halal Savings Growth</button>
+      <div class="result-box islamic-result" id="result" style="display:none;">
+        <div class="result-label">Projected Savings Balance</div>
+        <div class="result-main" id="res-final"></div>
+        <div class="result-breakdown">
+          <div class="result-row"><span>Initial Deposit</span><span id="res-principal"></span></div>
+          <div class="result-row"><span>Total Contributions</span><span id="res-contributions"></span></div>
+          <div class="result-row"><span>Total Profit Earned</span><span id="res-profit"></span></div>
+          <div class="result-row"><span>Profit Rate</span><span id="res-rate"></span></div>
+          <div class="result-row"><span>Period</span><span id="res-period"></span></div>
+        </div>
+        <div style="margin-top:1rem;font-size:0.78rem;color:var(--green);font-style:italic;">Profit rates in Mudarabah accounts are projected, not guaranteed. Actual results may vary.</div>
+      </div>
+    </div>
+  </div>
+  <div class="content-section">
+    <h3>What is Mudarabah savings?</h3>
+    <p>In a Mudarabah savings account, you provide the capital and the Islamic bank acts as the investment manager (Mudarib). The bank invests in Shariah-compliant assets and distributes profits according to a pre-agreed ratio. Unlike conventional savings accounts, there is no guaranteed return — but the profit-sharing is halal.</p>
+  </div>
+  <div class="content-section">
+    <h3>Halal savings options for Muslims</h3>
+    <ul>
+      <li><strong>Islamic savings accounts</strong> — Mudarabah-based, offered by Islamic banks</li>
+      <li><strong>Sukuk (Islamic bonds)</strong> — profit-generating certificates backed by real assets</li>
+      <li><strong>Halal equity funds</strong> — Shariah-screened stocks and ETFs</li>
+      <li><strong>Real estate</strong> — rental income (Ijarah) is generally permissible</li>
+      <li><strong>Gold and silver</strong> — physical ownership, subject to Zakat</li>
+    </ul>
+  </div>
+</main>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a><p>Free Islamic calculators.</p></div>
+    <div class="footer-col"><h4>Islamic Finance</h4><a href="murabaha.html">Murabaha</a><a href="halal-savings.html">Halal Savings</a><a href="halal-roi.html">Halal ROI</a></div>
+    <div class="footer-col"><h4>Giving</h4><a href="zakat.html">Zakat</a><a href="sadaqah.html">Sadaqah</a></div>
+    <div class="footer-col"><h4>Heritage</h4><a href="mirath.html">Mirath</a><a href="abjad.html">Abjad</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 IslamicCalc.</span><span>Projections only. Actual profit rates vary by institution.</span></div>
+</footer>
+<div class="email-gate-overlay hidden" id="emailGate">
+  <div class="email-gate-box">
+    <div class="email-gate-icon">💰</div>
+    <h2>See Your Savings Growth</h2>
+    <p>Enter your email to unlock your halal savings projection.</p>
+    <div class="email-gate-fields">
+      <input type="text" id="gateName" placeholder="Your name"><input type="email" id="gateEmail" placeholder="Your email address">
+    </div>
+    <button class="btn-gate" onclick="submitGate()">Show My Savings →</button>
+    <p class="email-gate-privacy">🔒 Privacy protected. Unsubscribe anytime.</p>
+  </div>
+</div>
+<script>
+var _pendingCalc=null;
+function showGate(fn){var s=localStorage.getItem('ic_email');if(s){fn();return;}_pendingCalc=fn;document.getElementById('emailGate').classList.remove('hidden');}
+function submitGate(){var n=document.getElementById('gateName').value.trim(),e=document.getElementById('gateEmail').value.trim();if(!e||!e.includes('@')){alert('Please enter a valid email.');return;}localStorage.setItem('ic_email',e);localStorage.setItem('ic_name',n);document.getElementById('emailGate').classList.add('hidden');if(_pendingCalc){_pendingCalc();_pendingCalc=null;}}
+const SYMS={USD:'$',GBP:'£',EUR:'€',CAD:'CA$',AED:'AED ',PKR:'Rs '};
+function fmt(n,c){return(SYMS[c]||'$')+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function calcSavings(){
+  var P=parseFloat(document.getElementById('principal').value)||0;
+  var m=parseFloat(document.getElementById('monthly').value)||0;
+  var r=parseFloat(document.getElementById('rate').value)||0;
+  var yrs=parseInt(document.getElementById('years').value);
+  var freq=parseInt(document.getElementById('distribution').value);
+  var currency=document.getElementById('currency').value;
+  var periods=yrs*freq;
+  var rp=r/100/freq;
+  var balance=P;
+  var totalContrib=P;
+  for(var i=0;i<periods;i++){
+    balance=balance*(1+rp)+m*(12/freq);
+    totalContrib+=m*(12/freq);
+  }
+  var profit=balance-totalContrib;
+  document.getElementById('res-final').textContent=fmt(balance,currency);
+  document.getElementById('res-principal').textContent=fmt(P,currency);
+  document.getElementById('res-contributions').textContent=fmt(totalContrib-P,currency);
+  document.getElementById('res-profit').textContent=fmt(profit,currency);
+  document.getElementById('res-rate').textContent=r+'% per year';
+  document.getElementById('res-period').textContent=yrs+' year'+(yrs>1?'s':'');
+  var b=document.getElementById('result');b.style.display='block';b.classList.remove('visible');void b.offsetWidth;b.classList.add('visible');
+}
+</script>
+</body>
+</html>

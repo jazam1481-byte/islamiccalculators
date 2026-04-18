@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abjad Calculator — Arabic Numerology & Name Values | IslamicCalc</title>
+<meta name="description" content="Calculate the Abjad numerical value of any Arabic name or word. Used in Islamic numerology, baby name selection, and Quranic studies. Free and instant.">
+<link rel="canonical" href="https://islamiccalculators.com/calculators/abjad.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav><div class="nav-inner">
+  <a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a>
+  <ul class="nav-links"><li><a href="../index.html#daily">Daily Worship</a></li><li><a href="../index.html#heritage">Heritage</a></li></ul>
+</div></nav>
+
+<main class="calc-page">
+  <div class="calc-breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#heritage">Heritage & Knowledge</a> › Abjad Calculator</div>
+  <h1 class="calc-page-title">Abjad Calculator</h1>
+  <p class="calc-page-desc">Calculate the numerical value of Arabic names and words using the classical Abjad system. Used for baby naming, Quranic studies, and Islamic numerology.</p>
+
+  <div class="calc-widget">
+    <div class="calc-widget-header"><span class="calc-widget-icon">🔤</span><h2>Abjad Numerical Value</h2></div>
+    <div class="calc-widget-body">
+      <div style="background:var(--gold-light);border:1px solid rgba(180,83,9,0.2);border-radius:8px;padding:1rem;margin-bottom:1.5rem;font-size:0.85rem;color:var(--gold);">
+        <strong>About Abjad:</strong> The Abjad system assigns a numerical value to each Arabic letter. It has been used for centuries in Islamic scholarship, poetry, and the dating of historical events.
+      </div>
+      <div class="field">
+        <label>Enter Arabic Name or Word</label>
+        <input type="text" id="arabicWord" placeholder="e.g. محمد or Ahmad" dir="auto" style="font-size:1.3rem;text-align:right;font-family:serif;">
+        <span class="field-hint">You can enter Arabic script or transliteration (Arabic script gives more accurate results)</span>
+      </div>
+      <div style="margin:1rem 0;"></div>
+      <div class="field">
+        <label>Or try a common name</label>
+        <select id="commonName" onchange="setName(this.value)">
+          <option value="">— Select a name —</option>
+          <option value="محمد">Muhammad (محمد)</option>
+          <option value="علي">Ali (علي)</option>
+          <option value="فاطمة">Fatima (فاطمة)</option>
+          <option value="عمر">Umar (عمر)</option>
+          <option value="عائشة">Aisha (عائشة)</option>
+          <option value="إبراهيم">Ibrahim (إبراهيم)</option>
+          <option value="مريم">Maryam (مريم)</option>
+          <option value="يوسف">Yusuf (يوسف)</option>
+          <option value="زينب">Zaynab (زينب)</option>
+          <option value="حسن">Hasan (حسن)</option>
+          <option value="الله">Allah (الله)</option>
+          <option value="بسم الله">Bismillah (بسم الله)</option>
+        </select>
+      </div>
+      <div style="margin:1rem 0;"></div>
+      <button class="btn-calc" onclick="showGate(calcAbjad)">Calculate Abjad Value</button>
+      <div class="result-box islamic-result" id="result" style="display:none;">
+        <div class="result-label">Abjad Value</div>
+        <div class="result-main" id="res-total"></div>
+        <div class="result-breakdown" id="res-breakdown"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <h3>The Abjad Letter Values</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:0.5rem;font-size:0.85rem;">
+      <div>أ (Alif) = 1</div><div>ب (Ba) = 2</div><div>ج (Jim) = 3</div><div>د (Dal) = 4</div>
+      <div>ه (Ha) = 5</div><div>و (Waw) = 6</div><div>ز (Zayn) = 7</div><div>ح (Ha) = 8</div>
+      <div>ط (Ta) = 9</div><div>ي (Ya) = 10</div><div>ك (Kaf) = 20</div><div>ل (Lam) = 30</div>
+      <div>م (Mim) = 40</div><div>ن (Nun) = 50</div><div>س (Sin) = 60</div><div>ع (Ayn) = 70</div>
+      <div>ف (Fa) = 80</div><div>ص (Sad) = 90</div><div>ق (Qaf) = 100</div><div>ر (Ra) = 200</div>
+      <div>ش (Shin) = 300</div><div>ت (Ta) = 400</div><div>ث (Tha) = 500</div><div>خ (Kha) = 600</div>
+      <div>ذ (Dhal) = 700</div><div>ض (Dad) = 800</div><div>ظ (Dha) = 900</div><div>غ (Ghayn) = 1000</div>
+    </div>
+  </div>
+  <div class="content-section">
+    <h3>Historical Uses of Abjad</h3>
+    <p>Islamic scholars used Abjad values to encode dates in poetry (called Tarikh or chronogram), interpret prophecies, and analyze names. It was also used in Sufi traditions and manuscript dating. The system predates Islam and was inherited from earlier Semitic traditions.</p>
+    <p>Note: Abjad numerology is a scholarly tradition and area of debate — it should not be used for superstitious purposes or to make major life decisions. Consult a qualified scholar regarding its Islamic permissibility in specific contexts.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a><p>Free Islamic calculators.</p></div>
+    <div class="footer-col"><h4>Heritage</h4><a href="mirath.html">Mirath</a><a href="abjad.html">Abjad</a></div>
+    <div class="footer-col"><h4>Daily</h4><a href="prayer-times.html">Prayer Times</a><a href="qibla.html">Qibla</a><a href="hijri.html">Hijri</a></div>
+    <div class="footer-col"><h4>Giving</h4><a href="zakat.html">Zakat</a><a href="sadaqah.html">Sadaqah</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 IslamicCalc.</span><span>Abjad is a scholarly tradition — use with appropriate intent.</span></div>
+</footer>
+
+<div class="email-gate-overlay hidden" id="emailGate">
+  <div class="email-gate-box">
+    <div class="email-gate-icon">🔤</div>
+    <h2>Calculate Abjad Value</h2>
+    <p>Enter your email to unlock your name's Abjad value.</p>
+    <div class="email-gate-fields">
+      <input type="text" id="gateName" placeholder="Your name"><input type="email" id="gateEmail" placeholder="Your email address">
+    </div>
+    <button class="btn-gate" onclick="submitGate()">Show My Abjad Value →</button>
+    <p class="email-gate-privacy">🔒 Privacy protected. Unsubscribe anytime.</p>
+  </div>
+</div>
+
+<script>
+var _pendingCalc=null;
+function showGate(fn){var s=localStorage.getItem('ic_email');if(s){fn();return;}_pendingCalc=fn;document.getElementById('emailGate').classList.remove('hidden');}
+function submitGate(){var n=document.getElementById('gateName').value.trim(),e=document.getElementById('gateEmail').value.trim();if(!e||!e.includes('@')){alert('Please enter a valid email.');return;}localStorage.setItem('ic_email',e);localStorage.setItem('ic_name',n);document.getElementById('emailGate').classList.add('hidden');if(_pendingCalc){_pendingCalc();_pendingCalc=null;}}
+function setName(v){document.getElementById('arabicWord').value=v;}
+
+const ABJAD={
+  'ا':1,'أ':1,'إ':1,'آ':1,'ب':2,'ج':3,'د':4,'ه':5,'ة':5,'و':6,'ز':7,'ح':8,'ط':9,'ي':10,'ى':10,'ك':20,'ل':30,'م':40,'ن':50,'س':60,'ع':70,'ف':80,'ص':90,'ق':100,'ر':200,'ش':300,'ت':400,'ث':500,'خ':600,'ذ':700,'ض':800,'ظ':900,'غ':1000
+};
+function calcAbjad(){
+  var word=document.getElementById('arabicWord').value.trim();
+  if(!word){alert('Please enter an Arabic word or name.');return;}
+  var total=0,rows=[];
+  for(var i=0;i<word.length;i++){
+    var ch=word[i];
+    if(ch===' '){rows.push('<div class="result-row"><span>(space)</span><span>—</span></div>');continue;}
+    var val=ABJAD[ch];
+    if(val){total+=val;rows.push('<div class="result-row"><span style="font-family:serif;font-size:1.2rem;direction:rtl;">'+ch+'</span><span>'+val+'</span></div>');}
+    else{rows.push('<div class="result-row"><span style="font-family:serif;font-size:1.2rem;">'+ch+'</span><span style="color:var(--ink-muted)">—</span></div>');}
+  }
+  rows.push('<div class="result-row" style="border-top:2px solid rgba(6,95,70,0.3);padding-top:0.5rem;font-weight:600;"><span>Total</span><span>'+total+'</span></div>');
+  document.getElementById('res-total').textContent=total;
+  document.getElementById('res-breakdown').innerHTML=rows.join('');
+  var b=document.getElementById('result');b.style.display='block';b.classList.remove('visible');void b.offsetWidth;b.classList.add('visible');
+}
+</script>
+</body>
+</html>

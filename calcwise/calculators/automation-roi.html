@@ -1,75 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Automation ROI Calculator 2025 — GoHighLevel, Make.com & n8n | CalcWise</title>
-  <meta name="description" content="Calculate the return on investment for automating your business with GoHighLevel, Make.com, or n8n. See how much time and money automation saves monthly. Free.">
-  <link rel="canonical" href="https://yourcalcwisedomain.com/calculators/automation-roi.html">
-  <link rel="stylesheet" href="../css/style.css">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Islamic Business Automation ROI Calculator — Halal Business Tools | IslamicCalc</title>
+<meta name="description" content="Calculate the ROI of automating your halal business with GoHighLevel, Make.com, or n8n. Spend less time on admin and more time on what matters. Free calculator.">
+<link rel="canonical" href="https://islamiccalculators.com/calculators/automation-roi.html">
+<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-<nav><div class="nav-inner"><a class="nav-logo" href="../index.html">Calc<span>Wise</span></a><ul class="nav-links"><li><a href="../index.html#ai">AI & Tech</a></li></ul></div></nav>
+<nav><div class="nav-inner"><a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a><ul class="nav-links"><li><a href="../index.html#tools">Islamic Tools</a></li><li><a href="../index.html#giving">Giving</a></li></ul></div></nav>
 <main class="calc-page">
-  <div class="calc-breadcrumb"><a href="../index.html">Home</a> › AI & Tech › Automation ROI</div>
-  <h1 class="calc-page-title">Business Automation ROI Calculator</h1>
-  <p class="calc-page-desc">Calculate the real return on investing in business automation with tools like GoHighLevel, Make.com, or n8n. See your break-even point and monthly savings.</p>
-  <div class="ad-slot">Advertisement</div>
+  <div class="calc-breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#tools">Islamic Business Tools</a> › Automation ROI</div>
+  <h1 class="calc-page-title">Islamic Business Automation ROI</h1>
+  <p class="calc-page-desc">Calculate the return on investment for automating your halal business. Free yourself from repetitive tasks and spend more time on your deen, family, and community.</p>
   <div class="calc-widget">
-    <div class="calc-widget-header"><span class="calc-widget-icon">⚙️</span><h2>Automation ROI Calculator</h2></div>
+    <div class="calc-widget-header"><span class="calc-widget-icon">⚙️</span><h2>Business Automation ROI</h2></div>
     <div class="calc-widget-body">
-      <div style="background:var(--accent-light);border-radius:8px;padding:1rem;margin-bottom:1.5rem;font-size:0.85rem;color:var(--accent)">Fill in your current manual process costs — automation typically reduces these by 60–90%.</div>
-      <div class="field-group">
-        <div class="field"><label>Hours saved per week</label><input type="number" id="hours" value="10" min="0"><span class="field-hint">Hours of manual work automation replaces</span></div>
-        <div class="field"><label>Your hourly rate ($)</label><input type="number" id="rate" value="50" min="1"><span class="field-hint">Your time value or employee cost</span></div>
+      <div style="background:var(--accent-light);border:1px solid rgba(37,99,235,0.2);border-radius:8px;padding:1rem;margin-bottom:1.5rem;font-size:0.85rem;color:var(--accent);">
+        <strong>Islamic business principle:</strong> Efficiency in halal work is worship. Automate the repetitive so you can focus on what truly matters — your ibadah, family, and community. Tools like GoHighLevel, Make.com, and n8n can free up hours every week.
       </div>
       <div class="field-group">
-        <div class="field"><label>Automation tool cost ($/month)</label><input type="number" id="tool-cost" value="97" min="0"><span class="field-hint">GHL $97 · Make.com $16 · n8n $20</span></div>
-        <div class="field"><label>Setup cost (one-time $)</label><input type="number" id="setup" value="500" min="0"><span class="field-hint">Freelancer or DIY time to build it</span></div>
+        <div class="field"><label>Your Hourly Rate ($)</label><input type="number" id="hourlyRate" placeholder="e.g. 50" min="1"><span class="field-hint">Your billable rate or equivalent salary value</span></div>
+        <div class="field"><label>Hours Saved Per Week</label><input type="number" id="hoursSaved" placeholder="e.g. 10" min="0" step="0.5"><span class="field-hint">Admin, follow-ups, reporting, scheduling</span></div>
       </div>
       <div class="field-group">
-        <div class="field"><label>Additional revenue from automation ($)</label><input type="number" id="extra-rev" value="500" min="0"><span class="field-hint">New leads captured, faster follow-up, etc.</span></div>
-      </div>
-      <button class="btn-calc" onclick="calcROI()">Calculate Automation ROI</button>
-      <div class="result-box" id="result">
-        <div class="result-label">Monthly Net Savings</div>
-        <div class="result-main" id="monthly-save">$0</div>
-        <div class="result-breakdown">
-          <div class="result-row"><span>Time saved monthly</span><span id="time-val">$0</span></div>
-          <div class="result-row"><span>Additional revenue</span><span id="extra-rev-out">$0</span></div>
-          <div class="result-row"><span>Tool cost</span><span id="tool-out">$0</span></div>
-          <div class="result-row"><span>Net monthly benefit</span><span id="net-mo">$0</span></div>
-          <div class="result-row"><span>Break-even point</span><span id="breakeven">0 months</span></div>
-          <div class="result-row"><span>12-month net ROI</span><span id="roi-pct">0%</span></div>
+        <div class="field"><label>Automation Tool</label>
+          <select id="tool">
+            <option value="ghl">GoHighLevel (GHL)</option>
+            <option value="make">Make.com (Integromat)</option>
+            <option value="n8n">n8n (self-hosted)</option>
+            <option value="zapier">Zapier</option>
+            <option value="custom">Custom / Combined</option>
+          </select>
         </div>
+        <div class="field"><label>Monthly Tool Cost ($)</label><input type="number" id="toolCost" placeholder="e.g. 97" min="0"></div>
+      </div>
+      <div class="field-group">
+        <div class="field"><label>One-time Setup Cost ($)</label><input type="number" id="setupCost" placeholder="e.g. 500" min="0"><span class="field-hint">Consultant fees, development, training</span></div>
+        <div class="field"><label>Currency</label><select id="currency"><option>USD</option><option>GBP</option><option>EUR</option><option>CAD</option></select></div>
+      </div>
+      <button class="btn-calc" onclick="showGate(calcROI)">Calculate My Automation ROI</button>
+      <div class="result-box" id="result" style="display:none;background:var(--accent-light);border-color:rgba(37,99,235,0.2);">
+        <div class="result-label">Monthly ROI</div>
+        <div class="result-main" id="res-monthly-roi"></div>
+        <div class="result-breakdown">
+          <div class="result-row"><span>Monthly Value of Time Saved</span><span id="res-value"></span></div>
+          <div class="result-row"><span>Monthly Tool Cost</span><span id="res-tool"></span></div>
+          <div class="result-row"><span>Monthly Net Gain</span><span id="res-net"></span></div>
+          <div class="result-row"><span>ROI %</span><span id="res-roi-pct"></span></div>
+          <div class="result-row"><span>Break-even Point</span><span id="res-breakeven"></span></div>
+          <div class="result-row"><span>Annual Net Gain</span><span id="res-annual"></span></div>
+          <div class="result-row"><span>Hours Freed Per Year</span><span id="res-hours-year"></span></div>
+        </div>
+        <div style="margin-top:1rem;padding:0.75rem;background:rgba(37,99,235,0.08);border-radius:6px;font-size:0.82rem;color:var(--accent);" id="res-tip"></div>
       </div>
     </div>
   </div>
-  <div class="ad-slot">Advertisement</div>
-  <div class="content-section"><h3>What can business automation do for you?</h3><p>Modern no-code automation tools like GoHighLevel, Make.com, and n8n can eliminate repetitive manual tasks including lead follow-up, appointment booking, invoice generation, client onboarding, social media posting, and CRM data entry.</p><p>For a typical small business spending 10+ hours per week on manual tasks, automation delivers a 300–1000% ROI within the first year — often breaking even within 2–3 months.</p></div>
+  <div class="content-section"><h3>What Can You Automate in Your Halal Business?</h3><ul><li><strong>Client follow-ups</strong> — Automated WhatsApp/email sequences via GHL</li><li><strong>Lead capture & nurturing</strong> — Islamic finance leads, masjid inquiries</li><li><strong>Appointment booking</strong> — Auto-schedule consultations and meetings</li><li><strong>Invoice generation</strong> — Auto-create and send halal business invoices</li><li><strong>Social media scheduling</strong> — Dawah content published automatically</li><li><strong>Reporting</strong> — Weekly business KPI dashboards built automatically</li></ul></div>
+  <div class="content-section"><h3>Recommended Tools for Muslim Business Owners</h3><ul><li><strong>GoHighLevel (GHL)</strong> — All-in-one CRM, automation, and marketing. Ideal for consultants, coaches, masjid outreach.</li><li><strong>Make.com</strong> — Visual automation builder connecting 1000+ apps. Great for custom Islamic workflows.</li><li><strong>n8n</strong> — Open-source, self-hosted automation. Best for privacy-conscious Muslim businesses.</li></ul></div>
 </main>
-<footer><div class="footer-inner"><div class="footer-brand"><a class="nav-logo" href="../index.html">Calc<span>Wise</span></a><p>Free calculators for modern life.</p></div><div class="footer-col"><h4>AI & Tech</h4><a href="llm-token.html">LLM Token Cost</a><a href="automation-roi.html">Automation ROI</a></div><div class="footer-col"><h4>Finance</h4><a href="mortgage.html">Mortgage</a><a href="zakat.html">Zakat</a></div></div><div class="footer-bottom"><span>© 2025 CalcWise.</span></div></footer>
+<footer><div class="footer-inner"><div class="footer-brand"><a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a><p>Free Islamic calculators.</p></div><div class="footer-col"><h4>Islamic Tools</h4><a href="llm-token.html">AI Dawah Calculator</a><a href="automation-roi.html">Business Automation</a></div><div class="footer-col"><h4>Finance</h4><a href="murabaha.html">Murabaha</a><a href="halal-roi.html">Halal ROI</a></div><div class="footer-col"><h4>Daily</h4><a href="prayer-times.html">Prayer Times</a><a href="zakat.html">Zakat</a></div></div><div class="footer-bottom"><span>© 2025 IslamicCalc.</span><span>Results are estimates. Actual ROI depends on implementation quality.</span></div></footer>
+<div class="email-gate-overlay hidden" id="emailGate"><div class="email-gate-box"><div class="email-gate-icon">⚙️</div><h2>Calculate Your Automation ROI</h2><p>Enter your email to unlock your full automation ROI breakdown.</p><div class="email-gate-fields"><input type="text" id="gateName" placeholder="Your name"><input type="email" id="gateEmail" placeholder="Your email address"></div><button class="btn-gate" onclick="submitGate()">Show My ROI →</button><p class="email-gate-privacy">🔒 Privacy protected.</p></div></div>
 <script>
-function f(n){return '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+var _pendingCalc=null;
+function showGate(fn){var s=localStorage.getItem('ic_email');if(s){fn();return;}_pendingCalc=fn;document.getElementById('emailGate').classList.remove('hidden');}
+function submitGate(){var n=document.getElementById('gateName').value.trim(),e=document.getElementById('gateEmail').value.trim();if(!e||!e.includes('@')){alert('Please enter a valid email.');return;}localStorage.setItem('ic_email',e);localStorage.setItem('ic_name',n);document.getElementById('emailGate').classList.add('hidden');if(_pendingCalc){_pendingCalc();_pendingCalc=null;}}
+const SYMS={USD:'$',GBP:'£',EUR:'€',CAD:'CA$'};
+function fmt(n,c){return(SYMS[c]||'$')+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
 function calcROI(){
-  const hours=parseFloat(document.getElementById('hours').value)||0;
-  const rate=parseFloat(document.getElementById('rate').value)||0;
-  const toolCost=parseFloat(document.getElementById('tool-cost').value)||0;
-  const setup=parseFloat(document.getElementById('setup').value)||0;
-  const extraRev=parseFloat(document.getElementById('extra-rev').value)||0;
-  const timeValMo=hours*rate*4.33;
-  const netMo=timeValMo+extraRev-toolCost;
-  const totalInvest=setup+toolCost;
-  const breakeven=totalInvest>0?Math.ceil(totalInvest/netMo):0;
-  const roi12=(netMo*12-setup-toolCost*12)/(setup+toolCost*12)*100;
-  document.getElementById('monthly-save').textContent=f(netMo);
-  document.getElementById('time-val').textContent=f(timeValMo)+'/mo';
-  document.getElementById('extra-rev-out').textContent=f(extraRev)+'/mo';
-  document.getElementById('tool-out').textContent=f(toolCost)+'/mo';
-  document.getElementById('net-mo').textContent=f(netMo);
-  document.getElementById('breakeven').textContent=breakeven>0?breakeven+' months':'Immediate';
-  document.getElementById('roi-pct').textContent=roi12.toFixed(0)+'%';
-  const box=document.getElementById('result');box.classList.remove('visible');void box.offsetWidth;box.classList.add('visible');
+  var rate=parseFloat(document.getElementById('hourlyRate').value)||0;
+  var hrs=parseFloat(document.getElementById('hoursSaved').value)||0;
+  var toolCost=parseFloat(document.getElementById('toolCost').value)||0;
+  var setup=parseFloat(document.getElementById('setupCost').value)||0;
+  var c=document.getElementById('currency').value;
+  if(!rate||!hrs){alert('Please enter your hourly rate and hours saved per week.');return;}
+  var monthlyValue=rate*hrs*4.33;
+  var monthlyNet=monthlyValue-toolCost;
+  var roiPct=toolCost>0?((monthlyNet/toolCost)*100):999;
+  var breakeven=setup>0?Math.ceil(setup/monthlyNet):0;
+  var annualNet=(monthlyNet*12)-setup;
+  var hoursYear=hrs*52;
+  document.getElementById('res-monthly-roi').textContent=fmt(monthlyNet,c);
+  document.getElementById('res-value').textContent=fmt(monthlyValue,c);
+  document.getElementById('res-tool').textContent=fmt(toolCost,c);
+  document.getElementById('res-net').textContent=fmt(monthlyNet,c);
+  document.getElementById('res-roi-pct').textContent=roiPct>998?'∞ (no ongoing cost)':roiPct.toFixed(0)+'%';
+  document.getElementById('res-breakeven').textContent=breakeven>0?breakeven+' month'+(breakeven>1?'s':''):'Immediate (no setup cost)';
+  document.getElementById('res-annual').textContent=fmt(annualNet,c);
+  document.getElementById('res-hours-year').textContent=hoursYear.toFixed(0)+' hours freed';
+  var tip=hoursYear>200?'With '+hoursYear.toFixed(0)+' hours freed per year, imagine what you could do with that time — more ibadah, family time, or growing your halal business further. Barakah comes from doing things right.':'Even '+hoursYear.toFixed(0)+' hours saved per year is significant — that\'s time you can redirect to your deen and family. May Allah put barakah in your work.';
+  document.getElementById('res-tip').innerHTML='<strong>Barakah perspective:</strong> '+tip;
+  var b=document.getElementById('result');b.style.display='block';b.classList.remove('visible');void b.offsetWidth;b.classList.add('visible');
 }
 </script>
-</body>
-</html>
+</body></html>

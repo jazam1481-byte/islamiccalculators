@@ -1,67 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Halal Investment ROI Calculator 2025 — Sukuk, Murabaha & Islamic Investing | CalcWise</title>
-  <meta name="description" content="Calculate returns on Shariah-compliant investments including Sukuk bonds, Murabaha financing, and Islamic equity funds. No interest (riba). Free calculator.">
-  <link rel="canonical" href="https://yourcalcwisedomain.com/calculators/halal-roi.html">
-  <link rel="stylesheet" href="../css/style.css">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Halal Investment ROI Calculator — Murabaha, Sukuk & Islamic Equity | IslamicCalc</title>
+<meta name="description" content="Calculate returns on Murabaha, Sukuk, and Shariah-compliant equity investments. No riba, no interest-based formulas. Free Islamic investment ROI calculator.">
+<link rel="canonical" href="https://islamiccalculators.com/calculators/halal-roi.html">
+<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-<nav><div class="nav-inner"><a class="nav-logo" href="../index.html">Calc<span>Wise</span></a><ul class="nav-links"><li><a href="../index.html#islamic">Islamic</a></li></ul></div></nav>
+<nav><div class="nav-inner"><a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a><ul class="nav-links"><li><a href="../index.html#giving">Giving & Finance</a></li><li><a href="../index.html#daily">Daily</a></li></ul></div></nav>
 <main class="calc-page">
-  <div class="calc-breadcrumb"><a href="../index.html">Home</a> › Islamic Finance › Halal Investment ROI</div>
+  <div class="calc-breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#giving">Giving & Finance</a> › Halal Investment ROI</div>
   <h1 class="calc-page-title">Halal Investment ROI Calculator</h1>
-  <p class="calc-page-desc">Calculate expected returns on Shariah-compliant investments — Sukuk, Murabaha, and Islamic equity funds — without riba (interest).</p>
-  <div class="ad-slot">Advertisement</div>
+  <p class="calc-page-desc">Calculate the return on investment for Murabaha, Sukuk, and Shariah-compliant equity — without interest-based formulas. Pure Islamic finance math.</p>
   <div class="calc-widget">
-    <div class="calc-widget-header"><span class="calc-widget-icon">📈</span><h2>Halal Investment Return Calculator</h2></div>
+    <div class="calc-widget-header"><span class="calc-widget-icon">📈</span><h2>Halal Investment ROI</h2></div>
     <div class="calc-widget-body">
-      <div class="field-group">
-        <div class="field"><label>Investment Type</label><select id="type"><option value="sukuk">Sukuk (Islamic Bond)</option><option value="murabaha">Murabaha (Cost-plus financing)</option><option value="equity">Islamic Equity Fund</option><option value="realestate">Real Estate (Rental Income)</option></select></div>
-        <div class="field"><label>Investment Amount ($)</label><input type="number" id="amount" value="10000" min="100"></div>
+      <div style="background:var(--green-light);border:1px solid rgba(6,95,70,0.2);border-radius:8px;padding:1rem;margin-bottom:1.5rem;font-size:0.85rem;color:var(--green);">
+        <strong>Shariah note:</strong> All calculations use profit-sharing or cost-plus structures — no interest (riba). Returns are from actual asset performance, not debt-based products.
       </div>
       <div class="field-group">
-        <div class="field"><label>Expected Annual Return (%)</label><input type="number" id="return-rate" value="6" step="0.1" min="0"><span class="field-hint">Sukuk: 4–8% · Islamic equity: 8–14% · Rental: 5–10%</span></div>
-        <div class="field"><label>Investment Period (years)</label><input type="number" id="years" value="10" min="1" max="40"></div>
+        <div class="field"><label>Investment Type</label>
+          <select id="invType">
+            <option value="murabaha">Murabaha (cost-plus financing)</option>
+            <option value="sukuk">Sukuk (Islamic bonds)</option>
+            <option value="equity">Shariah-compliant equity fund</option>
+            <option value="mudarabah">Mudarabah (profit-sharing)</option>
+          </select>
+        </div>
+        <div class="field"><label>Currency</label><select id="currency"><option>USD</option><option>GBP</option><option>EUR</option><option>CAD</option><option>AED</option><option>PKR</option></select></div>
       </div>
       <div class="field-group">
-        <div class="field"><label>Monthly Contribution ($)</label><input type="number" id="monthly" value="0" min="0"><span class="field-hint">Optional regular additions</span></div>
+        <div class="field"><label>Initial Investment ($)</label><input type="number" id="invest" placeholder="e.g. 20000" min="0"></div>
+        <div class="field"><label>Annual Profit / Return Rate (%)</label><input type="number" id="profitRate" placeholder="e.g. 7" min="0" step="0.1"></div>
       </div>
-      <button class="btn-calc" onclick="calcHalal()">Calculate Returns</button>
-      <div class="result-box islamic-result" id="result">
-        <div class="result-label">Projected Value (Halal Return)</div>
-        <div class="result-main" id="final-val">$0</div>
+      <div class="field-group">
+        <div class="field"><label>Investment Duration (years)</label><input type="number" id="dur" placeholder="e.g. 5" min="1" max="50"></div>
+        <div class="field"><label>Profit Distribution</label><select id="dist"><option value="1">Annual</option><option value="2">Semi-annual</option><option value="4">Quarterly</option><option value="12">Monthly</option></select></div>
+      </div>
+      <button class="btn-calc" onclick="showGate(calcROI)">Calculate Halal ROI</button>
+      <div class="result-box islamic-result" id="result" style="display:none;">
+        <div class="result-label">Investment Return</div>
+        <div class="result-main" id="res-final"></div>
         <div class="result-breakdown">
-          <div class="result-row"><span>Initial investment</span><span id="init">$0</span></div>
-          <div class="result-row"><span>Additional contributions</span><span id="contrib">$0</span></div>
-          <div class="result-row"><span>Total profit (halal return)</span><span id="profit">$0</span></div>
-          <div class="result-row"><span>Effective annual return</span><span id="eff-rate">0%</span></div>
+          <div class="result-row"><span>Initial Investment</span><span id="res-inv"></span></div>
+          <div class="result-row"><span>Total Profit Earned</span><span id="res-profit"></span></div>
+          <div class="result-row"><span>Total Return</span><span id="res-total"></span></div>
+          <div class="result-row"><span>ROI %</span><span id="res-roi"></span></div>
+          <div class="result-row"><span>Annual Zakat Due</span><span id="res-zakat"></span></div>
+          <div class="result-row"><span>Investment Type</span><span id="res-type"></span></div>
         </div>
       </div>
     </div>
   </div>
-  <div class="ad-slot">Advertisement</div>
-  <div class="content-section"><h3>What makes an investment Shariah-compliant?</h3><p>Shariah-compliant investments avoid riba (interest), gharar (excessive uncertainty), maysir (gambling), and investment in prohibited industries (alcohol, weapons, pork, conventional financial services). Returns come from legitimate profit-sharing, asset ownership, or trade — not lending money at interest.</p><ul><li><strong>Sukuk</strong> — Islamic bonds backed by real assets, paying profit from asset returns rather than interest</li><li><strong>Murabaha</strong> — Cost-plus financing where a bank buys an asset and resells at a markup — the markup is profit, not interest</li><li><strong>Musharakah / Mudarabah</strong> — Partnership arrangements where profits and losses are shared proportionally</li><li><strong>Islamic equity funds</strong> — Funds that screen out haram sectors and meet purification criteria</li></ul></div>
+  <div class="content-section"><h3>Islamic Investment Structures</h3><ul><li><strong>Murabaha</strong> — cost-plus sale; bank buys asset and sells at disclosed profit</li><li><strong>Sukuk</strong> — asset-backed Islamic bonds; return tied to real asset performance</li><li><strong>Musharakah</strong> — joint venture; partners share profit and loss proportionally</li><li><strong>Mudarabah</strong> — silent partnership; investor provides capital, manager provides work</li><li><strong>Ijara</strong> — leasing; return comes from rental income on real assets</li></ul></div>
 </main>
-<footer><div class="footer-inner"><div class="footer-brand"><a class="nav-logo" href="../index.html">Calc<span>Wise</span></a><p>Free calculators for modern life.</p></div><div class="footer-col"><h4>Islamic Finance</h4><a href="zakat.html">Zakat Calculator</a><a href="sadaqah.html">Sadaqah Guide</a></div><div class="footer-col"><h4>General Finance</h4><a href="compound-interest.html">Compound Interest</a><a href="sip.html">SIP Calculator</a></div></div><div class="footer-bottom"><span>© 2025 CalcWise. Consult a Shariah scholar for investment guidance.</span></div></footer>
+<footer><div class="footer-inner"><div class="footer-brand"><a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a><p>Free Islamic calculators.</p></div><div class="footer-col"><h4>Islamic Finance</h4><a href="murabaha.html">Murabaha</a><a href="halal-savings.html">Halal Savings</a><a href="halal-roi.html">Halal ROI</a></div><div class="footer-col"><h4>Giving</h4><a href="zakat.html">Zakat</a><a href="sadaqah.html">Sadaqah</a></div><div class="footer-col"><h4>Daily</h4><a href="prayer-times.html">Prayer Times</a><a href="qibla.html">Qibla</a></div></div><div class="footer-bottom"><span>© 2025 IslamicCalc.</span><span>Not financial advice. Verify Shariah compliance independently.</span></div></footer>
+<div class="email-gate-overlay hidden" id="emailGate"><div class="email-gate-box"><div class="email-gate-icon">📈</div><h2>See Your Halal ROI</h2><p>Enter your email to unlock your investment return breakdown.</p><div class="email-gate-fields"><input type="text" id="gateName" placeholder="Your name"><input type="email" id="gateEmail" placeholder="Your email address"></div><button class="btn-gate" onclick="submitGate()">Show My ROI →</button><p class="email-gate-privacy">🔒 Privacy protected.</p></div></div>
 <script>
-function f(n){return '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
-function calcHalal(){
-  const P=parseFloat(document.getElementById('amount').value)||0;
-  const r=parseFloat(document.getElementById('return-rate').value)/100||0;
-  const t=parseFloat(document.getElementById('years').value)||0;
-  const mo=parseFloat(document.getElementById('monthly').value)||0;
-  const FV=P*Math.pow(1+r,t)+mo*12*((Math.pow(1+r,t)-1)/r);
-  const totalContrib=mo*12*t;
-  const profit=FV-P-totalContrib;
-  document.getElementById('final-val').textContent=f(FV);
-  document.getElementById('init').textContent=f(P);
-  document.getElementById('contrib').textContent=f(totalContrib);
-  document.getElementById('profit').textContent=f(profit);
-  document.getElementById('eff-rate').textContent=(r*100).toFixed(2)+'%';
-  const box=document.getElementById('result');box.classList.remove('visible');void box.offsetWidth;box.classList.add('visible');
+var _pendingCalc=null;
+function showGate(fn){var s=localStorage.getItem('ic_email');if(s){fn();return;}_pendingCalc=fn;document.getElementById('emailGate').classList.remove('hidden');}
+function submitGate(){var n=document.getElementById('gateName').value.trim(),e=document.getElementById('gateEmail').value.trim();if(!e||!e.includes('@')){alert('Please enter a valid email.');return;}localStorage.setItem('ic_email',e);localStorage.setItem('ic_name',n);document.getElementById('emailGate').classList.add('hidden');if(_pendingCalc){_pendingCalc();_pendingCalc=null;}}
+const SYMS={USD:'$',GBP:'£',EUR:'€',CAD:'CA$',AED:'AED ',PKR:'Rs '};
+const TYPE_NAMES={murabaha:'Murabaha',sukuk:'Sukuk',equity:'Shariah Equity Fund',mudarabah:'Mudarabah'};
+function fmt(n,c){return(SYMS[c]||'$')+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function calcROI(){
+  var inv=parseFloat(document.getElementById('invest').value)||0;
+  var rate=parseFloat(document.getElementById('profitRate').value)||0;
+  var dur=parseFloat(document.getElementById('dur').value)||1;
+  var dist=parseInt(document.getElementById('dist').value);
+  var currency=document.getElementById('currency').value;
+  var type=document.getElementById('invType').value;
+  var rp=rate/100/dist, periods=dur*dist;
+  var final=inv*Math.pow(1+rp,periods);
+  var profit=final-inv;
+  var roi=(profit/inv*100);
+  document.getElementById('res-final').textContent=fmt(final,currency);
+  document.getElementById('res-inv').textContent=fmt(inv,currency);
+  document.getElementById('res-profit').textContent=fmt(profit,currency);
+  document.getElementById('res-total').textContent=fmt(final,currency);
+  document.getElementById('res-roi').textContent=roi.toFixed(1)+'%';
+  document.getElementById('res-zakat').textContent=fmt(final*0.025,currency)+'/year';
+  document.getElementById('res-type').textContent=TYPE_NAMES[type];
+  var b=document.getElementById('result');b.style.display='block';b.classList.remove('visible');void b.offsetWidth;b.classList.add('visible');
 }
 </script>
-</body>
-</html>
+</body></html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hijri Date Converter — Gregorian to Islamic Calendar | IslamicCalc</title>
+<meta name="description" content="Convert any date between Gregorian and Hijri (Islamic) calendar. Find Ramadan dates, Eid dates, Hajj season and Islamic anniversaries. Free and instant.">
+<link rel="canonical" href="https://islamiccalculators.com/calculators/hijri.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav><div class="nav-inner">
+  <a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a>
+  <ul class="nav-links"><li><a href="../index.html#daily">Daily Worship</a></li><li><a href="../index.html#giving">Giving & Finance</a></li><li><a href="../index.html#heritage">Heritage</a></li></ul>
+</div></nav>
+
+<main class="calc-page">
+  <div class="calc-breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#daily">Daily Worship</a> › Hijri Date Converter</div>
+  <h1 class="calc-page-title">Hijri Date Converter</h1>
+  <p class="calc-page-desc">Convert between Gregorian and Hijri (Islamic lunar) calendar dates. Plan for Ramadan, Eid, Hajj, and important Islamic events.</p>
+
+  <div class="calc-widget">
+    <div class="calc-widget-header"><span class="calc-widget-icon">📅</span><h2>Hijri ↔ Gregorian Converter</h2></div>
+    <div class="calc-widget-body">
+      <div style="background:var(--gold-light);border:1px solid rgba(180,83,9,0.2);border-radius:8px;padding:1rem;margin-bottom:1.5rem;font-size:0.85rem;color:var(--gold);">
+        <strong>Today's Hijri date is calculated automatically.</strong> Enter any Gregorian date below to see its Hijri equivalent, or enter a Hijri date to convert to Gregorian.
+      </div>
+      <div class="field-group">
+        <div class="field">
+          <label>Gregorian Date (→ Hijri)</label>
+          <input type="date" id="gregDate">
+          <span class="field-hint">Convert Gregorian to Islamic date</span>
+        </div>
+      </div>
+      <button class="btn-calc" onclick="showGate(convertGreg)">Convert to Hijri</button>
+      <div class="result-box islamic-result" id="result1" style="display:none;">
+        <div class="result-label">Hijri Equivalent</div>
+        <div class="result-main" id="hijri-out"></div>
+        <div class="result-breakdown" id="hijri-detail"></div>
+      </div>
+
+      <hr style="border:none;border-top:1px solid var(--border);margin:2rem 0;">
+
+      <div class="field-group">
+        <div class="field"><label>Hijri Day</label><input type="number" id="hDay" placeholder="e.g. 1" min="1" max="30"></div>
+        <div class="field"><label>Hijri Month</label>
+          <select id="hMonth">
+            <option value="1">1 — Muharram</option><option value="2">2 — Safar</option>
+            <option value="3">3 — Rabi al-Awwal</option><option value="4">4 — Rabi al-Thani</option>
+            <option value="5">5 — Jumada al-Awwal</option><option value="6">6 — Jumada al-Thani</option>
+            <option value="7">7 — Rajab</option><option value="8">8 — Sha'ban</option>
+            <option value="9" selected>9 — Ramadan</option><option value="10">10 — Shawwal</option>
+            <option value="11">11 — Dhul Qadah</option><option value="12">12 — Dhul Hijjah</option>
+          </select>
+        </div>
+        <div class="field"><label>Hijri Year</label><input type="number" id="hYear" placeholder="e.g. 1446" min="1300" max="1600"></div>
+      </div>
+      <button class="btn-calc" onclick="showGate(convertHijri)" style="background:var(--green);">Convert to Gregorian</button>
+      <div class="result-box islamic-result" id="result2" style="display:none;">
+        <div class="result-label">Gregorian Equivalent</div>
+        <div class="result-main" id="greg-out"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <h3>The Islamic (Hijri) Calendar</h3>
+    <p>The Hijri calendar is a purely lunar calendar of 12 months in a year of 354 or 355 days. It began with the migration (Hijra) of Prophet Muhammad ﷺ from Makkah to Madinah in 622 CE. Each month begins with the sighting of the new crescent moon.</p>
+    <p>The Islamic calendar cycles through all seasons over approximately 33 years, which is why Ramadan, Eid, and Hajj fall at different times each Gregorian year.</p>
+  </div>
+  <div class="content-section">
+    <h3>The 12 Islamic Months</h3>
+    <ul>
+      <li><strong>Muharram</strong> — Sacred month; 10th is Ashura</li>
+      <li><strong>Safar</strong> — Month of travel</li>
+      <li><strong>Rabi al-Awwal</strong> — Birth month of the Prophet ﷺ</li>
+      <li><strong>Rajab</strong> — Sacred month; Isra and Mi'raj</li>
+      <li><strong>Sha'ban</strong> — Month before Ramadan</li>
+      <li><strong>Ramadan</strong> — Month of fasting and Quran</li>
+      <li><strong>Shawwal</strong> — Eid al-Fitr; 6 fasts of Shawwal</li>
+      <li><strong>Dhul Hijjah</strong> — Hajj season; Eid al-Adha on 10th</li>
+    </ul>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a><p>Free Islamic calculators for Muslim life.</p></div>
+    <div class="footer-col"><h4>Daily Worship</h4><a href="prayer-times.html">Prayer Times</a><a href="qibla.html">Qibla Finder</a><a href="hijri.html">Hijri Converter</a></div>
+    <div class="footer-col"><h4>Giving</h4><a href="zakat.html">Zakat</a><a href="zakat-al-fitr.html">Zakat al-Fitr</a></div>
+    <div class="footer-col"><h4>Heritage</h4><a href="mirath.html">Mirath</a><a href="abjad.html">Abjad</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 IslamicCalc.</span><span>Dates are astronomical approximations; moon sighting may differ.</span></div>
+</footer>
+
+<div class="email-gate-overlay hidden" id="emailGate">
+  <div class="email-gate-box">
+    <div class="email-gate-icon">📅</div>
+    <h2>Get Your Date Conversion</h2>
+    <p>Enter your email to unlock your results. We share Islamic reminders — no spam, ever.</p>
+    <div class="email-gate-fields">
+      <input type="text" id="gateName" placeholder="Your name"><input type="email" id="gateEmail" placeholder="Your email address">
+    </div>
+    <button class="btn-gate" onclick="submitGate()">Show My Results →</button>
+    <p class="email-gate-privacy">🔒 Privacy protected. Unsubscribe anytime.</p>
+  </div>
+</div>
+
+<script>
+document.getElementById('gregDate').value = new Date().toISOString().split('T')[0];
+var _pendingCalc=null;
+function showGate(fn){var s=localStorage.getItem('ic_email');if(s){fn();return;}_pendingCalc=fn;document.getElementById('emailGate').classList.remove('hidden');}
+function submitGate(){var n=document.getElementById('gateName').value.trim(),e=document.getElementById('gateEmail').value.trim();if(!e||!e.includes('@')){alert('Please enter a valid email.');return;}localStorage.setItem('ic_email',e);localStorage.setItem('ic_name',n);document.getElementById('emailGate').classList.add('hidden');if(_pendingCalc){_pendingCalc();_pendingCalc=null;}}
+
+const HIJRI_MONTHS=['Muharram','Safar','Rabi al-Awwal','Rabi al-Thani','Jumada al-Awwal','Jumada al-Thani','Rajab',"Sha'ban",'Ramadan','Shawwal','Dhul Qadah','Dhul Hijjah'];
+const HIJRI_EVENTS={9:'Ramadan — Month of fasting 🌙',10:'Shawwal — Eid al-Fitr 🎉',12:'Dhul Hijjah — Hajj Season 🕋',1:'Muharram — Islamic New Year 🗓️',3:"Rabi al-Awwal — Month of the Prophet ﷺ 💚"};
+
+function gregToJD(y,m,d){if(m<=2){y--;m+=12;}var A=Math.floor(y/100),B=2-A+Math.floor(A/4);return Math.floor(365.25*(y+4716))+Math.floor(30.6001*(m+1))+d+B-1524.5;}
+function jdToHijri(jd){jd=Math.floor(jd)+0.5;var z=jd-1948439.5,a=Math.floor(z/10631),b=z-10631*a,j=Math.floor((b-29.5001)/354.367),c=b-354*j-Math.floor((j*3+2)/6)+29;var month=Math.floor(c/29.5)+1,day=Math.ceil(c-29.5001*(month-1)),year=30*a+j+1;if(month>12){month=1;year++;}return{day,month,year};}
+function hijriToGreg(hy,hm,hd){var N=Math.floor((11*hy+3)/30)+354*hy+30*hm-Math.floor((hm-1)/2)+hd+1948440-385;var jd=N;var l=jd+68569,n=Math.floor(4*l/146097),l2=l-Math.floor((146097*n+3)/4),i=Math.floor(4000*(l2+1)/1461001),l3=l2-Math.floor(1461*i/4)+31,j=Math.floor(80*l3/2447),d=l3-Math.floor(2447*j/80),l4=Math.floor(j/11),m=j+2-12*l4,y=100*(n-49)+i+l4;return{day:d,month:m,year:y};}
+
+function convertGreg(){
+  var d=new Date(document.getElementById('gregDate').value);
+  if(isNaN(d)){alert('Please select a date.');return;}
+  var h=jdToHijri(gregToJD(d.getFullYear(),d.getMonth()+1,d.getDate()));
+  var mname=HIJRI_MONTHS[h.month-1];
+  var event=HIJRI_EVENTS[h.month]||'';
+  document.getElementById('hijri-out').textContent=h.day+' '+mname+' '+h.year+' AH';
+  document.getElementById('hijri-detail').innerHTML='<div class="result-row"><span>Hijri Month</span><span>'+mname+'</span></div>'+(event?'<div class="result-row" style="color:var(--green);font-weight:500;"><span>Notable</span><span>'+event+'</span></div>':'');
+  var b=document.getElementById('result1');b.style.display='block';b.classList.remove('visible');void b.offsetWidth;b.classList.add('visible');
+}
+function convertHijri(){
+  var hd=parseInt(document.getElementById('hDay').value)||1,hm=parseInt(document.getElementById('hMonth').value),hy=parseInt(document.getElementById('hYear').value)||1446;
+  var g=hijriToGreg(hy,hm,hd);
+  var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  document.getElementById('greg-out').textContent=g.day+' '+months[g.month-1]+' '+g.year+' CE';
+  var b=document.getElementById('result2');b.style.display='block';b.classList.remove('visible');void b.offsetWidth;b.classList.add('visible');
+}
+</script>
+</body>
+</html>

@@ -1,67 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sadaqah & Charity Calculator 2025 — How Much to Give | CalcWise</title>
-  <meta name="description" content="Calculate voluntary Sadaqah giving based on income. Get guidance on charity amounts by percentage, set giving goals, and track donations for the year.">
-  <link rel="canonical" href="https://yourcalcwisedomain.com/calculators/sadaqah.html">
-  <link rel="stylesheet" href="../css/style.css">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sadaqah & Charity Guide — Islamic Giving Calculator | IslamicCalc</title>
+<meta name="description" content="Calculate recommended Sadaqah (voluntary charity) amounts based on your income. Track your giving goals and discover Islamic giving milestones. Free Islamic charity calculator.">
+<link rel="canonical" href="https://islamiccalculators.com/calculators/sadaqah.html">
+<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-<nav><div class="nav-inner"><a class="nav-logo" href="../index.html">Calc<span>Wise</span></a><ul class="nav-links"><li><a href="../index.html#islamic">Islamic</a></li></ul></div></nav>
+<nav><div class="nav-inner"><a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a><ul class="nav-links"><li><a href="../index.html#giving">Giving & Finance</a></li><li><a href="../index.html#daily">Daily</a></li></ul></div></nav>
 <main class="calc-page">
-  <div class="calc-breadcrumb"><a href="../index.html">Home</a> › Islamic Finance › Sadaqah Guide</div>
-  <h1 class="calc-page-title">Sadaqah & Voluntary Charity Calculator</h1>
-  <p class="calc-page-desc">Plan your voluntary charity (Sadaqah) giving based on your income. Unlike Zakat, Sadaqah has no fixed amount — this tool helps you set intentional giving goals.</p>
-  <div class="ad-slot">Advertisement</div>
+  <div class="calc-breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#giving">Giving & Finance</a> › Sadaqah Guide</div>
+  <h1 class="calc-page-title">Sadaqah & Charity Guide</h1>
+  <p class="calc-page-desc">Estimate voluntary charity amounts based on your income, track your annual giving goals, and discover the immense rewards of Sadaqah in Islam.</p>
   <div class="calc-widget">
-    <div class="calc-widget-header"><span class="calc-widget-icon">🤲</span><h2>Sadaqah Giving Planner</h2></div>
+    <div class="calc-widget-header"><span class="calc-widget-icon">🤲</span><h2>Sadaqah Calculator</h2></div>
     <div class="calc-widget-body">
       <div class="field-group">
-        <div class="field"><label>Monthly Income ($)</label><input type="number" id="income" value="5000" min="0"></div>
-        <div class="field"><label>Giving Percentage (%)</label><input type="number" id="pct" value="2.5" step="0.5" min="0" max="100"><span class="field-hint">Many Muslims give 2.5–10% beyond Zakat</span></div>
+        <div class="field"><label>Monthly Income ($)</label><input type="number" id="income" placeholder="e.g. 5000" min="0"></div>
+        <div class="field"><label>Currency</label><select id="currency"><option>USD</option><option>GBP</option><option>EUR</option><option>CAD</option><option>AED</option><option>PKR</option></select></div>
       </div>
       <div class="field-group">
-        <div class="field"><label>Already given this month ($)</label><input type="number" id="given" value="0" min="0"></div>
-        <div class="field"><label>Ramadan multiplier</label><select id="ramadan"><option value="1">Regular month</option><option value="2">Ramadan (2x intention)</option><option value="10">Last 10 nights (10x)</option></select></div>
+        <div class="field"><label>Giving Goal (%)</label>
+          <select id="pct">
+            <option value="1">1% — Getting started</option>
+            <option value="2.5">2.5% — Zakat level (minimum)</option>
+            <option value="5" selected>5% — Recommended</option>
+            <option value="10">10% — Strong giver</option>
+            <option value="20">20% — Exceptional</option>
+            <option value="custom">Custom %</option>
+          </select>
+        </div>
+        <div class="field"><label>Custom % (if selected above)</label><input type="number" id="custPct" placeholder="e.g. 7.5" min="0" max="100" step="0.1"></div>
       </div>
-      <button class="btn-calc" onclick="calcSadaqah()">Calculate Giving Plan</button>
-      <div class="result-box islamic-result" id="result">
-        <div class="result-label">Monthly Sadaqah Goal</div>
-        <div class="result-main" id="monthly-goal">$0</div>
+      <button class="btn-calc" onclick="showGate(calcSadaqah)">Calculate My Sadaqah Goal</button>
+      <div class="result-box islamic-result" id="result" style="display:none;">
+        <div class="result-label">Your Sadaqah Plan</div>
+        <div class="result-main" id="res-monthly"></div>
+        <div style="font-size:0.85rem;color:var(--green);margin-bottom:1rem;">per month</div>
         <div class="result-breakdown">
-          <div class="result-row"><span>Monthly goal</span><span id="mo-goal">$0</span></div>
-          <div class="result-row"><span>Already given</span><span id="given-so-far">$0</span></div>
-          <div class="result-row"><span>Remaining this month</span><span id="remaining">$0</span></div>
-          <div class="result-row"><span>Annual goal</span><span id="annual-goal">$0</span></div>
-          <div class="result-row"><span>Daily amount</span><span id="daily">$0</span></div>
+          <div class="result-row"><span>Monthly Sadaqah</span><span id="res-m"></span></div>
+          <div class="result-row"><span>Weekly Sadaqah</span><span id="res-w"></span></div>
+          <div class="result-row"><span>Annual Sadaqah</span><span id="res-a"></span></div>
+          <div class="result-row"><span>Daily Sadaqah</span><span id="res-d"></span></div>
+        </div>
+        <div style="margin-top:1rem;padding:0.75rem;background:rgba(6,95,70,0.08);border-radius:6px;font-size:0.82rem;color:var(--green);">
+          💡 The Prophet ﷺ said: "Sadaqah does not decrease wealth." (Muslim). Give consistently, even if small.
         </div>
       </div>
     </div>
   </div>
-  <div class="ad-slot">Advertisement</div>
-  <div class="content-section"><h3>What is Sadaqah?</h3><p>Sadaqah refers to voluntary charitable giving in Islam — any act of giving to others without expectation of return. Unlike Zakat (which is obligatory), Sadaqah is entirely voluntary and can be given in any amount at any time.</p><p>The Prophet Muhammad ﷺ said: "Sadaqah extinguishes sin as water extinguishes fire." (Tirmidhi). Even a smile, removing a harmful object from a path, or sharing knowledge are forms of Sadaqah.</p><p>Sadaqah Jariyah (ongoing charity) — such as funding a well, building a school, or teaching someone useful knowledge — continues to bring reward after death.</p></div>
+  <div class="content-section"><h3>Types of Sadaqah</h3><ul><li><strong>Sadaqah Jariyah</strong> — ongoing charity (building a masjid, funding education, planting a tree)</li><li><strong>Sadaqah Nafilah</strong> — voluntary general charity given at any time</li><li><strong>Sadaqah al-Fitr</strong> — obligatory at end of Ramadan (separate from voluntary)</li><li><strong>Smiling</strong> — the Prophet ﷺ said even a smile is Sadaqah</li></ul></div>
 </main>
-<footer><div class="footer-inner"><div class="footer-brand"><a class="nav-logo" href="../index.html">Calc<span>Wise</span></a><p>Free calculators for modern life.</p></div><div class="footer-col"><h4>Islamic Finance</h4><a href="zakat.html">Zakat Calculator</a><a href="halal-roi.html">Halal Investment ROI</a></div><div class="footer-col"><h4>Finance</h4><a href="compound-interest.html">Compound Interest</a></div></div><div class="footer-bottom"><span>© 2025 CalcWise.</span></div></footer>
+<footer><div class="footer-inner"><div class="footer-brand"><a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a><p>Free Islamic calculators.</p></div><div class="footer-col"><h4>Giving</h4><a href="zakat.html">Zakat</a><a href="zakat-al-fitr.html">Zakat al-Fitr</a><a href="sadaqah.html">Sadaqah</a></div><div class="footer-col"><h4>Daily</h4><a href="prayer-times.html">Prayer Times</a><a href="qibla.html">Qibla</a></div><div class="footer-col"><h4>Heritage</h4><a href="mirath.html">Mirath</a><a href="abjad.html">Abjad</a></div></div><div class="footer-bottom"><span>© 2025 IslamicCalc.</span><span>May Allah accept your Sadaqah. Ameen.</span></div></footer>
+<div class="email-gate-overlay hidden" id="emailGate"><div class="email-gate-box"><div class="email-gate-icon">🤲</div><h2>Calculate Your Sadaqah</h2><p>Enter your email to unlock your giving plan. We share Islamic giving reminders — no spam.</p><div class="email-gate-fields"><input type="text" id="gateName" placeholder="Your name"><input type="email" id="gateEmail" placeholder="Your email address"></div><button class="btn-gate" onclick="submitGate()">Show My Sadaqah Plan →</button><p class="email-gate-privacy">🔒 Privacy protected.</p></div></div>
 <script>
-function f(n){return '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+var _pendingCalc=null;
+function showGate(fn){var s=localStorage.getItem('ic_email');if(s){fn();return;}_pendingCalc=fn;document.getElementById('emailGate').classList.remove('hidden');}
+function submitGate(){var n=document.getElementById('gateName').value.trim(),e=document.getElementById('gateEmail').value.trim();if(!e||!e.includes('@')){alert('Please enter a valid email.');return;}localStorage.setItem('ic_email',e);localStorage.setItem('ic_name',n);document.getElementById('emailGate').classList.add('hidden');if(_pendingCalc){_pendingCalc();_pendingCalc=null;}}
+const SYMS={USD:'$',GBP:'£',EUR:'€',CAD:'CA$',AED:'AED ',PKR:'Rs '};
+function fmt(n,c){return(SYMS[c]||'$')+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
 function calcSadaqah(){
-  const income=parseFloat(document.getElementById('income').value)||0;
-  const pct=parseFloat(document.getElementById('pct').value)/100||0;
-  const given=parseFloat(document.getElementById('given').value)||0;
-  const ram=parseFloat(document.getElementById('ramadan').value)||1;
-  const goal=income*pct;
-  const remaining=Math.max(0,goal-given);
-  const annual=goal*12;
-  const daily=goal/30;
-  document.getElementById('monthly-goal').textContent=f(goal);
-  document.getElementById('mo-goal').textContent=f(goal);
-  document.getElementById('given-so-far').textContent=f(given);
-  document.getElementById('remaining').textContent=f(remaining);
-  document.getElementById('annual-goal').textContent=f(annual);
-  document.getElementById('daily').textContent=f(daily);
-  const box=document.getElementById('result');box.classList.remove('visible');void box.offsetWidth;box.classList.add('visible');
+  var inc=parseFloat(document.getElementById('income').value)||0;
+  var c=document.getElementById('currency').value;
+  var pctSel=document.getElementById('pct').value;
+  var pct=pctSel==='custom'?parseFloat(document.getElementById('custPct').value)||5:parseFloat(pctSel);
+  var monthly=inc*pct/100;
+  document.getElementById('res-monthly').textContent=fmt(monthly,c);
+  document.getElementById('res-m').textContent=fmt(monthly,c);
+  document.getElementById('res-w').textContent=fmt(monthly/4.33,c);
+  document.getElementById('res-d').textContent=fmt(monthly/30,c);
+  document.getElementById('res-a').textContent=fmt(monthly*12,c);
+  var b=document.getElementById('result');b.style.display='block';b.classList.remove('visible');void b.offsetWidth;b.classList.add('visible');
 }
 </script>
-</body>
-</html>
+</body></html>

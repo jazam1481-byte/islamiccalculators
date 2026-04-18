@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prayer Times Calculator 2025 — Fajr, Dhuhr, Asr, Maghrib, Isha | IslamicCalc</title>
+<meta name="description" content="Get accurate Islamic prayer times for any city worldwide. Supports ISNA, MWL, Egypt, Karachi, and other calculation methods. Free, instant, no signup.">
+<link rel="canonical" href="https://islamiccalculators.com/calculators/prayer-times.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav><div class="nav-inner">
+  <a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html#daily">Daily Worship</a></li>
+    <li><a href="../index.html#giving">Giving & Finance</a></li>
+    <li><a href="../index.html#heritage">Heritage</a></li>
+    <li><a href="../index.html#health">Health</a></li>
+  </ul>
+</div></nav>
+
+<main class="calc-page">
+  <div class="calc-breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#daily">Daily Worship</a> › Prayer Times</div>
+  <h1 class="calc-page-title">Prayer Times Calculator</h1>
+  <p class="calc-page-desc">Get accurate Fajr, Dhuhr, Asr, Maghrib & Isha times for any city. Select your calculation method and madhab for precise results.</p>
+
+  <div class="calc-widget">
+    <div class="calc-widget-header"><span class="calc-widget-icon">🕌</span><h2>Prayer Times</h2></div>
+    <div class="calc-widget-body">
+      <div class="field-group">
+        <div class="field">
+          <label>City</label>
+          <input type="text" id="city" placeholder="e.g. Dallas, London, Karachi">
+        </div>
+        <div class="field">
+          <label>Date</label>
+          <input type="date" id="pdate">
+        </div>
+      </div>
+      <div class="field-group">
+        <div class="field">
+          <label>Calculation Method</label>
+          <select id="method">
+            <option value="2">ISNA (North America)</option>
+            <option value="3">MWL (Muslim World League)</option>
+            <option value="5">Egypt — Egyptian Authority</option>
+            <option value="1">University of Islamic Sciences, Karachi</option>
+            <option value="4">Umm Al-Qura University, Makkah</option>
+            <option value="7">Institute of Geophysics, Tehran</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Asr Method (Madhab)</label>
+          <select id="madhab">
+            <option value="1">Standard (Shafi'i, Hanbali, Maliki)</option>
+            <option value="2">Hanafi</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-calc" onclick="showGate(doCalc)">Calculate Prayer Times</button>
+      <div class="result-box islamic-result" id="result" style="display:none;">
+        <div class="result-label" id="result-city-date"></div>
+        <div id="prayer-rows"></div>
+        <div style="margin-top:1rem;font-size:0.78rem;color:var(--green);font-style:italic;">Times shown are approximate. Verify with your local mosque.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <h3>About Prayer Times Calculation</h3>
+    <p>Islamic prayer times are calculated based on the position of the sun relative to the observer's location. Different scholarly bodies use slightly different angles for Fajr and Isha, which is why prayer times vary between methods.</p>
+    <p>The most widely used methods are ISNA (for North America), MWL (globally), and the Umm Al-Qura method (used officially in Saudi Arabia).</p>
+  </div>
+  <div class="content-section">
+    <h3>The Five Daily Prayers</h3>
+    <ul>
+      <li><strong>Fajr</strong> — Dawn prayer, before sunrise</li>
+      <li><strong>Dhuhr</strong> — Midday prayer, just after the sun passes its zenith</li>
+      <li><strong>Asr</strong> — Afternoon prayer (time varies by madhab)</li>
+      <li><strong>Maghrib</strong> — Sunset prayer, immediately after sunset</li>
+      <li><strong>Isha</strong> — Night prayer, after twilight disappears</li>
+    </ul>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a><p>Free Islamic calculators for Muslim life.</p></div>
+    <div class="footer-col"><h4>Daily Worship</h4><a href="prayer-times.html">Prayer Times</a><a href="qibla.html">Qibla Finder</a><a href="hijri.html">Hijri Converter</a></div>
+    <div class="footer-col"><h4>Giving</h4><a href="zakat.html">Zakat</a><a href="zakat-al-fitr.html">Zakat al-Fitr</a><a href="sadaqah.html">Sadaqah</a></div>
+    <div class="footer-col"><h4>Heritage</h4><a href="mirath.html">Mirath</a><a href="abjad.html">Abjad</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 IslamicCalc.</span><span>Times are approximate. Verify locally.</span></div>
+</footer>
+
+<!-- EMAIL GATE MODAL -->
+<div class="email-gate-overlay hidden" id="emailGate">
+  <div class="email-gate-box">
+    <div class="email-gate-icon">🕌</div>
+    <h2>Get Your Prayer Times</h2>
+    <p>Enter your name and email to unlock your results. We share Islamic reminders and tips — no spam, ever.</p>
+    <div class="email-gate-fields">
+      <input type="text" id="gateName" placeholder="Your name" autocomplete="name">
+      <input type="email" id="gateEmail" placeholder="Your email address" autocomplete="email">
+    </div>
+    <button class="btn-gate" onclick="submitGate()">Show My Prayer Times →</button>
+    <p class="email-gate-privacy">🔒 We respect your privacy. Unsubscribe anytime.</p>
+  </div>
+</div>
+
+<script>
+// Set today's date
+document.getElementById('pdate').value = new Date().toISOString().split('T')[0];
+
+var _pendingCalc = null;
+function showGate(fn){ var s=localStorage.getItem('ic_email'); if(s){fn();return;} _pendingCalc=fn; document.getElementById('emailGate').classList.remove('hidden'); }
+function submitGate(){ var n=document.getElementById('gateName').value.trim(),e=document.getElementById('gateEmail').value.trim(); if(!e||!e.includes('@')){alert('Please enter a valid email.');return;} localStorage.setItem('ic_email',e);localStorage.setItem('ic_name',n); document.getElementById('emailGate').classList.add('hidden'); if(_pendingCalc){_pendingCalc();_pendingCalc=null;} }
+
+function doCalc(){
+  var city = document.getElementById('city').value.trim();
+  if(!city){ alert('Please enter a city name.'); return; }
+  var date = document.getElementById('pdate').value;
+  var method = document.getElementById('method').value;
+  var madhab = document.getElementById('madhab').value;
+  var d = date ? new Date(date) : new Date();
+  var url = 'https://api.aladhan.com/v1/timingsByCity/' + d.getDate() + '-' + (d.getMonth()+1) + '-' + d.getFullYear() + '?city=' + encodeURIComponent(city) + '&country=&method=' + method + '&school=' + madhab;
+  fetch(url).then(r=>r.json()).then(data=>{
+    if(data.code !== 200){ alert('City not found. Try adding a country, e.g. "Dallas, US".'); return; }
+    var t = data.data.timings;
+    var prayers = [['Fajr','🌅',t.Fajr],['Dhuhr','☀️',t.Dhuhr],['Asr','🌤️',t.Asr],['Maghrib','🌇',t.Maghrib],['Isha','🌙',t.Isha]];
+    document.getElementById('result-city-date').textContent = city + ' — ' + d.toDateString();
+    document.getElementById('prayer-rows').innerHTML = prayers.map(p=>`<div class="result-row" style="padding:0.6rem 0;border-bottom:1px solid rgba(6,95,70,0.1);"><span style="font-size:1rem;">${p[1]} <strong>${p[0]}</strong></span><span style="font-family:'DM Serif Display',serif;font-size:1.2rem;">${p[2]}</span></div>`).join('');
+    var box = document.getElementById('result'); box.style.display='block'; box.classList.remove('visible'); void box.offsetWidth; box.classList.add('visible');
+  }).catch(()=>alert('Error fetching times. Please check city name and try again.'));
+}
+</script>
+</body>
+</html>

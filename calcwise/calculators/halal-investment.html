@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Halal Investment Planner — Shariah-Compliant Systematic Investment | IslamicCalc</title>
+<meta name="description" content="Plan your halal systematic investment returns for Shariah-compliant funds, Sukuk, and Islamic ETFs. Muslim-friendly investment calculator with no riba.">
+<link rel="canonical" href="https://islamiccalculators.com/calculators/halal-investment.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav><div class="nav-inner">
+  <a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a>
+  <ul class="nav-links"><li><a href="../index.html#giving">Giving & Finance</a></li><li><a href="../index.html#heritage">Heritage</a></li></ul>
+</div></nav>
+<main class="calc-page">
+  <div class="calc-breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#heritage">Heritage & Planning</a> › Halal Investment Planner</div>
+  <h1 class="calc-page-title">Halal Investment Planner</h1>
+  <p class="calc-page-desc">Calculate projected returns for Shariah-compliant systematic investing — halal ETFs, Islamic equity funds, Sukuk, and more. Build wealth the halal way.</p>
+  <div class="calc-widget">
+    <div class="calc-widget-header"><span class="calc-widget-icon">📊</span><h2>Halal Systematic Investment Plan</h2></div>
+    <div class="calc-widget-body">
+      <div style="background:var(--gold-light);border:1px solid rgba(180,83,9,0.2);border-radius:8px;padding:1rem;margin-bottom:1.5rem;font-size:0.85rem;color:var(--gold);">
+        <strong>Remember:</strong> Deduct Zakat (2.5%) annually from your zakatable investment wealth. This calculator helps you plan — always screen investments for Shariah compliance before investing.
+      </div>
+      <div class="field-group">
+        <div class="field">
+          <label>Initial Investment ($)</label>
+          <input type="number" id="lumpsum" placeholder="e.g. 5000" min="0">
+        </div>
+        <div class="field">
+          <label>Monthly Investment ($)</label>
+          <input type="number" id="sip" placeholder="e.g. 300" min="0">
+          <span class="field-hint">Regular monthly amount to invest</span>
+        </div>
+      </div>
+      <div class="field-group">
+        <div class="field">
+          <label>Expected Annual Return (%)</label>
+          <input type="number" id="return" placeholder="e.g. 8" min="0" step="0.1">
+          <span class="field-hint">Halal equity funds historically 6–12% p.a.</span>
+        </div>
+        <div class="field">
+          <label>Investment Period (years)</label>
+          <select id="period">
+            <option value="3">3 years</option><option value="5">5 years</option>
+            <option value="10" selected>10 years</option><option value="15">15 years</option>
+            <option value="20">20 years</option><option value="25">25 years</option><option value="30">30 years</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-group">
+        <div class="field">
+          <label>Investment Type</label>
+          <select id="investType">
+            <option value="equity">Halal Equity Fund / ETF</option>
+            <option value="sukuk">Sukuk (Islamic Bonds)</option>
+            <option value="realestate">Islamic REIT / Real Estate</option>
+            <option value="mixed">Mixed Halal Portfolio</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Currency</label>
+          <select id="currency"><option>USD</option><option>GBP</option><option>EUR</option><option>CAD</option><option>AED</option><option>PKR</option></select>
+        </div>
+      </div>
+      <button class="btn-calc" onclick="showGate(calcInvestment)">Calculate Halal Returns</button>
+      <div class="result-box islamic-result" id="result" style="display:none;">
+        <div class="result-label">Projected Portfolio Value</div>
+        <div class="result-main" id="res-final"></div>
+        <div class="result-breakdown">
+          <div class="result-row"><span>Total Invested</span><span id="res-invested"></span></div>
+          <div class="result-row"><span>Total Returns</span><span id="res-returns"></span></div>
+          <div class="result-row"><span>Estimated Zakat Due (annual)</span><span id="res-zakat"></span></div>
+          <div class="result-row"><span>Investment Type</span><span id="res-type"></span></div>
+          <div class="result-row"><span>Annualised Return</span><span id="res-rate"></span></div>
+        </div>
+        <div style="margin-top:1rem;padding:0.75rem;background:rgba(6,95,70,0.08);border-radius:6px;font-size:0.82rem;color:var(--green);">
+          📌 Don't forget to pay Zakat (2.5%) annually on your zakatable investment balance above the nisab threshold (~$7,650).
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content-section">
+    <h3>Shariah-Compliant Investment Options</h3>
+    <ul>
+      <li><strong>Halal ETFs</strong> — Wahed Invest, Amundi Islamic, SP Funds Dow Jones Global Sukuk ETF</li>
+      <li><strong>Sukuk</strong> — Islamic bonds backed by real assets, traded on global exchanges</li>
+      <li><strong>Islamic equity funds</strong> — Screened to exclude alcohol, tobacco, weapons, financials with riba</li>
+      <li><strong>Islamic REITs</strong> — Real estate investment trusts operating on Ijarah structures</li>
+      <li><strong>Gold</strong> — Physical or Shariah-compliant gold ETFs</li>
+    </ul>
+  </div>
+  <div class="content-section">
+    <h3>Shariah Screening Criteria</h3>
+    <p>For a stock or fund to be halal, it must pass both business activity screening (no prohibited industries) and financial ratio screening (debt-to-market-cap typically below 33%, interest income below 5% of total revenue). Several screening services exist including MSCI Islamic Index, Dow Jones Islamic Market Index, and AAOIFI standards.</p>
+  </div>
+</main>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a><p>Free Islamic calculators.</p></div>
+    <div class="footer-col"><h4>Islamic Finance</h4><a href="murabaha.html">Murabaha</a><a href="halal-savings.html">Halal Savings</a><a href="halal-roi.html">Halal ROI</a></div>
+    <div class="footer-col"><h4>Giving</h4><a href="zakat.html">Zakat</a><a href="sadaqah.html">Sadaqah</a></div>
+    <div class="footer-col"><h4>Daily</h4><a href="prayer-times.html">Prayer Times</a><a href="hijri.html">Hijri</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 IslamicCalc.</span><span>Not financial advice. Verify Shariah compliance independently.</span></div>
+</footer>
+<div class="email-gate-overlay hidden" id="emailGate">
+  <div class="email-gate-box">
+    <div class="email-gate-icon">📊</div>
+    <h2>See Your Halal Returns</h2>
+    <p>Enter your email to unlock your investment projection.</p>
+    <div class="email-gate-fields">
+      <input type="text" id="gateName" placeholder="Your name"><input type="email" id="gateEmail" placeholder="Your email address">
+    </div>
+    <button class="btn-gate" onclick="submitGate()">Show My Returns →</button>
+    <p class="email-gate-privacy">🔒 Privacy protected. Unsubscribe anytime.</p>
+  </div>
+</div>
+<script>
+var _pendingCalc=null;
+function showGate(fn){var s=localStorage.getItem('ic_email');if(s){fn();return;}_pendingCalc=fn;document.getElementById('emailGate').classList.remove('hidden');}
+function submitGate(){var n=document.getElementById('gateName').value.trim(),e=document.getElementById('gateEmail').value.trim();if(!e||!e.includes('@')){alert('Please enter a valid email.');return;}localStorage.setItem('ic_email',e);localStorage.setItem('ic_name',n);document.getElementById('emailGate').classList.add('hidden');if(_pendingCalc){_pendingCalc();_pendingCalc=null;}}
+const SYMS={USD:'$',GBP:'£',EUR:'€',CAD:'CA$',AED:'AED ',PKR:'Rs '};
+const TYPE_NAMES={equity:'Halal Equity Fund / ETF',sukuk:'Sukuk',realestate:'Islamic REIT',mixed:'Mixed Halal Portfolio'};
+function fmt(n,c){return(SYMS[c]||'$')+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function calcInvestment(){
+  var L=parseFloat(document.getElementById('lumpsum').value)||0;
+  var s=parseFloat(document.getElementById('sip').value)||0;
+  var r=parseFloat(document.getElementById('return').value)||0;
+  var yrs=parseInt(document.getElementById('period').value);
+  var currency=document.getElementById('currency').value;
+  var type=document.getElementById('investType').value;
+  var rm=r/100/12,months=yrs*12;
+  var balance=L;
+  for(var i=0;i<months;i++){balance=balance*(1+rm)+s;}
+  var totalInvested=L+s*months;
+  var returns=balance-totalInvested;
+  var annualZakat=balance*0.025;
+  document.getElementById('res-final').textContent=fmt(balance,currency);
+  document.getElementById('res-invested').textContent=fmt(totalInvested,currency);
+  document.getElementById('res-returns').textContent=fmt(returns,currency);
+  document.getElementById('res-zakat').textContent=fmt(annualZakat,currency);
+  document.getElementById('res-type').textContent=TYPE_NAMES[type];
+  document.getElementById('res-rate').textContent=r+'% p.a.';
+  var b=document.getElementById('result');b.style.display='block';b.classList.remove('visible');void b.offsetWidth;b.classList.add('visible');
+}
+</script>
+</body>
+</html>

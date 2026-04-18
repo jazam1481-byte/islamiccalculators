@@ -1,291 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LLM Token & API Cost Calculator 2025 — GPT-4o, Claude, Gemini | CalcWise</title>
-  <meta name="description" content="Calculate LLM API costs instantly. Compare GPT-4o, Claude Sonnet, Gemini Pro, and Llama token pricing. Estimate monthly spend for your AI application. Free, no signup.">
-  <meta name="keywords" content="LLM token calculator, GPT-4 cost, Claude API pricing, AI token cost, OpenAI cost calculator, LLM pricing comparison 2025">
-  <link rel="canonical" href="https://yourcalcwisedomain.com/calculators/llm-token.html">
-  <link rel="stylesheet" href="../css/style.css">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "LLM Token & API Cost Calculator 2025",
-    "description": "Calculate and compare token costs across GPT-4o, Claude, Gemini and other AI models",
-    "url": "https://yourcalcwisedomain.com/calculators/llm-token.html"
-  }
-  </script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Dawah Cost Calculator — Islamic AI & LLM Token Costs | IslamicCalc</title>
+<meta name="description" content="Estimate API costs for building Islamic AI apps, Quran chatbots, and dawah tools using GPT-4o, Claude, or Gemini. Plan your AI dawah project budget. Free calculator.">
+<link rel="canonical" href="https://islamiccalculators.com/calculators/llm-token.html">
+<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-
-<nav>
-  <div class="nav-inner">
-    <a class="nav-logo" href="../index.html">Calc<span>Wise</span></a>
-    <ul class="nav-links">
-      <li><a href="../index.html#islamic">Islamic</a></li>
-      <li><a href="../index.html#finance">Finance</a></li>
-      <li><a href="../index.html#ai">AI & Tech</a></li>
-      <li><a href="../index.html#health">Health</a></li>
-    </ul>
-  </div>
-</nav>
-
+<nav><div class="nav-inner"><a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a><ul class="nav-links"><li><a href="../index.html#tools">Islamic Tools</a></li><li><a href="../index.html#giving">Giving</a></li></ul></div></nav>
 <main class="calc-page">
-  <div class="calc-breadcrumb">
-    <a href="../index.html">Home</a> › <a href="../index.html#ai">AI & Tech</a> › LLM Token Calculator
-  </div>
-
-  <h1 class="calc-page-title">LLM Token & Cost Calculator</h1>
-  <p class="calc-page-desc">Estimate API costs for the most popular AI models. Compare pricing, calculate monthly spend, and find the most cost-effective model for your use case.</p>
-
-  <div class="ad-slot">Advertisement</div>
-
+  <div class="calc-breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#tools">Islamic Business Tools</a> › AI Dawah Cost Calculator</div>
+  <h1 class="calc-page-title">AI Dawah Content Cost Calculator</h1>
+  <p class="calc-page-desc">Estimate the API cost for building Islamic AI tools — Quran Q&A bots, Islamic finance advisors, dawah chatbots, or automated Islamic content generation. Plan your halal tech budget.</p>
   <div class="calc-widget">
-    <div class="calc-widget-header">
-      <span class="calc-widget-icon">🤖</span>
-      <h2>LLM API Cost Estimator</h2>
-    </div>
+    <div class="calc-widget-header"><span class="calc-widget-icon">🤖</span><h2>AI Token & Cost Calculator</h2></div>
     <div class="calc-widget-body">
-
+      <div style="background:var(--accent-light);border:1px solid rgba(37,99,235,0.2);border-radius:8px;padding:1rem;margin-bottom:1.5rem;font-size:0.85rem;color:var(--accent);">
+        <strong>Use case examples:</strong> Islamic chatbot for your masjid, Quran tafsir Q&A tool, halal business automation, Islamic content generation for social media dawah, or Zakat calculation assistant.
+      </div>
       <div class="field-group">
-        <div class="field">
-          <label>Select Model</label>
+        <div class="field"><label>AI Model</label>
           <select id="model" onchange="updatePricing()">
-            <optgroup label="OpenAI">
-              <option value="gpt4o">GPT-4o ($2.50 / $10.00 per M tokens)</option>
-              <option value="gpt4o-mini">GPT-4o Mini ($0.15 / $0.60 per M tokens)</option>
-              <option value="gpt4-turbo">GPT-4 Turbo ($10.00 / $30.00 per M tokens)</option>
-            </optgroup>
-            <optgroup label="Anthropic">
-              <option value="claude-sonnet">Claude Sonnet 4.5 ($3.00 / $15.00 per M tokens)</option>
-              <option value="claude-haiku">Claude Haiku 3.5 ($0.80 / $4.00 per M tokens)</option>
-              <option value="claude-opus">Claude Opus 4 ($15.00 / $75.00 per M tokens)</option>
-            </optgroup>
-            <optgroup label="Google">
-              <option value="gemini-pro">Gemini 1.5 Pro ($3.50 / $10.50 per M tokens)</option>
-              <option value="gemini-flash">Gemini 1.5 Flash ($0.075 / $0.30 per M tokens)</option>
-            </optgroup>
-            <optgroup label="Meta / Open Source">
-              <option value="llama-70b">Llama 3.1 70B (via API ~$0.90 / $0.90 per M tokens)</option>
-            </optgroup>
+            <option value="gpt4o">GPT-4o (OpenAI)</option>
+            <option value="gpt4omini">GPT-4o mini (OpenAI)</option>
+            <option value="claude35">Claude Sonnet 4 (Anthropic)</option>
+            <option value="claude3h">Claude Haiku (Anthropic)</option>
+            <option value="gemini15">Gemini 1.5 Pro (Google)</option>
+            <option value="geminiflash">Gemini 1.5 Flash (Google)</option>
+            <option value="llama3">Llama 3 (via Groq/Together)</option>
           </select>
         </div>
-        <div class="field">
-          <label>Use Case</label>
-          <select id="usecase" onchange="applyPreset()">
-            <option value="custom">Custom (enter manually)</option>
-            <option value="chatbot">Chatbot (500 in / 200 out avg)</option>
-            <option value="summarizer">Document Summarizer (2000 in / 500 out)</option>
-            <option value="codegen">Code Generator (1000 in / 800 out)</option>
-            <option value="rag">RAG Application (3000 in / 400 out)</option>
-            <option value="agent">AI Agent (5000 in / 2000 out)</option>
+        <div class="field"><label>Use Case</label>
+          <select id="useCase">
+            <option value="chatbot">Islamic Chatbot / Q&A</option>
+            <option value="content">Dawah Content Generation</option>
+            <option value="quran">Quran / Hadith Analysis</option>
+            <option value="finance">Islamic Finance Advisor</option>
+            <option value="custom">Custom Application</option>
           </select>
         </div>
       </div>
-
       <div class="field-group">
-        <div class="field">
-          <label>Input Tokens per Request</label>
-          <input type="number" id="input-tokens" value="500" min="1" oninput="calculate()">
-          <span class="field-hint">~750 words ≈ 1,000 tokens</span>
-        </div>
-        <div class="field">
-          <label>Output Tokens per Request</label>
-          <input type="number" id="output-tokens" value="200" min="1" oninput="calculate()">
-          <span class="field-hint">Model's response length</span>
-        </div>
+        <div class="field"><label>Avg. Input Tokens per Request</label><input type="number" id="inputTokens" placeholder="e.g. 500" min="1" value="500"><span class="field-hint">System prompt + user message (1 token ≈ 4 chars)</span></div>
+        <div class="field"><label>Avg. Output Tokens per Request</label><input type="number" id="outputTokens" placeholder="e.g. 400" min="1" value="400"></div>
       </div>
-
       <div class="field-group">
-        <div class="field">
-          <label>Requests per Day</label>
-          <input type="number" id="requests-day" value="100" min="1" oninput="calculate()">
-        </div>
-        <div class="field">
-          <label>Days per Month</label>
-          <input type="number" id="days-month" value="30" min="1" max="31" oninput="calculate()">
-        </div>
+        <div class="field"><label>Daily Requests</label><input type="number" id="dailyReqs" placeholder="e.g. 100" min="1" value="100"></div>
+        <div class="field"><label>Currency</label><select id="currency"><option>USD</option><option>GBP</option><option>EUR</option></select></div>
       </div>
-
-      <div id="pricing-display" style="background:var(--paper);border-radius:8px;padding:0.85rem 1rem;margin-bottom:1.25rem;font-size:0.82rem;color:var(--ink-light);">
-        Model pricing: <strong id="price-in">$2.50</strong> per 1M input tokens · <strong id="price-out">$10.00</strong> per 1M output tokens
-      </div>
-
-      <button class="btn-calc" onclick="calculate()">Calculate Cost</button>
-
-      <div class="result-box" id="result" style="display:block;">
+      <div style="padding:0.75rem;background:var(--paper);border-radius:8px;font-size:0.82rem;color:var(--ink-muted);margin-bottom:1.5rem;" id="pricing-display"></div>
+      <button class="btn-calc" onclick="showGate(calcLLM)">Calculate My AI Cost</button>
+      <div class="result-box" id="result" style="display:none;background:var(--accent-light);border-color:rgba(37,99,235,0.2);">
         <div class="result-label">Estimated API Cost</div>
-        <div class="result-main" id="monthly-cost">$0.00</div>
+        <div class="result-main" id="res-monthly"></div>
+        <div style="font-size:0.85rem;color:var(--accent);margin-bottom:1rem;">per month</div>
         <div class="result-breakdown">
-          <div class="result-row"><span>Cost per request</span><span id="per-request">$0.00</span></div>
-          <div class="result-row"><span>Daily cost</span><span id="daily-cost">$0.00</span></div>
-          <div class="result-row"><span>Monthly cost</span><span id="monthly-cost2">$0.00</span></div>
-          <div class="result-row"><span>Annual cost</span><span id="annual-cost">$0.00</span></div>
-          <div class="result-row"><span>Total tokens / month</span><span id="total-tokens">0</span></div>
+          <div class="result-row"><span>Cost per Request</span><span id="res-per-req"></span></div>
+          <div class="result-row"><span>Daily Cost</span><span id="res-daily"></span></div>
+          <div class="result-row"><span>Monthly Cost</span><span id="res-month"></span></div>
+          <div class="result-row"><span>Annual Cost</span><span id="res-annual"></span></div>
+          <div class="result-row"><span>Monthly Requests</span><span id="res-reqs"></span></div>
+          <div class="result-row"><span>Monthly Tokens</span><span id="res-tokens"></span></div>
         </div>
       </div>
-
     </div>
   </div>
-
-  <div class="ad-slot">Advertisement</div>
-
-  <div class="content-section">
-    <h3>2025 LLM Pricing Comparison</h3>
-    <p>LLM API prices have dropped dramatically — approximately 80% across the industry from early 2025 to early 2026. This makes building AI-powered applications more affordable than ever. Here's a quick reference for the most popular models:</p>
-    <div style="overflow-x:auto;margin-top:1rem;">
-      <table style="width:100%;border-collapse:collapse;font-size:0.85rem;">
-        <thead>
-          <tr style="border-bottom:2px solid var(--border-strong);">
-            <th style="text-align:left;padding:8px 12px;color:var(--ink-light);font-weight:500;">Model</th>
-            <th style="text-align:right;padding:8px 12px;color:var(--ink-light);font-weight:500;">Input ($/1M)</th>
-            <th style="text-align:right;padding:8px 12px;color:var(--ink-light);font-weight:500;">Output ($/1M)</th>
-            <th style="text-align:right;padding:8px 12px;color:var(--ink-light);font-weight:500;">Context</th>
-          </tr>
-        </thead>
-        <tbody id="pricing-table">
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="content-section">
-    <h3>How to estimate your token usage</h3>
-    <p>A helpful rule of thumb: <strong>1 token ≈ 4 characters ≈ 0.75 words</strong> in English. So 1,000 tokens is roughly 750 words or about 1.5 pages of standard text.</p>
-    <ul>
-      <li>A typical chatbot message: 100–500 input tokens, 100–300 output tokens</li>
-      <li>Summarizing a long document: 2,000–8,000 input tokens, 300–800 output tokens</li>
-      <li>A RAG query with retrieved context: 2,000–6,000 input tokens</li>
-      <li>An AI agent loop: can accumulate 10,000+ tokens over multiple steps</li>
-    </ul>
-  </div>
-
-  <div class="content-section">
-    <h3>Frequently Asked Questions</h3>
-    <div class="faq-item">
-      <div class="faq-q">What is the cheapest LLM API in 2025?</div>
-      <div class="faq-a">Gemini 1.5 Flash and GPT-4o Mini are among the most affordable at under $0.15/1M input tokens. For open-source models hosted via API, providers like Together AI and Groq offer Llama models at very competitive rates.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Why do input and output tokens cost different amounts?</div>
-      <div class="faq-a">Generating (output) tokens requires more computation than reading (input) tokens. The model must generate each output token sequentially, making it more resource-intensive — hence output costs 3–5x more per token on most models.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Does context window size affect cost?</div>
-      <div class="faq-a">Yes — every token in the context window counts as an input token for each request. If you maintain a long conversation history, all previous messages are resent each time, multiplying your input token usage.</div>
-    </div>
-  </div>
-
+  <div class="content-section"><h3>Islamic AI Applications</h3><ul><li><strong>Quran Q&A bots</strong> — Answer questions about tafsir, Islamic rulings, and Hadith</li><li><strong>Dawah chatbots</strong> — Answer common questions about Islam for non-Muslims</li><li><strong>Islamic finance advisors</strong> — Help Muslims identify halal investment options</li><li><strong>Masjid assistants</strong> — Prayer times, events, and community Q&A</li><li><strong>Islamic content generation</strong> — Social media posts, khutbah outlines, educational content</li></ul></div>
 </main>
-
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <a class="nav-logo" href="../index.html">Calc<span>Wise</span></a>
-      <p>Free, accurate calculators for modern life.</p>
-    </div>
-    <div class="footer-col">
-      <h4>AI Tools</h4>
-      <a href="llm-token.html">LLM Token Calculator</a>
-      <a href="automation-roi.html">Automation ROI</a>
-    </div>
-    <div class="footer-col">
-      <h4>Finance</h4>
-      <a href="mortgage.html">Mortgage Calculator</a>
-      <a href="zakat.html">Zakat Calculator</a>
-      <a href="compound-interest.html">Compound Interest</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2025 CalcWise. Prices updated regularly but may vary — always verify with the provider.</span>
-  </div>
-</footer>
-
+<footer><div class="footer-inner"><div class="footer-brand"><a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a><p>Free Islamic calculators.</p></div><div class="footer-col"><h4>Islamic Tools</h4><a href="llm-token.html">AI Dawah Calculator</a><a href="automation-roi.html">Business Automation</a></div><div class="footer-col"><h4>Finance</h4><a href="murabaha.html">Murabaha</a><a href="halal-roi.html">Halal ROI</a></div><div class="footer-col"><h4>Daily</h4><a href="prayer-times.html">Prayer Times</a><a href="qibla.html">Qibla</a></div></div><div class="footer-bottom"><span>© 2025 IslamicCalc.</span><span>Pricing approximate. Verify current rates on provider websites.</span></div></footer>
+<div class="email-gate-overlay hidden" id="emailGate"><div class="email-gate-box"><div class="email-gate-icon">🤖</div><h2>Get Your AI Cost Estimate</h2><p>Enter your email to unlock your AI dawah project cost breakdown.</p><div class="email-gate-fields"><input type="text" id="gateName" placeholder="Your name"><input type="email" id="gateEmail" placeholder="Your email address"></div><button class="btn-gate" onclick="submitGate()">Show My AI Costs →</button><p class="email-gate-privacy">🔒 Privacy protected.</p></div></div>
 <script>
-const MODELS = {
-  'gpt4o':       { name:'GPT-4o',              inp:2.50,  out:10.00, ctx:'128K' },
-  'gpt4o-mini':  { name:'GPT-4o Mini',         inp:0.15,  out:0.60,  ctx:'128K' },
-  'gpt4-turbo':  { name:'GPT-4 Turbo',         inp:10.00, out:30.00, ctx:'128K' },
-  'claude-sonnet':{ name:'Claude Sonnet 4.5',  inp:3.00,  out:15.00, ctx:'200K' },
-  'claude-haiku': { name:'Claude Haiku 3.5',   inp:0.80,  out:4.00,  ctx:'200K' },
-  'claude-opus':  { name:'Claude Opus 4',      inp:15.00, out:75.00, ctx:'200K' },
-  'gemini-pro':   { name:'Gemini 1.5 Pro',     inp:3.50,  out:10.50, ctx:'2M'   },
-  'gemini-flash': { name:'Gemini 1.5 Flash',   inp:0.075, out:0.30,  ctx:'1M'   },
-  'llama-70b':    { name:'Llama 3.1 70B',      inp:0.90,  out:0.90,  ctx:'128K' },
-};
-
-const PRESETS = {
-  'chatbot':     [500, 200],
-  'summarizer':  [2000, 500],
-  'codegen':     [1000, 800],
-  'rag':         [3000, 400],
-  'agent':       [5000, 2000],
-  'custom':      [null, null],
-};
-
-function updatePricing() {
-  const m = MODELS[document.getElementById('model').value];
-  document.getElementById('price-in').textContent  = '$' + m.inp.toFixed(3);
-  document.getElementById('price-out').textContent = '$' + m.out.toFixed(3);
-  calculate();
+var _pendingCalc=null;
+function showGate(fn){var s=localStorage.getItem('ic_email');if(s){fn();return;}_pendingCalc=fn;document.getElementById('emailGate').classList.remove('hidden');}
+function submitGate(){var n=document.getElementById('gateName').value.trim(),e=document.getElementById('gateEmail').value.trim();if(!e||!e.includes('@')){alert('Please enter a valid email.');return;}localStorage.setItem('ic_email',e);localStorage.setItem('ic_name',n);document.getElementById('emailGate').classList.add('hidden');if(_pendingCalc){_pendingCalc();_pendingCalc=null;}}
+const SYMS={USD:'$',GBP:'£',EUR:'€'};
+const MODELS={gpt4o:{name:'GPT-4o',in:2.50,out:10.00},gpt4omini:{name:'GPT-4o mini',in:0.15,out:0.60},claude35:{name:'Claude Sonnet 4',in:3.00,out:15.00},claude3h:{name:'Claude Haiku',in:0.25,out:1.25},gemini15:{name:'Gemini 1.5 Pro',in:1.25,out:5.00},geminiflash:{name:'Gemini 1.5 Flash',in:0.075,out:0.30},llama3:{name:'Llama 3 (Groq)',in:0.05,out:0.08}};
+function fmt(n,c){return(SYMS[c]||'$')+n.toFixed(4);}
+function fmtN(n,c){return(SYMS[c]||'$')+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function updatePricing(){var m=MODELS[document.getElementById('model').value];document.getElementById('pricing-display').innerHTML='<strong>'+m.name+' pricing:</strong> Input: $'+m.in+'/1M tokens &nbsp;|&nbsp; Output: $'+m.out+'/1M tokens';}
+function calcLLM(){
+  var m=MODELS[document.getElementById('model').value];
+  var inTok=parseInt(document.getElementById('inputTokens').value)||500;
+  var outTok=parseInt(document.getElementById('outputTokens').value)||400;
+  var daily=parseInt(document.getElementById('dailyReqs').value)||100;
+  var c=document.getElementById('currency').value;
+  var costPerReq=(inTok/1000000*m.in)+(outTok/1000000*m.out);
+  var dailyCost=costPerReq*daily;
+  var monthlyCost=dailyCost*30;
+  var annualCost=monthlyCost*12;
+  document.getElementById('res-monthly').textContent=fmtN(monthlyCost,c);
+  document.getElementById('res-per-req').textContent=fmt(costPerReq,c);
+  document.getElementById('res-daily').textContent=fmtN(dailyCost,c);
+  document.getElementById('res-month').textContent=fmtN(monthlyCost,c);
+  document.getElementById('res-annual').textContent=fmtN(annualCost,c);
+  document.getElementById('res-reqs').textContent=(daily*30).toLocaleString();
+  document.getElementById('res-tokens').textContent=((inTok+outTok)*daily*30/1000000).toFixed(2)+'M tokens';
+  var b=document.getElementById('result');b.style.display='block';b.classList.remove('visible');void b.offsetWidth;b.classList.add('visible');
 }
-
-function applyPreset() {
-  const key = document.getElementById('usecase').value;
-  const [i, o] = PRESETS[key];
-  if (i !== null) {
-    document.getElementById('input-tokens').value  = i;
-    document.getElementById('output-tokens').value = o;
-  }
-  calculate();
-}
-
-function calculate() {
-  const m = MODELS[document.getElementById('model').value];
-  const inTok  = parseFloat(document.getElementById('input-tokens').value)  || 0;
-  const outTok = parseFloat(document.getElementById('output-tokens').value) || 0;
-  const reqDay = parseFloat(document.getElementById('requests-day').value)  || 0;
-  const days   = parseFloat(document.getElementById('days-month').value)    || 30;
-
-  const costPerReq = (inTok / 1e6 * m.inp) + (outTok / 1e6 * m.out);
-  const dailyCost  = costPerReq * reqDay;
-  const monthlyCost = dailyCost * days;
-  const annualCost  = monthlyCost * 12;
-  const totalTokens = (inTok + outTok) * reqDay * days;
-
-  const f = (n) => '$' + n.toLocaleString('en-US', {minimumFractionDigits:4, maximumFractionDigits:4});
-  const f2 = (n) => '$' + n.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
-
-  document.getElementById('per-request').textContent  = f(costPerReq);
-  document.getElementById('daily-cost').textContent   = f2(dailyCost);
-  document.getElementById('monthly-cost').textContent = f2(monthlyCost);
-  document.getElementById('monthly-cost2').textContent = f2(monthlyCost);
-  document.getElementById('annual-cost').textContent  = f2(annualCost);
-  document.getElementById('total-tokens').textContent = totalTokens.toLocaleString();
-
-  const box = document.getElementById('result');
-  box.style.display = 'block';
-}
-
-function buildTable() {
-  const tbody = document.getElementById('pricing-table');
-  Object.values(MODELS).forEach((m, i) => {
-    const tr = document.createElement('tr');
-    tr.style.borderBottom = '1px solid var(--border)';
-    tr.style.background = i % 2 === 0 ? 'transparent' : 'var(--paper)';
-    tr.innerHTML = `
-      <td style="padding:8px 12px;font-weight:500;">${m.name}</td>
-      <td style="padding:8px 12px;text-align:right;">$${m.inp.toFixed(3)}</td>
-      <td style="padding:8px 12px;text-align:right;">$${m.out.toFixed(3)}</td>
-      <td style="padding:8px 12px;text-align:right;color:var(--ink-muted);">${m.ctx}</td>`;
-    tbody.appendChild(tr);
-  });
-}
-
-buildTable();
-updatePricing();
+document.addEventListener('DOMContentLoaded',updatePricing);
 </script>
-</body>
-</html>
+</body></html>

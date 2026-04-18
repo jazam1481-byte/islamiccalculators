@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Murabaha Home Finance Calculator — Islamic Mortgage Alternative | IslamicCalc</title>
+<meta name="description" content="Calculate monthly payments for Islamic Murabaha home financing. No interest (riba) — Shariah-compliant cost-plus structure. Free calculator for Muslim homebuyers.">
+<link rel="canonical" href="https://islamiccalculators.com/calculators/murabaha.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav><div class="nav-inner">
+  <a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a>
+  <ul class="nav-links"><li><a href="../index.html#giving">Giving & Finance</a></li><li><a href="../index.html#daily">Daily</a></li></ul>
+</div></nav>
+<main class="calc-page">
+  <div class="calc-breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#giving">Islamic Finance</a> › Murabaha Calculator</div>
+  <h1 class="calc-page-title">Murabaha Home Finance Calculator</h1>
+  <p class="calc-page-desc">Calculate monthly payments and total cost for Islamic Murabaha home financing — the Shariah-compliant alternative to interest-based mortgages. No riba.</p>
+  <div class="calc-widget">
+    <div class="calc-widget-header"><span class="calc-widget-icon">🏠</span><h2>Murabaha Finance Calculator</h2></div>
+    <div class="calc-widget-body">
+      <div style="background:var(--green-light);border:1px solid rgba(6,95,70,0.2);border-radius:8px;padding:1rem;margin-bottom:1.5rem;font-size:0.85rem;color:var(--green);">
+        <strong>How Murabaha works:</strong> The bank buys the property and sells it to you at a disclosed markup (profit), paid in instalments. No interest is charged — the profit is agreed upfront and fixed.
+      </div>
+      <div class="field-group">
+        <div class="field">
+          <label>Property Price ($)</label>
+          <input type="number" id="propPrice" placeholder="e.g. 350000" min="0">
+        </div>
+        <div class="field">
+          <label>Down Payment ($)</label>
+          <input type="number" id="downPayment" placeholder="e.g. 70000" min="0">
+          <span class="field-hint">Typically 20% of property value</span>
+        </div>
+      </div>
+      <div class="field-group">
+        <div class="field">
+          <label>Bank Profit Rate (% per year)</label>
+          <input type="number" id="profitRate" placeholder="e.g. 5.5" min="0" step="0.01">
+          <span class="field-hint">The bank's agreed profit margin — not interest</span>
+        </div>
+        <div class="field">
+          <label>Finance Term (years)</label>
+          <select id="term">
+            <option value="10">10 years</option>
+            <option value="15">15 years</option>
+            <option value="20">20 years</option>
+            <option value="25" selected>25 years</option>
+            <option value="30">30 years</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-group">
+        <div class="field">
+          <label>Currency</label>
+          <select id="currency"><option>USD</option><option>GBP</option><option>EUR</option><option>CAD</option><option>AED</option><option>PKR</option></select>
+        </div>
+        <div class="field">
+          <label>Finance Structure</label>
+          <select id="structure">
+            <option value="murabaha">Murabaha (cost-plus, fixed)</option>
+            <option value="ijara">Ijara (lease-to-own)</option>
+            <option value="diminishing">Diminishing Musharakah</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-calc" onclick="showGate(calcMurabaha)">Calculate Islamic Finance Plan</button>
+      <div class="result-box islamic-result" id="result" style="display:none;">
+        <div class="result-label">Your Islamic Finance Plan</div>
+        <div class="result-main" id="res-monthly"></div>
+        <div style="font-size:0.85rem;color:var(--green);margin-bottom:1rem;">per month</div>
+        <div class="result-breakdown">
+          <div class="result-row"><span>Property Price</span><span id="res-price"></span></div>
+          <div class="result-row"><span>Down Payment</span><span id="res-down"></span></div>
+          <div class="result-row"><span>Amount Financed</span><span id="res-financed"></span></div>
+          <div class="result-row"><span>Bank Profit (total)</span><span id="res-profit"></span></div>
+          <div class="result-row"><span>Total Repayment</span><span id="res-total"></span></div>
+          <div class="result-row"><span>Finance Structure</span><span id="res-structure"></span></div>
+          <div class="result-row"><span>Finance Term</span><span id="res-term"></span></div>
+        </div>
+        <div style="margin-top:1rem;padding:0.75rem;background:rgba(6,95,70,0.08);border-radius:6px;font-size:0.82rem;color:var(--green);">
+          ✅ This is a Shariah-compliant structure — the profit is a fixed agreed amount, not fluctuating interest (riba).
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content-section">
+    <h3>Murabaha vs. Conventional Mortgage</h3>
+    <p>A conventional mortgage charges interest (riba), which is prohibited in Islam. Murabaha is a cost-plus financing structure where the bank purchases the asset and resells it at a disclosed profit. The key difference: the profit amount is fixed at the start, known to both parties, and does not fluctuate.</p>
+    <p>Other Shariah-compliant home finance structures include Ijara (lease-to-own) and Diminishing Musharakah (shared ownership that transfers gradually to the buyer).</p>
+  </div>
+  <div class="content-section">
+    <h3>Islamic Home Finance Providers</h3>
+    <p>Several financial institutions offer Shariah-compliant home finance including Guidance Residential (US), Devon Bank (US), HSBC Amanah (UK), Al Rayan Bank (UK), and Islamic Bank of Britain. Always verify Shariah compliance certification with the provider.</p>
+  </div>
+  <div class="content-section">
+    <h3>Frequently Asked Questions</h3>
+    <div class="faq-item"><div class="faq-q">Is Murabaha truly halal?</div><div class="faq-a">Yes — Murabaha is a widely accepted Shariah-compliant structure endorsed by major Islamic finance bodies including AAOIFI and most national Shariah boards. The key is that the profit is fixed, disclosed, and agreed before the transaction — unlike interest which is charged on the outstanding balance over time.</div></div>
+    <div class="faq-item"><div class="faq-q">Why does the monthly payment look similar to a mortgage?</div><div class="faq-a">The numbers may look similar because both spread a cost over time. The fundamental legal and religious distinction is in the contract structure — one charges riba (prohibited), one charges a disclosed profit (permitted). Consult a qualified Islamic finance scholar for your specific situation.</div></div>
+  </div>
+</main>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a><p>Free Islamic calculators.</p></div>
+    <div class="footer-col"><h4>Islamic Finance</h4><a href="murabaha.html">Murabaha Finance</a><a href="halal-roi.html">Halal Investment ROI</a><a href="halal-savings.html">Halal Savings</a></div>
+    <div class="footer-col"><h4>Giving</h4><a href="zakat.html">Zakat</a><a href="zakat-al-fitr.html">Zakat al-Fitr</a><a href="sadaqah.html">Sadaqah</a></div>
+    <div class="footer-col"><h4>Heritage</h4><a href="mirath.html">Mirath</a><a href="abjad.html">Abjad</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 IslamicCalc.</span><span>For guidance only. Verify Shariah compliance with a qualified scholar.</span></div>
+</footer>
+<div class="email-gate-overlay hidden" id="emailGate">
+  <div class="email-gate-box">
+    <div class="email-gate-icon">🏠</div>
+    <h2>Get Your Finance Plan</h2>
+    <p>Enter your email to unlock your Murabaha payment breakdown.</p>
+    <div class="email-gate-fields">
+      <input type="text" id="gateName" placeholder="Your name"><input type="email" id="gateEmail" placeholder="Your email address">
+    </div>
+    <button class="btn-gate" onclick="submitGate()">Show My Finance Plan →</button>
+    <p class="email-gate-privacy">🔒 Privacy protected. Unsubscribe anytime.</p>
+  </div>
+</div>
+<script>
+var _pendingCalc=null;
+function showGate(fn){var s=localStorage.getItem('ic_email');if(s){fn();return;}_pendingCalc=fn;document.getElementById('emailGate').classList.remove('hidden');}
+function submitGate(){var n=document.getElementById('gateName').value.trim(),e=document.getElementById('gateEmail').value.trim();if(!e||!e.includes('@')){alert('Please enter a valid email.');return;}localStorage.setItem('ic_email',e);localStorage.setItem('ic_name',n);document.getElementById('emailGate').classList.add('hidden');if(_pendingCalc){_pendingCalc();_pendingCalc=null;}}
+const SYMS={USD:'$',GBP:'£',EUR:'€',CAD:'CA$',AED:'AED ',PKR:'Rs '};
+const STRUCT_NAMES={murabaha:'Murabaha (cost-plus)',ijara:'Ijara (lease-to-own)',diminishing:'Diminishing Musharakah'};
+function fmt(n,c){return(SYMS[c]||'$')+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function calcMurabaha(){
+  var prop=parseFloat(document.getElementById('propPrice').value)||0;
+  var down=parseFloat(document.getElementById('downPayment').value)||0;
+  var rate=parseFloat(document.getElementById('profitRate').value)||0;
+  var years=parseInt(document.getElementById('term').value);
+  var currency=document.getElementById('currency').value;
+  var structure=document.getElementById('structure').value;
+  if(prop<=0){alert('Please enter the property price.');return;}
+  var financed=prop-down;
+  if(financed<=0){alert('Down payment exceeds property price.');return;}
+  var months=years*12;
+  var monthlyRate=rate/100/12;
+  var monthly;
+  if(monthlyRate===0){monthly=financed/months;}
+  else{monthly=financed*(monthlyRate*Math.pow(1+monthlyRate,months))/(Math.pow(1+monthlyRate,months)-1);}
+  var totalRepay=monthly*months+down;
+  var totalProfit=(monthly*months)-financed;
+  document.getElementById('res-monthly').textContent=fmt(monthly,currency);
+  document.getElementById('res-price').textContent=fmt(prop,currency);
+  document.getElementById('res-down').textContent=fmt(down,currency);
+  document.getElementById('res-financed').textContent=fmt(financed,currency);
+  document.getElementById('res-profit').textContent=fmt(totalProfit,currency);
+  document.getElementById('res-total').textContent=fmt(totalRepay,currency);
+  document.getElementById('res-structure').textContent=STRUCT_NAMES[structure];
+  document.getElementById('res-term').textContent=years+' years ('+months+' months)';
+  var b=document.getElementById('result');b.style.display='block';b.classList.remove('visible');void b.offsetWidth;b.classList.add('visible');
+}
+</script>
+</body>
+</html>

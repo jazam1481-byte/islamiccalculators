@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zakat al-Fitr Calculator 2025 — End of Ramadan Fitrana | IslamicCalc</title>
+<meta name="description" content="Calculate Zakat al-Fitr (Fitrana) for you and your family. Based on local staple food prices or cash equivalent. Due before Eid al-Fitr prayer. Free, instant.">
+<link rel="canonical" href="https://islamiccalculators.com/calculators/zakat-al-fitr.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav><div class="nav-inner">
+  <a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a>
+  <ul class="nav-links"><li><a href="../index.html#giving">Giving & Finance</a></li><li><a href="../index.html#daily">Daily Worship</a></li></ul>
+</div></nav>
+<main class="calc-page">
+  <div class="calc-breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#giving">Giving & Finance</a> › Zakat al-Fitr</div>
+  <h1 class="calc-page-title">Zakat al-Fitr Calculator</h1>
+  <p class="calc-page-desc">Calculate the obligatory Zakat al-Fitr (Fitrana) due at the end of Ramadan for yourself and each of your dependants. Must be paid before the Eid al-Fitr prayer.</p>
+  <div class="calc-widget">
+    <div class="calc-widget-header"><span class="calc-widget-icon">🌙</span><h2>Zakat al-Fitr / Fitrana</h2></div>
+    <div class="calc-widget-body">
+      <div style="background:var(--green-light);border:1px solid rgba(6,95,70,0.2);border-radius:8px;padding:1rem;margin-bottom:1.5rem;font-size:0.85rem;color:var(--green);">
+        <strong>Ruling:</strong> Zakat al-Fitr is Wajib (obligatory) on every Muslim who possesses food beyond their needs on the day of Eid. It is 1 Sa' (≈ 2.5–3 kg) of staple food, or its cash equivalent, per person.
+      </div>
+      <div class="field-group">
+        <div class="field">
+          <label>Number of People (incl. yourself)</label>
+          <input type="number" id="people" placeholder="e.g. 4" min="1" value="1">
+          <span class="field-hint">Include all dependants you support: spouse, children, parents</span>
+        </div>
+        <div class="field">
+          <label>Currency</label>
+          <select id="currency"><option>USD</option><option>GBP</option><option>EUR</option><option>CAD</option><option>AED</option><option>PKR</option></select>
+        </div>
+      </div>
+      <div class="field-group">
+        <div class="field">
+          <label>Staple Food Type</label>
+          <select id="foodType" onchange="updateRate()">
+            <option value="wheat">Wheat / Flour (most common)</option>
+            <option value="rice">Rice (Basmati)</option>
+            <option value="dates">Dates (premium)</option>
+            <option value="barley">Barley</option>
+            <option value="raisins">Raisins</option>
+          </select>
+          <span class="field-hint">Select the staple food of your region</span>
+        </div>
+        <div class="field">
+          <label>Price per kg in your area ($)</label>
+          <input type="number" id="pricePerKg" placeholder="e.g. 2.50" min="0" step="0.01">
+          <span class="field-hint">Check your local grocery or mosque guidance</span>
+        </div>
+      </div>
+      <div class="field-group">
+        <div class="field">
+          <label>Sa' Weight (kg) — optional override</label>
+          <select id="saWeight">
+            <option value="2.5">2.5 kg (Hanafi — wheat/flour)</option>
+            <option value="3.0">3.0 kg (Shafi'i/Maliki/Hanbali)</option>
+            <option value="2.75">2.75 kg (Middle estimate)</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-calc" onclick="showGate(calcFitr)">Calculate My Zakat al-Fitr</button>
+      <div class="result-box islamic-result" id="result" style="display:none;">
+        <div class="result-label">Your Zakat al-Fitr</div>
+        <div class="result-main" id="res-total"></div>
+        <div class="result-breakdown">
+          <div class="result-row"><span>Per Person</span><span id="res-per-person"></span></div>
+          <div class="result-row"><span>Number of People</span><span id="res-people"></span></div>
+          <div class="result-row"><span>Food Type</span><span id="res-food"></span></div>
+          <div class="result-row"><span>Sa' Weight Used</span><span id="res-sa"></span></div>
+          <div class="result-row"><span>Price per kg</span><span id="res-price"></span></div>
+        </div>
+        <div style="margin-top:1rem;padding:0.75rem;background:rgba(6,95,70,0.08);border-radius:6px;font-size:0.82rem;color:var(--green);">
+          💡 Pay before Eid al-Fitr prayer. Many scholars recommend paying in the last days of Ramadan so recipients can use it for Eid.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content-section">
+    <h3>What is Zakat al-Fitr?</h3>
+    <p>Zakat al-Fitr (also called Fitrana or Sadaqat al-Fitr) is a mandatory charitable contribution made by every Muslim at the end of Ramadan. It was prescribed by the Prophet Muhammad ﷺ to purify the fasting person from any indecent acts or speech during Ramadan and to provide food for the poor so they can celebrate Eid.</p>
+    <p>Ibn Abbas (RA) reported: "The Messenger of Allah ﷺ made Zakat al-Fitr obligatory as a purification for the fasting person from idle talk and obscene speech, and to feed the poor." (Abu Dawud)</p>
+  </div>
+  <div class="content-section">
+    <h3>Who must pay Zakat al-Fitr?</h3>
+    <ul>
+      <li>Every Muslim who has food beyond their basic needs on the day of Eid</li>
+      <li>The head of household pays on behalf of dependants (spouse, children, parents in care)</li>
+      <li>It is due for a child born before Fajr of Eid day</li>
+      <li>It must be paid before the Eid al-Fitr prayer — paying after is still valid but disliked</li>
+    </ul>
+  </div>
+  <div class="content-section">
+    <h3>Frequently Asked Questions</h3>
+    <div class="faq-item"><div class="faq-q">Can I pay Zakat al-Fitr in cash?</div><div class="faq-a">The majority opinion (Shafi'i, Maliki, Hanbali) is that it must be paid in food. The Hanafi school permits cash equivalent, and many contemporary scholars allow cash for ease of distribution. Check with your local mosque or scholar.</div></div>
+    <div class="faq-item"><div class="faq-q">When is the best time to pay?</div><div class="faq-a">It can be paid from the beginning of Ramadan up until just before the Eid prayer. The last 2–3 days of Ramadan are most common so that recipients receive it in time for Eid.</div></div>
+    <div class="faq-item"><div class="faq-q">Who can receive Zakat al-Fitr?</div><div class="faq-a">The same eight categories eligible for regular Zakat, with priority given to the local poor so they can celebrate Eid with dignity.</div></div>
+  </div>
+</main>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a><p>Free Islamic calculators.</p></div>
+    <div class="footer-col"><h4>Giving</h4><a href="zakat.html">Zakat Calculator</a><a href="zakat-al-fitr.html">Zakat al-Fitr</a><a href="sadaqah.html">Sadaqah Guide</a></div>
+    <div class="footer-col"><h4>Daily</h4><a href="prayer-times.html">Prayer Times</a><a href="hijri.html">Hijri Converter</a></div>
+    <div class="footer-col"><h4>Heritage</h4><a href="mirath.html">Mirath</a><a href="abjad.html">Abjad</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 IslamicCalc.</span><span>Consult your local mosque for the officially recommended amount in your area.</span></div>
+</footer>
+<div class="email-gate-overlay hidden" id="emailGate">
+  <div class="email-gate-box">
+    <div class="email-gate-icon">🌙</div>
+    <h2>Calculate Your Fitrana</h2>
+    <p>Enter your email to see your Zakat al-Fitr amount. We share Islamic reminders — no spam, ever.</p>
+    <div class="email-gate-fields">
+      <input type="text" id="gateName" placeholder="Your name"><input type="email" id="gateEmail" placeholder="Your email address">
+    </div>
+    <button class="btn-gate" onclick="submitGate()">Show My Fitrana Amount →</button>
+    <p class="email-gate-privacy">🔒 Privacy protected. Unsubscribe anytime.</p>
+  </div>
+</div>
+<script>
+var _pendingCalc=null;
+function showGate(fn){var s=localStorage.getItem('ic_email');if(s){fn();return;}_pendingCalc=fn;document.getElementById('emailGate').classList.remove('hidden');}
+function submitGate(){var n=document.getElementById('gateName').value.trim(),e=document.getElementById('gateEmail').value.trim();if(!e||!e.includes('@')){alert('Please enter a valid email.');return;}localStorage.setItem('ic_email',e);localStorage.setItem('ic_name',n);document.getElementById('emailGate').classList.add('hidden');if(_pendingCalc){_pendingCalc();_pendingCalc=null;}}
+const SYMS={USD:'$',GBP:'£',EUR:'€',CAD:'CA$',AED:'AED ',PKR:'Rs '};
+const DEFAULT_PRICES={wheat:1.50,rice:2.80,dates:8.00,barley:1.20,raisins:5.00};
+const FOOD_NAMES={wheat:'Wheat / Flour',rice:'Basmati Rice',dates:'Dates',barley:'Barley',raisins:'Raisins'};
+function updateRate(){var ft=document.getElementById('foodType').value;document.getElementById('pricePerKg').value=DEFAULT_PRICES[ft];}
+function fmt(n,c){return(SYMS[c]||'$')+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function calcFitr(){
+  var people=parseInt(document.getElementById('people').value)||1;
+  var currency=document.getElementById('currency').value;
+  var ft=document.getElementById('foodType').value;
+  var price=parseFloat(document.getElementById('pricePerKg').value)||DEFAULT_PRICES[ft];
+  var sa=parseFloat(document.getElementById('saWeight').value);
+  var perPerson=sa*price;
+  var total=perPerson*people;
+  document.getElementById('res-total').textContent=fmt(total,currency);
+  document.getElementById('res-per-person').textContent=fmt(perPerson,currency);
+  document.getElementById('res-people').textContent=people+' person'+(people>1?'s':'');
+  document.getElementById('res-food').textContent=FOOD_NAMES[ft];
+  document.getElementById('res-sa').textContent=sa+' kg per person';
+  document.getElementById('res-price').textContent=fmt(price,currency)+'/kg';
+  var b=document.getElementById('result');b.style.display='block';b.classList.remove('visible');void b.offsetWidth;b.classList.add('visible');
+}
+document.addEventListener('DOMContentLoaded',updateRate);
+</script>
+</body>
+</html>

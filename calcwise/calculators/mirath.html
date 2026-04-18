@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Islamic Inheritance Calculator (Mirath) — Estate Distribution | IslamicCalc</title>
+<meta name="description" content="Calculate Islamic inheritance (Mirath/Faraid) distribution according to Quran and Sunnah. Enter estate value and surviving heirs to get each heir's exact share.">
+<link rel="canonical" href="https://islamiccalculators.com/calculators/mirath.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav><div class="nav-inner">
+  <a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a>
+  <ul class="nav-links"><li><a href="../index.html#daily">Daily Worship</a></li><li><a href="../index.html#giving">Giving</a></li><li><a href="../index.html#heritage">Heritage</a></li></ul>
+</div></nav>
+
+<main class="calc-page">
+  <div class="calc-breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#heritage">Heritage & Law</a> › Mirath Calculator</div>
+  <h1 class="calc-page-title">Islamic Inheritance (Mirath) Calculator</h1>
+  <p class="calc-page-desc">Calculate the distribution of an estate according to Islamic inheritance law (Faraid) as prescribed in Surah An-Nisa. For guidance only — consult a scholar for complex cases.</p>
+
+  <div class="calc-widget">
+    <div class="calc-widget-header"><span class="calc-widget-icon">⚖️</span><h2>Mirath / Faraid Calculator</h2></div>
+    <div class="calc-widget-body">
+      <div style="background:var(--gold-light);border:1px solid rgba(180,83,9,0.2);border-radius:8px;padding:1rem;margin-bottom:1.5rem;font-size:0.85rem;color:var(--gold);">
+        <strong>Important:</strong> Islamic inheritance is a complex fiqh topic. This calculator covers common cases. For complex estates (multiple wives, adopted children, missing heirs), consult a qualified Islamic scholar or Shariah court.
+      </div>
+      <div class="field-group">
+        <div class="field">
+          <label>Total Net Estate ($)</label>
+          <input type="number" id="estate" placeholder="e.g. 250000" min="0">
+          <span class="field-hint">After debts, funeral expenses, and valid bequests (max 1/3) are deducted</span>
+        </div>
+        <div class="field">
+          <label>Currency</label>
+          <select id="currency"><option>USD</option><option>GBP</option><option>EUR</option><option>CAD</option><option>AED</option><option>PKR</option></select>
+        </div>
+      </div>
+      <p style="font-size:0.8rem;font-weight:500;color:var(--ink-light);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:1rem;">Surviving Heirs</p>
+      <div class="field-group">
+        <div class="field"><label>Husband / Wife</label>
+          <select id="spouse"><option value="none">None</option><option value="husband">Husband (1)</option><option value="wife1">Wife (1)</option><option value="wife2">Wives (2)</option><option value="wife3">Wives (3)</option><option value="wife4">Wives (4)</option></select>
+        </div>
+        <div class="field"><label>Sons</label><input type="number" id="sons" placeholder="0" min="0" value="0"></div>
+        <div class="field"><label>Daughters</label><input type="number" id="daughters" placeholder="0" min="0" value="0"></div>
+      </div>
+      <div class="field-group">
+        <div class="field"><label>Father alive?</label><select id="father"><option value="0">No</option><option value="1">Yes</option></select></div>
+        <div class="field"><label>Mother alive?</label><select id="mother"><option value="0">No</option><option value="1">Yes</option></select></div>
+        <div class="field"><label>Paternal Grandfather</label><select id="grandpa"><option value="0">No</option><option value="1">Yes (father not alive)</option></select></div>
+      </div>
+      <div class="field-group">
+        <div class="field"><label>Full Brothers</label><input type="number" id="fbro" placeholder="0" min="0" value="0"></div>
+        <div class="field"><label>Full Sisters</label><input type="number" id="fsis" placeholder="0" min="0" value="0"></div>
+      </div>
+      <button class="btn-calc" onclick="showGate(calcMirath)">Calculate Inheritance Shares</button>
+      <div class="result-box islamic-result" id="result" style="display:none;">
+        <div class="result-label">Estate Distribution</div>
+        <div class="result-breakdown" id="shares-breakdown"></div>
+        <div style="padding-top:1rem;font-size:0.75rem;color:var(--green);font-style:italic;">Results are for common cases. Consult a scholar for verification.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <h3>The Quranic Basis of Mirath</h3>
+    <p>Allah says in the Quran: <em>"Allah commands you regarding your children: for the male, what is equal to the share of two females."</em> (Surah An-Nisa 4:11). Islamic inheritance law is one of the most precisely defined areas of fiqh, with fixed fractional shares (Faraid) assigned to each heir category.</p>
+  </div>
+  <div class="content-section">
+    <h3>Order of Priority (Simplified)</h3>
+    <ul>
+      <li><strong>Spouse</strong> — receives fixed share (1/4 or 1/8 for wife; 1/2 or 1/4 for husband)</li>
+      <li><strong>Children</strong> — sons get double the share of daughters (Asabat)</li>
+      <li><strong>Parents</strong> — each gets 1/6 if deceased has children</li>
+      <li><strong>Siblings</strong> — inherit only if no children or father</li>
+      <li><strong>Extended family</strong> — complex rules; consult scholar</li>
+    </ul>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a><p>Free Islamic calculators.</p></div>
+    <div class="footer-col"><h4>Heritage</h4><a href="mirath.html">Mirath</a><a href="abjad.html">Abjad</a></div>
+    <div class="footer-col"><h4>Giving</h4><a href="zakat.html">Zakat</a><a href="sadaqah.html">Sadaqah</a></div>
+    <div class="footer-col"><h4>Daily</h4><a href="prayer-times.html">Prayer Times</a><a href="qibla.html">Qibla</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 IslamicCalc.</span><span>For guidance only. Consult a qualified scholar.</span></div>
+</footer>
+
+<div class="email-gate-overlay hidden" id="emailGate">
+  <div class="email-gate-box">
+    <div class="email-gate-icon">⚖️</div>
+    <h2>Calculate Inheritance Shares</h2>
+    <p>Enter your email to unlock the full estate distribution breakdown.</p>
+    <div class="email-gate-fields">
+      <input type="text" id="gateName" placeholder="Your name"><input type="email" id="gateEmail" placeholder="Your email address">
+    </div>
+    <button class="btn-gate" onclick="submitGate()">Show Inheritance Shares →</button>
+    <p class="email-gate-privacy">🔒 Privacy protected. Unsubscribe anytime.</p>
+  </div>
+</div>
+
+<script>
+var _pendingCalc=null;
+function showGate(fn){var s=localStorage.getItem('ic_email');if(s){fn();return;}_pendingCalc=fn;document.getElementById('emailGate').classList.remove('hidden');}
+function submitGate(){var n=document.getElementById('gateName').value.trim(),e=document.getElementById('gateEmail').value.trim();if(!e||!e.includes('@')){alert('Please enter a valid email.');return;}localStorage.setItem('ic_email',e);localStorage.setItem('ic_name',n);document.getElementById('emailGate').classList.add('hidden');if(_pendingCalc){_pendingCalc();_pendingCalc=null;}}
+
+const SYMS={USD:'$',GBP:'£',EUR:'€',CAD:'CA$',AED:'AED ',PKR:'Rs '};
+function fmt(n,c){return (SYMS[c]||'$')+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+
+function calcMirath(){
+  var estate=parseFloat(document.getElementById('estate').value)||0;
+  var currency=document.getElementById('currency').value;
+  if(estate<=0){alert('Please enter the estate value.');return;}
+  var spouse=document.getElementById('spouse').value;
+  var sons=parseInt(document.getElementById('sons').value)||0;
+  var daughters=parseInt(document.getElementById('daughters').value)||0;
+  var father=parseInt(document.getElementById('father').value);
+  var mother=parseInt(document.getElementById('mother').value);
+  var grandpa=parseInt(document.getElementById('grandpa').value);
+  var fbro=parseInt(document.getElementById('fbro').value)||0;
+  var fsis=parseInt(document.getElementById('fsis').value)||0;
+  var hasChildren=sons>0||daughters>0;
+  var shares={};
+  // Spouse share
+  if(spouse==='husband') shares['Husband']= hasChildren? 1/4 : 1/2;
+  else if(spouse.startsWith('wife')){var wn=parseInt(spouse.replace('wife',''));var wshare=hasChildren?1/8:1/4;shares['Wife/Wives ('+wn+')']={share:wshare,count:wn};}  
+  // Parents
+  if(father) shares['Father']= hasChildren? 1/6 : (sons===0&&daughters===0? 'asaba':1/6);
+  if(mother) shares['Mother']= hasChildren? 1/6 : (fbro+fsis>=2?1/6:1/3);
+  if(!father&&grandpa) shares['Paternal Grandfather']= hasChildren?1/6:'asaba';
+  // Residual for children
+  var used=0;
+  for(var k in shares){var v=shares[k];if(typeof v==='object')used+=v.share;else if(typeof v==='number'&&v!=='asaba')used+=v;}
+  // Children get remainder
+  var remainder=Math.max(0,1-used);
+  var rows=[];
+  for(var heir in shares){
+    var sh=shares[heir];
+    var frac,amt;
+    if(typeof sh==='object'){frac=sh.share;amt=frac*estate;}
+    else if(sh==='asaba'){frac=remainder;amt=frac*estate;}
+    else{frac=sh;amt=frac*estate;}
+    rows.push('<div class="result-row"><span>'+heir+'</span><span>'+fmt(amt,currency)+' ('+(frac*100).toFixed(1)+'%)</span></div>');
+  }
+  if(hasChildren){
+    var childPool=remainder*estate;
+    var units=sons*2+daughters;
+    if(units>0){
+      var sonShare=units>0?childPool*(2/units):0;
+      var dauShare=units>0?childPool*(1/units):0;
+      if(sons>0) rows.push('<div class="result-row"><span>Each Son ('+sons+')</span><span>'+fmt(sonShare,currency)+' each</span></div>');
+      if(daughters>0) rows.push('<div class="result-row"><span>Each Daughter ('+daughters+')</span><span>'+fmt(dauShare,currency)+' each</span></div>');
+    }
+  } else if(father===0&&!hasChildren&&(fbro+fsis)>0){
+    var sibPool=remainder*estate;
+    var sibUnits=fbro*2+fsis;
+    if(sibUnits>0){
+      if(fbro>0) rows.push('<div class="result-row"><span>Each Full Brother ('+fbro+')</span><span>'+fmt(sibPool*2/sibUnits,currency)+' each</span></div>');
+      if(fsis>0) rows.push('<div class="result-row"><span>Each Full Sister ('+fsis+')</span><span>'+fmt(sibPool/sibUnits,currency)+' each</span></div>');
+    }
+  }
+  rows.push('<div class="result-row" style="border-top:2px solid rgba(6,95,70,0.3);padding-top:0.5rem;font-weight:600;"><span>Total Estate</span><span>'+fmt(estate,currency)+'</span></div>');
+  document.getElementById('shares-breakdown').innerHTML=rows.join('');
+  var b=document.getElementById('result');b.style.display='block';b.classList.remove('visible');void b.offsetWidth;b.classList.add('visible');
+}
+</script>
+</body>
+</html>
