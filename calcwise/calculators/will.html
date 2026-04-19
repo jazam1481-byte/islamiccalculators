@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Islamic Will Calculator (Wasiyyah) — Estate Planning | IslamicCalc</title>
+<meta name="description" content="Plan your Islamic Will (Wasiyyah) according to Shariah. Calculate bequest limits (max 1/3), distribute estate among heirs, and generate a structured Islamic will summary. Free.">
+<link rel="canonical" href="https://islamiccalculators.com/calculators/will.html">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav><div class="nav-inner">
+  <a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html#heritage">Heritage & Law</a></li>
+    <li><a href="../index.html#giving">Giving & Finance</a></li>
+    <li><a href="../index.html#daily">Daily Worship</a></li>
+  </ul>
+</div></nav>
+
+<main class="calc-page">
+  <div class="calc-breadcrumb">
+    <a href="../index.html">Home</a> <span>›</span>
+    <a href="../index.html#heritage">Heritage & Law</a> <span>›</span>
+    Islamic Will (Wasiyyah)
+  </div>
+  <h1 class="calc-page-title">Islamic Will Calculator</h1>
+  <p class="calc-page-desc">Plan your Wasiyyah (Islamic Will) in accordance with Shariah. Calculate the maximum bequest (1/3 rule), allocate charitable bequests, and see how your estate distributes among your legal heirs.</p>
+
+  <div class="calc-widget">
+    <div class="calc-widget-header">
+      <span class="calc-widget-icon">📜</span>
+      <h2>Wasiyyah Planner</h2>
+    </div>
+    <div class="calc-widget-body">
+
+      <div class="info-box green">
+        <span class="info-box-icon">☪️</span>
+        <div><strong>Shariah Rule:</strong> A Muslim may only bequeath up to <strong>1/3 of the net estate</strong> to non-heirs (charities, friends, non-Muslim relatives). The remaining 2/3+ is distributed to legal heirs (Faraid) and <em>cannot</em> be overridden by a will. Bequests to legal heirs require consent of all other heirs.</div>
+      </div>
+
+      <!-- STEP 1: Estate -->
+      <div style="margin-bottom:2rem;">
+        <div style="font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink);margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:2px solid var(--border);">
+          Step 1 — Your Estate
+        </div>
+        <div class="field-group">
+          <div class="field">
+            <label>Total Gross Estate ($)</label>
+            <input type="number" id="grossEstate" placeholder="e.g. 500000" min="0" oninput="updateLive()">
+            <span class="field-hint">Total value of all assets</span>
+          </div>
+          <div class="field">
+            <label>Outstanding Debts ($)</label>
+            <input type="number" id="debts" placeholder="e.g. 50000" min="0" value="" oninput="updateLive()">
+            <span class="field-hint">Mortgages, loans, credit cards</span>
+          </div>
+        </div>
+        <div class="field-group">
+          <div class="field">
+            <label>Funeral & Burial Expenses ($)</label>
+            <input type="number" id="funeral" placeholder="e.g. 10000" min="0" value="" oninput="updateLive()">
+            <span class="field-hint">Estimated funeral costs</span>
+          </div>
+          <div class="field">
+            <label>Currency</label>
+            <select id="currency" onchange="updateLive()">
+              <option value="USD">USD — US Dollar</option>
+              <option value="GBP">GBP — British Pound</option>
+              <option value="EUR">EUR — Euro</option>
+              <option value="CAD">CAD — Canadian Dollar</option>
+              <option value="AED">AED — UAE Dirham</option>
+              <option value="PKR">PKR — Pakistani Rupee</option>
+            </select>
+          </div>
+        </div>
+        <!-- Live Estate Summary -->
+        <div id="estate-summary" style="background:var(--paper);border-radius:var(--radius-sm);padding:1rem 1.25rem;font-size:0.88rem;display:none;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:0.35rem;"><span style="color:var(--ink-light);">Gross Estate</span><span id="live-gross" style="font-weight:600;"></span></div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:0.35rem;"><span style="color:var(--ink-light);">Less: Debts</span><span id="live-debts" style="font-weight:600;color:#ef4444;"></span></div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:0.35rem;"><span style="color:var(--ink-light);">Less: Funeral</span><span id="live-funeral" style="font-weight:600;color:#ef4444;"></span></div>
+          <div style="display:flex;justify-content:space-between;padding-top:0.5rem;border-top:1px solid var(--border);"><span style="font-weight:700;">Net Estate (distributable)</span><span id="live-net" style="font-weight:700;color:var(--green);font-size:1rem;"></span></div>
+          <div style="display:flex;justify-content:space-between;margin-top:0.5rem;"><span style="color:var(--ink-light);">Max Wasiyyah (1/3)</span><span id="live-third" style="font-weight:600;color:var(--gold);"></span></div>
+          <div style="display:flex;justify-content:space-between;"><span style="color:var(--ink-light);">Reserved for Heirs (2/3+)</span><span id="live-heirs-share" style="font-weight:600;color:var(--accent);"></span></div>
+        </div>
+      </div>
+
+      <!-- STEP 2: Bequests -->
+      <div style="margin-bottom:2rem;">
+        <div style="font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink);margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:2px solid var(--border);">
+          Step 2 — Your Bequests (Wasiyyah) — max 1/3 of net estate
+        </div>
+        <div id="bequests-list">
+          <div class="bequest-row" style="display:grid;grid-template-columns:1fr 1fr 40px;gap:0.75rem;margin-bottom:0.75rem;">
+            <input type="text" placeholder="Recipient (e.g. Islamic charity)" style="padding:0.7rem 0.9rem;border:1.5px solid var(--border-strong);border-radius:var(--radius-sm);font-family:DM Sans,sans-serif;font-size:0.9rem;outline:none;">
+            <input type="number" placeholder="Amount ($)" min="0" style="padding:0.7rem 0.9rem;border:1.5px solid var(--border-strong);border-radius:var(--radius-sm);font-family:DM Sans,sans-serif;font-size:0.9rem;outline:none;" oninput="updateLive()">
+            <button onclick="removeBequest(this)" style="background:none;border:1.5px solid var(--border-strong);border-radius:var(--radius-sm);cursor:pointer;color:var(--ink-muted);font-size:1.1rem;display:flex;align-items:center;justify-content:center;">×</button>
+          </div>
+        </div>
+        <button onclick="addBequest()" style="background:none;border:1.5px dashed var(--border-strong);border-radius:var(--radius-sm);padding:0.6rem 1.25rem;font-family:DM Sans,sans-serif;font-size:0.85rem;color:var(--accent);cursor:pointer;width:100%;font-weight:600;">+ Add another bequest</button>
+        <div id="bequest-warning" style="display:none;margin-top:0.75rem;padding:0.65rem 1rem;background:#fee2e2;border:1px solid #fca5a5;border-radius:var(--radius-sm);font-size:0.82rem;color:#991b1b;font-weight:500;"></div>
+      </div>
+
+      <!-- STEP 3: Heirs -->
+      <div style="margin-bottom:2rem;">
+        <div style="font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink);margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:2px solid var(--border);">
+          Step 3 — Your Legal Heirs (Faraid Distribution)
+        </div>
+        <div class="field-group">
+          <div class="field">
+            <label>Spouse</label>
+            <select id="w-spouse">
+              <option value="none">None</option>
+              <option value="husband">Husband (1)</option>
+              <option value="wife1">Wife (1)</option>
+              <option value="wife2">Wives (2)</option>
+              <option value="wife3">Wives (3)</option>
+              <option value="wife4">Wives (4)</option>
+            </select>
+          </div>
+          <div class="field"><label>Sons</label><input type="number" id="w-sons" placeholder="0" min="0" value=""></div>
+          <div class="field"><label>Daughters</label><input type="number" id="w-daughters" placeholder="0" min="0" value=""></div>
+        </div>
+        <div class="field-group">
+          <div class="field"><label>Father alive?</label><select id="w-father"><option >No</option><option value="1">Yes</option></select></div>
+          <div class="field"><label>Mother alive?</label><select id="w-mother"><option >No</option><option value="1">Yes</option></select></div>
+          <div class="field"><label>Full Brothers</label><input type="number" id="w-fbro" placeholder="0" min="0" value=""></div>
+          <div class="field"><label>Full Sisters</label><input type="number" id="w-fsis" placeholder="0" min="0" value=""></div>
+        </div>
+      </div>
+
+      <!-- STEP 4: Personal Info for Summary -->
+      <div style="margin-bottom:2rem;">
+        <div style="font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink);margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:2px solid var(--border);">
+          Step 4 — Your Details (for will summary)
+        </div>
+        <div class="field-group">
+          <div class="field"><label>Your Full Name</label><input type="text" id="w-name" placeholder="e.g. Muhammad Abdullah Khan"></div>
+          <div class="field"><label>Date</label><input type="date" id="w-date"></div>
+        </div>
+        <div class="field-group">
+          <div class="field"><label>City / Country</label><input type="text" id="w-city" placeholder="e.g. Dallas, Texas, USA"></div>
+          <div class="field"><label>Executor Name</label><input type="text" id="w-executor" placeholder="Person you trust to execute will"></div>
+        </div>
+      </div>
+
+      <button class="btn-calc" onclick="showGate(generateWill)">Generate My Islamic Will Summary</button>
+
+      <div class="result-box islamic-result" id="result" style="display:none;">
+        <div class="result-label">Islamic Will Summary (Wasiyyah)</div>
+        <div id="will-output" style="font-size:0.88rem;line-height:1.8;"></div>
+        <div style="margin-top:1.5rem;display:flex;gap:0.75rem;">
+          <button onclick="printWill()" style="flex:1;padding:0.75rem;background:var(--green);color:white;border:none;border-radius:var(--radius-sm);font-family:DM Sans,sans-serif;font-size:0.9rem;font-weight:600;cursor:pointer;">🖨️ Print / Save as PDF</button>
+          <button onclick="copyWill()" style="flex:1;padding:0.75rem;background:white;color:var(--ink);border:1.5px solid var(--border-strong);border-radius:var(--radius-sm);font-family:DM Sans,sans-serif;font-size:0.9rem;font-weight:600;cursor:pointer;">📋 Copy Text</button>
+        </div>
+        <div style="margin-top:1rem;padding:0.75rem 1rem;background:rgba(6,95,70,0.08);border-radius:var(--radius-sm);font-size:0.78rem;color:var(--green);">
+          ⚠️ This summary is a planning tool only. Have your will reviewed and witnessed by a qualified Islamic scholar and legal advisor in your jurisdiction.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <h3>What is a Wasiyyah (Islamic Will)?</h3>
+    <p>A Wasiyyah is an Islamic will or testament. It is the voluntary bequest a Muslim can make to direct up to one-third of their net estate to recipients of their choice — charities, friends, institutions, or non-Muslim relatives who would not inherit under Faraid law.</p>
+    <p>The Prophet Muhammad ﷺ said: <em>"It is the duty of a Muslim who has something to bequest not to let two nights pass without including it in his written will."</em> (Bukhari & Muslim)</p>
+  </div>
+  <div class="content-section">
+    <h3>The 1/3 Rule (Wuṣūl al-Thuluth)</h3>
+    <p>A Muslim may not bequest more than one-third of their net estate (after debts and funeral expenses) to non-heirs. This protects the rights of legal heirs (Faraid). Bequests to legal heirs themselves require the unanimous consent of all other heirs.</p>
+  </div>
+  <div class="content-section">
+    <h3>What should your Will include?</h3>
+    <ul>
+      <li><strong>Declaration of faith</strong> — affirm your Islamic beliefs</li>
+      <li><strong>Executor designation</strong> — who will carry out your wishes</li>
+      <li><strong>Debt clearance instructions</strong> — debts must be paid first</li>
+      <li><strong>Wasiyyah bequests</strong> — up to 1/3 to charities/non-heirs</li>
+      <li><strong>Faraid distribution</strong> — remaining 2/3+ per Islamic law</li>
+      <li><strong>Funeral instructions</strong> — burial preferences, Ghusl, Islamic burial</li>
+      <li><strong>Digital assets</strong> — passwords, online accounts</li>
+      <li><strong>Guardianship</strong> — for minor children if applicable</li>
+    </ul>
+  </div>
+  <div class="content-section">
+    <h3>Frequently Asked Questions</h3>
+    <div class="faq-item">
+      <div class="faq-q">Can I leave everything to my spouse?</div>
+      <div class="faq-a">No — under Islamic law, a spouse receives a fixed share (1/4 or 1/8 depending on children). You cannot override Faraid using a will. However, if you are in a non-Muslim country, you may wish to consult both a scholar and a solicitor about how Islamic and civil law interact in your jurisdiction.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Do I need a lawyer as well?</div>
+      <div class="faq-a">Yes — in most countries a will must meet legal requirements (witnesses, notarisation) to be legally binding. An Islamic will should ideally be both Shariah-compliant and legally valid under your country's law. Seek both an Islamic scholar and a local solicitor/attorney.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What if I have no heirs?</div>
+      <div class="faq-a">If you have no Faraid heirs, the entire estate can be directed via Wasiyyah. In this case the 1/3 restriction typically does not apply and the full estate may go to charitable causes, according to many scholars.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can non-Muslim relatives inherit?</div>
+      <div class="faq-a">Under classical Faraid law, non-Muslim relatives do not inherit. However, you can include them within your Wasiyyah bequest (up to 1/3 of net estate). This is a valid and widely accepted approach.</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a class="nav-logo" href="../index.html">Islamic<span>Calc</span></a>
+      <p>Free Shariah-aware calculators for Muslim life. Built with the Ummah in mind.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Heritage & Law</h4>
+      <a href="will.html">Islamic Will</a>
+      <a href="mirath.html">Mirath (Inheritance)</a>
+      <a href="abjad.html">Abjad Calculator</a>
+    </div>
+    <div class="footer-col">
+      <h4>Giving & Finance</h4>
+      <a href="zakat.html">Zakat</a>
+      <a href="zakat-al-fitr.html">Zakat al-Fitr</a>
+      <a href="murabaha.html">Murabaha Finance</a>
+    </div>
+    <div class="footer-col">
+      <h4>Daily Worship</h4>
+      <a href="prayer-times.html">Prayer Times</a>
+      <a href="qibla.html">Qibla Finder</a>
+      <a href="hijri.html">Hijri Calendar</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 IslamicCalc. All rights reserved.</span>
+    <span class="footer-badge">☪️ Shariah-Aware</span>
+    <span>For guidance only — consult a qualified scholar.</span>
+  </div>
+</footer>
+
+<!-- EMAIL GATE MODAL -->
+<div class="email-gate-overlay hidden" id="emailGate">
+  <div class="email-gate-box">
+    <span class="email-gate-icon">📜</span>
+    <h2>Generate Your Will Summary</h2>
+    <p>Enter your name and email to unlock your Islamic Will summary. We send Islamic planning reminders — no spam, ever.</p>
+    <div class="email-gate-fields">
+      <input type="text" id="gateName" placeholder="Your name" autocomplete="name">
+      <input type="email" id="gateEmail" placeholder="Your email address" autocomplete="email">
+    </div>
+    <button class="btn-gate" onclick="submitGate()">Generate My Will →</button>
+    <p class="email-gate-privacy">🔒 Your data is private. Unsubscribe anytime.</p>
+  </div>
+</div>
+
+<script>
+/* ── EMAIL GATE ── */
+var _pendingCalc = null;
+function showGate(fn) {
+  if (localStorage.getItem('ic_email')) { fn(); return; }
+  _pendingCalc = fn;
+  var o = document.getElementById('emailGate');
+  o.classList.remove('hidden');
+  o.style.cssText = 'position:fixed!important;inset:0!important;background:rgba(10,10,30,0.75)!important;z-index:9999!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:1rem!important;backdrop-filter:blur(6px)!important;';
+}
+function submitGate() {
+  var e = document.getElementById('gateEmail').value.trim();
+  var n = document.getElementById('gateName').value.trim();
+  if (!e || !e.includes('@') || !e.includes('.')) {
+    document.getElementById('gateEmail').style.borderColor = '#ef4444';
+    document.getElementById('gateEmail').focus();
+    return;
+  }
+  localStorage.setItem('ic_email', e);
+  localStorage.setItem('ic_name', n);
+  var o = document.getElementById('emailGate');
+  o.classList.add('hidden');
+  o.style.cssText = '';
+  if (_pendingCalc) { _pendingCalc(); _pendingCalc = null; }
+}
+document.addEventListener('keydown', function(e) {
+  var g = document.getElementById('emailGate');
+  if (e.key === 'Enter' && g && !g.classList.contains('hidden')) submitGate();
+});
+
+/* ── HELPERS ── */
+var SYMS = {USD:'$',GBP:'£',EUR:'€',CAD:'CA$',AED:'AED ',PKR:'Rs '};
+function fmt(n, c) {
+  c = c || document.getElementById('currency').value;
+  return (SYMS[c]||'$') + Math.abs(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+}
+function v(id) { return parseFloat(document.getElementById(id).value) || 0; }
+function iv(id) { return parseInt(document.getElementById(id).value) || 0; }
+
+/* ── LIVE ESTATE SUMMARY ── */
+function updateLive() {
+  var gross = v('grossEstate');
+  if (!gross) { document.getElementById('estate-summary').style.display = 'none'; return; }
+  var debts = v('debts'), funeral = v('funeral');
+  var net = Math.max(0, gross - debts - funeral);
+  var third = net / 3;
+  var c = document.getElementById('currency').value;
+  document.getElementById('estate-summary').style.display = 'block';
+  document.getElementById('live-gross').textContent = fmt(gross, c);
+  document.getElementById('live-debts').textContent = '− ' + fmt(debts, c);
+  document.getElementById('live-funeral').textContent = '− ' + fmt(funeral, c);
+  document.getElementById('live-net').textContent = fmt(net, c);
+  document.getElementById('live-third').textContent = fmt(third, c);
+  document.getElementById('live-heirs-share').textContent = fmt(net - third, c);
+  // Check bequest total
+  checkBequestLimit(net, third, c);
+}
+
+function getBequestTotal() {
+  var rows = document.querySelectorAll('.bequest-row input[type="number"]');
+  var total = 0;
+  rows.forEach(function(r) { total += parseFloat(r.value) || 0; });
+  return total;
+}
+
+function checkBequestLimit(net, third, c) {
+  if (!net) return;
+  var total = getBequestTotal();
+  var warn = document.getElementById('bequest-warning');
+  if (total > third) {
+    warn.style.display = 'block';
+    warn.textContent = '⚠️ Your bequests (' + fmt(total, c) + ') exceed the Islamic maximum of 1/3 (' + fmt(third, c) + '). Please reduce your bequests by ' + fmt(total - third, c) + '.';
+  } else {
+    warn.style.display = 'none';
+  }
+}
+
+/* ── BEQUEST ROWS ── */
+function addBequest() {
+  var list = document.getElementById('bequests-list');
+  var row = document.createElement('div');
+  row.className = 'bequest-row';
+  row.style.cssText = 'display:grid;grid-template-columns:1fr 1fr 40px;gap:0.75rem;margin-bottom:0.75rem;';
+  row.innerHTML = '<input type="text" placeholder="Recipient name or charity" style="padding:0.7rem 0.9rem;border:1.5px solid var(--border-strong);border-radius:var(--radius-sm);font-family:DM Sans,sans-serif;font-size:0.9rem;outline:none;">'
+    + '<input type="number" placeholder="Amount ($)" min="0" style="padding:0.7rem 0.9rem;border:1.5px solid var(--border-strong);border-radius:var(--radius-sm);font-family:DM Sans,sans-serif;font-size:0.9rem;outline:none;" oninput="updateLive()">'
+    + '<button onclick="removeBequest(this)" style="background:none;border:1.5px solid var(--border-strong);border-radius:var(--radius-sm);cursor:pointer;color:var(--ink-muted);font-size:1.1rem;display:flex;align-items:center;justify-content:center;">×</button>';
+  list.appendChild(row);
+}
+function removeBequest(btn) {
+  btn.closest('.bequest-row').remove();
+  updateLive();
+}
+
+/* ── INHERITANCE CALC (simplified Faraid) ── */
+function calcFaraid(net, bequestTotal) {
+  var heirsPool = net - Math.min(bequestTotal, net / 3);
+  var spouse = document.getElementById('w-spouse').value;
+  var sons = iv('w-sons'), daughters = iv('w-daughters');
+  var father = iv('w-father'), mother = iv('w-mother');
+  var fbro = iv('w-fbro'), fsis = iv('w-fsis');
+  var hasChildren = sons > 0 || daughters > 0;
+  var shares = {}, used = 0;
+
+  if (spouse === 'husband') { shares['Husband'] = hasChildren ? 0.25 : 0.5; }
+  else if (spouse.startsWith('wife')) {
+    var wn = parseInt(spouse.replace('wife',''));
+    shares['Wife/Wives (' + wn + ')'] = hasChildren ? 0.125 : 0.25;
+  }
+  if (father) shares['Father'] = 1/6;
+  if (mother) shares['Mother'] = hasChildren ? 1/6 : (fbro + fsis >= 2 ? 1/6 : 1/3);
+
+  Object.keys(shares).forEach(function(k) { used += shares[k]; });
+  var remainder = Math.max(0, 1 - used);
+
+  var rows = [];
+  Object.keys(shares).forEach(function(k) {
+    var amt = shares[k] * heirsPool;
+    rows.push({ name: k, amount: amt, pct: (shares[k]*100).toFixed(1) });
+  });
+
+  var childPool = remainder * heirsPool;
+  var units = sons * 2 + daughters;
+  if (units > 0) {
+    if (sons > 0) rows.push({ name: 'Each Son (' + sons + ')', amount: childPool * 2 / units, pct: ((2/units)*100*remainder).toFixed(1) });
+    if (daughters > 0) rows.push({ name: 'Each Daughter (' + daughters + ')', amount: childPool / units, pct: ((1/units)*100*remainder).toFixed(1) });
+  } else if (!father && (fbro + fsis > 0)) {
+    var sibPool = remainder * heirsPool;
+    var sibUnits = fbro * 2 + fsis;
+    if (sibUnits > 0) {
+      if (fbro > 0) rows.push({ name: 'Each Full Brother (' + fbro + ')', amount: sibPool * 2 / sibUnits, pct: '-' });
+      if (fsis > 0) rows.push({ name: 'Each Full Sister (' + fsis + ')', amount: sibPool / sibUnits, pct: '-' });
+    }
+  }
+  return rows;
+}
+
+/* ── GENERATE WILL ── */
+function generateWill() {
+  var gross = v('grossEstate');
+  if (!gross) { alert('Please enter your estate value first.'); return; }
+  var debts = v('debts'), funeral = v('funeral');
+  var net = Math.max(0, gross - debts - funeral);
+  var third = net / 3;
+  var c = document.getElementById('currency').value;
+
+  // Collect bequests
+  var bequests = [];
+  var bequestRows = document.querySelectorAll('.bequest-row');
+  var bequestTotal = 0;
+  bequestRows.forEach(function(row) {
+    var recip = row.querySelector('input[type="text"]').value.trim();
+    var amt = parseFloat(row.querySelector('input[type="number"]').value) || 0;
+    if (recip && amt > 0) { bequests.push({ name: recip, amount: amt }); bequestTotal += amt; }
+  });
+
+  if (bequestTotal > third) {
+    alert('Your bequests exceed the Islamic 1/3 limit. Please reduce them before generating the will.');
+    return;
+  }
+
+  var name = document.getElementById('w-name').value.trim() || '[Your Full Name]';
+  var date = document.getElementById('w-date').value ? new Date(document.getElementById('w-date').value).toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'}) : new Date().toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'});
+  var city = document.getElementById('w-city').value.trim() || '[City, Country]';
+  var executor = document.getElementById('w-executor').value.trim() || '[Executor Name]';
+
+  var heirRows = calcFaraid(net, bequestTotal);
+  var heirsPool = net - bequestTotal;
+
+  var html = '<div style="font-family:Georgia,serif;line-height:2;">';
+  html += '<div style="text-align:center;margin-bottom:1.5rem;">';
+  html += '<div style="font-size:1.5rem;">☪️</div>';
+  html += '<div style="font-size:1rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;">In the Name of Allah, the Most Gracious, the Most Merciful</div>';
+  html += '<div style="font-size:0.8rem;color:var(--ink-muted);font-style:italic;margin-top:0.25rem;">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ</div>';
+  html += '</div>';
+
+  html += '<p><strong>ISLAMIC WILL AND TESTAMENT (WASIYYAH)</strong></p>';
+  html += '<p>I, <strong>' + name + '</strong>, residing in <strong>' + city + '</strong>, being of sound mind and body, hereby declare this to be my Islamic Will (Wasiyyah) on this <strong>' + date + '</strong>.</p>';
+
+  html += '<p><strong>1. Declaration of Faith</strong><br>I bear witness that there is no god but Allah, and that Muhammad (ﷺ) is His servant and messenger. I die as a Muslim and request that all Islamic rites be observed for my burial.</p>';
+
+  html += '<p><strong>2. Executor</strong><br>I appoint <strong>' + executor + '</strong> as the executor of this Will. In the event of their inability to act, I request the Muslim community to appoint a trustworthy Muslim in their place.</p>';
+
+  html += '<p><strong>3. Funeral Instructions</strong><br>I request to be buried according to Islamic rites — Ghusl (washing), Kafan (shrouding), Janazah prayer, and burial in a Muslim cemetery facing the Qibla. I do not wish to be cremated.</p>';
+
+  html += '<p><strong>4. Estate Overview</strong></p>';
+  html += '<div style="background:var(--paper);padding:0.75rem 1rem;border-radius:8px;font-size:0.85rem;margin-bottom:0.5rem;">';
+  html += 'Gross Estate: <strong>' + fmt(gross,c) + '</strong><br>';
+  html += 'Less Debts: <strong>(' + fmt(debts,c) + ')</strong><br>';
+  html += 'Less Funeral: <strong>(' + fmt(funeral,c) + ')</strong><br>';
+  html += 'Net Distributable Estate: <strong>' + fmt(net,c) + '</strong><br>';
+  html += 'Maximum Wasiyyah (1/3): <strong>' + fmt(third,c) + '</strong>';
+  html += '</div>';
+
+  html += '<p><strong>5. Bequests (Wasiyyah)</strong><br>';
+  if (bequests.length > 0) {
+    bequests.forEach(function(b) {
+      html += '• ' + b.name + ': <strong>' + fmt(b.amount,c) + '</strong><br>';
+    });
+    html += 'Total Bequests: <strong>' + fmt(bequestTotal,c) + '</strong> (' + ((bequestTotal/net)*100).toFixed(1) + '% of net estate)';
+  } else {
+    html += 'No specific bequests designated. Full estate to be distributed per Faraid.';
+  }
+  html += '</p>';
+
+  html += '<p><strong>6. Distribution to Legal Heirs (Faraid)</strong><br>';
+  html += 'Remaining estate for heirs: <strong>' + fmt(heirsPool,c) + '</strong><br>';
+  if (heirRows.length > 0) {
+    heirRows.forEach(function(h) {
+      html += '• ' + h.name + ': <strong>' + fmt(h.amount,c) + '</strong><br>';
+    });
+  } else {
+    html += 'No heirs specified — please consult a scholar for distribution to Bayt al-Mal or Islamic charities.';
+  }
+  html += '</p>';
+
+  html += '<p><strong>7. Debts</strong><br>All outstanding debts must be paid in full before any distribution. If my estate is insufficient, debts take priority over bequests.</p>';
+
+  html += '<p><strong>8. Witnesses</strong></p>';
+  html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:0.5rem 0;">';
+  html += '<div style="border-top:1px solid var(--border);padding-top:0.5rem;font-size:0.8rem;color:var(--ink-muted);">Witness 1 Signature &amp; Name<br><br><br>Date: _______________</div>';
+  html += '<div style="border-top:1px solid var(--border);padding-top:0.5rem;font-size:0.8rem;color:var(--ink-muted);">Witness 2 Signature &amp; Name<br><br><br>Date: _______________</div>';
+  html += '</div>';
+
+  html += '<div style="border-top:1px solid var(--border);margin-top:1rem;padding-top:0.75rem;font-size:0.8rem;color:var(--ink-muted);text-align:center;">';
+  html += 'Signed: <strong>' + name + '</strong> &nbsp;|&nbsp; Date: <strong>' + date + '</strong><br>';
+  html += '<em>This will was generated by IslamicCalc.com for planning purposes. Have it reviewed by a qualified Islamic scholar and legal professional.</em>';
+  html += '</div>';
+  html += '</div>';
+
+  document.getElementById('will-output').innerHTML = html;
+  window._willText = document.getElementById('will-output').innerText;
+
+  var box = document.getElementById('result');
+  box.style.display = 'block';
+  box.classList.remove('visible');
+  void box.offsetWidth;
+  box.classList.add('visible');
+  box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function printWill() {
+  var content = document.getElementById('will-output').innerHTML;
+  var w = window.open('', '_blank');
+  w.document.write('<html><head><title>Islamic Will — IslamicCalc</title><style>body{font-family:Georgia,serif;max-width:700px;margin:2rem auto;padding:2rem;line-height:1.9;color:#1a1a2e;}h1{font-size:1.4rem;text-align:center;margin-bottom:1.5rem;}p{margin-bottom:1rem;}@media print{body{margin:1rem;}}</style></head><body>');
+  w.document.write(content);
+  w.document.write('</body></html>');
+  w.document.close();
+  w.focus();
+  setTimeout(function() { w.print(); }, 500);
+}
+
+function copyWill() {
+  var text = window._willText || document.getElementById('will-output').innerText;
+  navigator.clipboard.writeText(text).then(function() {
+    var btn = event.target;
+    btn.textContent = '✅ Copied!';
+    setTimeout(function() { btn.textContent = '📋 Copy Text'; }, 2000);
+  });
+}
+
+// Set today's date
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('w-date').value = new Date().toISOString().split('T')[0];
+});
+</script>
+</body>
+</html>

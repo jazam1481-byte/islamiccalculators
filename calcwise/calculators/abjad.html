@@ -102,8 +102,9 @@
 
 <script>
 var _pendingCalc=null;
-function showGate(fn){var s=localStorage.getItem('ic_email');if(s){fn();return;}_pendingCalc=fn;document.getElementById('emailGate').classList.remove('hidden');}
-function submitGate(){var n=document.getElementById('gateName').value.trim(),e=document.getElementById('gateEmail').value.trim();if(!e||!e.includes('@')){alert('Please enter a valid email.');return;}localStorage.setItem('ic_email',e);localStorage.setItem('ic_name',n);document.getElementById('emailGate').classList.add('hidden');if(_pendingCalc){_pendingCalc();_pendingCalc=null;}}
+function showGate(fn){if(localStorage.getItem("ic_email")){fn();return;}_pendingCalc=fn;var o=document.getElementById("emailGate");o.classList.remove("hidden");o.style.cssText="position:fixed!important;inset:0!important;background:rgba(10,10,30,0.75)!important;z-index:9999!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:1rem!important;backdrop-filter:blur(6px)!important;";}
+function submitGate(){var e=document.getElementById("gateEmail").value.trim();var n=document.getElementById("gateName").value.trim();if(!e||!e.includes("@")){document.getElementById("gateEmail").style.borderColor="#ef4444";document.getElementById("gateEmail").focus();return;}localStorage.setItem("ic_email",e);localStorage.setItem("ic_name",n);var o=document.getElementById("emailGate");o.classList.add("hidden");o.style.cssText="";if(_pendingCalc){_pendingCalc();_pendingCalc=null;}}
+document.addEventListener("keydown",function(e){var g=document.getElementById("emailGate");if(e.key==="Enter"&&g&&!g.classList.contains("hidden"))submitGate();});
 function setName(v){document.getElementById('arabicWord').value=v;}
 
 const ABJAD={
@@ -123,7 +124,7 @@ function calcAbjad(){
   rows.push('<div class="result-row" style="border-top:2px solid rgba(6,95,70,0.3);padding-top:0.5rem;font-weight:600;"><span>Total</span><span>'+total+'</span></div>');
   document.getElementById('res-total').textContent=total;
   document.getElementById('res-breakdown').innerHTML=rows.join('');
-  var b=document.getElementById('result');b.style.display='block';b.classList.remove('visible');void b.offsetWidth;b.classList.add('visible');
+  var b=document.getElementById('result');b.style.display="block";b.classList.remove('visible');void b.offsetWidth;b.classList.add('visible');
 }
 </script>
 </body>
