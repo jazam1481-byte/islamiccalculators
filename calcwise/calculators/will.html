@@ -494,7 +494,9 @@ function printWill() {
   var w = window.open('', '_blank');
   w.document.write('<html><head><title>Islamic Will — IslamicCalc</title><style>body{font-family:Georgia,serif;max-width:700px;margin:2rem auto;padding:2rem;line-height:1.9;color:#1a1a2e;}h1{font-size:1.4rem;text-align:center;margin-bottom:1.5rem;}p{margin-bottom:1rem;}@media print{body{margin:1rem;}}</style></head><body>');
   w.document.write(content);
-  w.document.write('</body></html>');
+  w.document.write('
+<script src="supabase-gate.js"></script>
+</body></html>');
   w.document.close();
   w.focus();
   setTimeout(function() { w.print(); }, 500);
