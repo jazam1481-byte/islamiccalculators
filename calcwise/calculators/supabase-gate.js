@@ -1,10 +1,9 @@
 // ============================================================
-// Supabase Email Capture — islamiccalculators.com
-// Saves every email submission to Supabase email_leads table
+// Email Capture — islamiccalculators.com
+// Saves every email submission to a Google Sheet via Apps Script
 // ============================================================
 (function () {
-  var SUPABASE_URL = 'https://jwrbuzkmxnfyhpymbncc.supabase.co';
-  var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp3cmJ1emtteG5meWhweW1ibmNjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwMDUyODQsImV4cCI6MjA5NjU4MTI4NH0.NCgrhwqhq3hxv5z5pducSeYAwr_EFiOH3TDBSYLqTug';
+  var SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxyfr_TrcSNQa2X7gg-IjOIb1havL0oECAqVYgBzVxJxwfdHHeQobYquVTCJpnysAgBLQ/exec';
 
   // Detect calculator name from page title or URL
   function getCalculatorName() {
@@ -14,28 +13,26 @@
     return match ? match[1] : title.split('|')[0].trim() || 'Unknown';
   }
 
-  // Save email to Supabase (fire and forget — never blocks the user)
-  function saveToSupabase(email, name) {
+  // Save email to Google Sheet (fire and forget — never blocks the user)
+  function saveToSheet(email, name) {
     try {
-      fetch(SUPABASE_URL + '/rest/v1/email_leads', {
+      fetch(SHEET_ENDPOINT, {
         method: 'POST',
+        mode: 'no-cors', // Apps Script doesn't return CORS headers; we don't need to read the response
         headers: {
-          'Content-Type': 'application/json',
-          'apikey': SUPABASE_ANON_KEY,
-          'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
-          'Prefer': 'return=minimal'
+          'Content-Type': 'text/plain' // avoids a CORS preflight, which Apps Script webapps don't handle
         },
         body: JSON.stringify({
           email: email,
-          calculator_name: getCalculatorName(),
-          source_url: window.location.href
+          calculator: getCalculatorName(),
+          source: window.location.href
         })
       }).catch(function () {}); // silently ignore network errors
     } catch (e) {}
   }
 
   // Patch the global submitGate function after DOM loads
-  // We wrap it so Supabase save runs alongside whatever the page already does
+  // We wrap it so the Sheet save runs alongside whatever the page already does
   function patchSubmitGate() {
     var original = window.submitGate;
     window.submitGate = function () {
@@ -44,7 +41,7 @@
       var email = emailEl ? emailEl.value.trim() : '';
       var name = nameEl ? nameEl.value.trim() : '';
       if (email && email.indexOf('@') !== -1) {
-        saveToSupabase(email, name);
+        saveToSheet(email, name);
       }
       if (typeof original === 'function') {
         return original.apply(this, arguments);
